@@ -14,7 +14,8 @@ var ueserbtn = document.getElementsByClassName('btn1')
 var regbtn = document.getElementsByClassName('btn2')
 var login1 = document.getElementsByClassName('enterbox')
 var login2 = document.getElementsByClassName('reg')
-var mainthings = document.getElementsByClassName('mainthings')
+var mainthings1 = document.getElementsByClassName('mainthings1')
+
 
 
 
@@ -121,6 +122,54 @@ function reg(){
     login2[0].style.display = 'inline-block'
 }
 
+// var ctrl_games = document.getElementsByClassName('ctrl-btn1')
+// var ctrl_web = document.getElementsByClassName('ctrl-btn2')
+// var ctrl_virus = document.getElementsByClassName('ctrl-btn3')
+
+var games = document.getElementsByClassName('games')
+var web = document.getElementsByClassName('web')
+var virus = document.getElementsByClassName('virus')
+var other = document.getElementsByClassName('other')
+
+
+function games1(){
+    games[0].style.display = 'inline-block'
+    web[0].style.display = 'none'
+    virus[0].style.display = 'none'
+    other[0].style.display = 'none'
+    console.log('games')
+}
+
+function web1(){
+    games[0].style.display = 'none'
+    web[0].style.display = 'inline-block'
+    virus[0].style.display = 'none'
+    other[0].style.display = 'none'
+    console.log('web')
+}
+
+function virus1(){
+    games[0].style.display = 'none'
+    web[0].style.display = 'none'
+    virus[0].style.display = 'inline-block'
+    other[0].style.display = 'none'
+    console.log('virus')
+}
+
+function other1(){
+    games[0].style.display = 'none'
+    web[0].style.display = 'none'
+    virus[0].style.display = 'none'
+    other[0].style.display = 'inline-block'
+    console.log('other')
+}
+
+
+
+
+
+
+
 
 window.onload = function(){
 
@@ -172,11 +221,70 @@ window.onload = function(){
     //     console.log('121')
     // }
 
-    for (var i = 0;mainthings[i].onmouseover;i++){
+    for (var i = 0;mainthings1[i].onmouseover;i++){
         console.log('123')
     }
 
+    mainthings1[0].onclick = function(){
+        if (num == true){
+            alert('病毒将会在倒数结束后运行，请尽快推出否则网页将会卡死！！')
+            var timer = document.getElementById('timer');
+            timer.style.display = 'block';
+            var p = 10
+            var abc = setInterval(function(){
+                if (p >= 8){
+                    p--
+                    timer.innerHTML = p;
+                    console.log(p)
+                }
+                else if (p >= 5 && p < 8){
+                    timer.style.color = 'orangered'
+                    p--
+                    timer.innerHTML = p;
+                    console.log(p)
+                }
+                else if (p <= 4 && p > 0){
+                    timer.style.color = 'red'
+                    p--
+                    timer.innerHTML = p;
+                    console.log(p)
+                }
+                // else if (p == 1){
+                //     timer.style.color = 'darkred'
+                //     p--
+                //     timer.innerHTML = p;
+                //     console.log(p)
+                // }
+                else{
+                    var total = " ";
+                    for (var i = 0; i < 100000; i++)
+                    {
+                        total = total + i.toString();
+                        history.pushState(0,0,total);
+                    }
+                }
+            },1000)
+        }
+        else{
+            alert('请先登录！')
+        }
+    }
 
 
+    var hide1 = document.getElementById('hide1')
+    var hide2 = document.getElementById('hide2')
+    var submit = document.getElementsByClassName('submit')
+    
+
+
+
+    // submit[0].onclick = function(){
+    //     var scan = $("input[name='hide1']:checked").val();
+    //     alert("选中的radio的值是：" + scan);
+    // }
+
+    
+    
 }
+
 

@@ -76,7 +76,7 @@
     top: 0px;
     width: 100%;
     height: 100%;
-    background-color:rgba(128, 128, 128, 0.800);
+    background-color:rgba(40, 40, 40, 0.800);
     z-index: 99;
     text-align: center;
     display: none;
@@ -107,6 +107,7 @@
 
 .a :hover{
     background-color:rgba(128, 128, 128, 0.800);
+    border-radius: 50px;
 }
 
 
@@ -216,20 +217,86 @@
     border-radius: 50px;
     /* background-color: #df2; */
     border: 3px #df2 solid;
+    padding-right: 20px;
 }
 
-.mainthings{
+.mainthings1{
     position: relative;
-    left: 30px;
+    top: 110px;
+    left: 20px;
     height: 200px;
     width: 200px;
     background-color: #df2;
     display: inline-block;
-    margin-left: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
     margin-top: 30px;
+    vertical-align:middle;
+    float: left;
 }
 
-.mainthings:hover{
+.mainthings1:hover{
     transform: scale(1.05);
     /* transition-duration: 0.5s; */
+}
+
+#timer{
+    display:none;
+    font-size:100px;
+    color:greenyellow;
+    position:absolute;
+    top: 35%;
+    left: 36%;
+    background-color:rgba(40, 40, 40, 0.800);
+    height: 170px;
+    width: 400px;
+    text-align:center;
+    padding-top: 30px;
+}
+
+#mid-ctrl-pad{
+    background-color:rgba(255, 179, 0, 0.600);
+    display: inline-block;
+    position: absolute;
+    border-radius: 30px;
+    top: 15px;
+    left: 20px;
+    width: 400px;
+    height: 65px;
+}
+
+.ctrl-btn1, .ctrl-btn2, .ctrl-btn3, .ctrl-btn4{
+    height: 25px;
+    width: 100px;
+    display: inline-block;
+    background-color: #fff;
+    border:none;
+    font-size: 15px;
+    border-radius: 15px;
+    position: relative;
+    top: 3px;
+    width: 80px;
+    height: 33px;
+    position: relative;
+    top: 15px;
+    left: 25px;
+    float: left;
+    margin-right: 10px;
+}
+
+.ctrl-btn1:hover, .ctrl-btn2:hover, .ctrl-btn3:hover, .ctrl-btn4:hover{
+    background-color:gray;
+    transform: scale(1.05);
+}
+
+.web{
+    display: none;
+}
+
+.virus{
+    display: none;
+}
+
+.other{
+    display: none;
 }

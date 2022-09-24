@@ -91,43 +91,73 @@
                     <img src="img/R-C.png" alt="" class="test2" onclick="exit()">
                 </div>
                 
-                <div class="login">
+                <input id="hide1" type="radio" value="yes" name="hide1">
+                <label for="hide1">yes</label>
 
-                    <button class="btn1" onclick="login()">
-                        <span class="btn-word">登录</span>
-                    </button>
-                </div>
+                <input id="hide2" type="radio" value="no" name="hide1" checked>
+                <label for="hide2">no</label>
 
-                <div id="reg">
-                    <button class="btn2" onclick="reg()">
-                        <span class="btn-word">注册</span>
-                    </button>
-                </div>
 
+                <input class="submit" type="submit">
             </div>
         </div>
 
+
     <div class="middle">
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
-        <div class="mainthings"></div>
+
+        <div id="mid-ctrl-pad">
+
+            <div>
+                <button class="ctrl-btn1" onclick="games1()">小游戏</button>
+                <button class="ctrl-btn2" onclick="web1()">快捷网页</button>
+                <button class="ctrl-btn3" onclick="virus1()">病毒</button>
+                <button class="ctrl-btn4" onclick="other1()">其他</button>
+            </div>
+            
+
+        </div>
+
+        <div class="games">
+            <div class="mainthings1" style="background-color: orange;">games</div>
+            <div class="mainthings1" style="background-color: orange;"></div>
+            <div class="mainthings1" style="background-color: orange;"></div>
+            <div class="mainthings1" style="background-color: orange;"></div>
+            <div class="mainthings1" style="background-color: orange;"></div>
+        </div>
+
+        <div class="web">
+            <div class="mainthings1">web</div>
+            <div class="mainthings1"></div>
+            <div class="mainthings1"></div>
+            <div class="mainthings1"></div>
+            <div class="mainthings1"></div>
+        </div>
+
+        <div class="virus">
+            <div class="mainthings1" style="background-color:red;"><span style="font-size: 30px;text-align:center;display: inline-block;">启动病毒！</span></div>
+            <div class="mainthings1" style="background-color:red;"></div>
+            <div class="mainthings1" style="background-color:red;"></div>
+            <div class="mainthings1" style="background-color:red;"></div>
+            <div class="mainthings1" style="background-color:red;"></div>
+        </div>
+
+        <div class="other">
+            <div class="mainthings1" style="background-color: rgb(0, 238, 255);">other</div>
+            <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
+            <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
+            <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
+            <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
+        </div>
+
+        
     </div>
 
+    <div id="timer">10</div>
 
-    </div>
+
+
 </body>
 </html>
+
 
 
