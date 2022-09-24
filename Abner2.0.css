@@ -217,10 +217,9 @@
     border-radius: 50px;
     /* background-color: #df2; */
     border: 3px #df2 solid;
-    padding-right: 20px;
 }
 
-.mainthings1{
+.mainthings1, .mainthings2{
     position: relative;
     top: 110px;
     left: 20px;
@@ -299,4 +298,10 @@
 
 .other{
     display: none;
+}
+
+#Language{
+    width: 120px;
+    height: 35px;
+
 }

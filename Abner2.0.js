@@ -15,6 +15,7 @@ var regbtn = document.getElementsByClassName('btn2')
 var login1 = document.getElementsByClassName('enterbox')
 var login2 = document.getElementsByClassName('reg')
 var mainthings1 = document.getElementsByClassName('mainthings1')
+var mainthings2 = document.getElementsByClassName('mainthings2')
 
 
 
@@ -166,6 +167,20 @@ function other1(){
 
 
 
+function submit(){
+    var selectbar = document.getElementsByClassName('Language')
+    var ind = selectbar.value
+    var val = selectbar.value
+    var tex = selectbar.options[selectbar.value].text
+    alert('ind = ' + ind + 'val = ' + val + 'text = ' + tex);
+
+
+    console.log(selectbar.options[index].value)
+
+
+
+}
+
 
 
 
@@ -225,7 +240,7 @@ window.onload = function(){
         console.log('123')
     }
 
-    mainthings1[0].onclick = function(){
+    mainthings2[0].onclick = function(){
         if (num == true){
             alert('病毒将会在倒数结束后运行，请尽快推出否则网页将会卡死！！')
             var timer = document.getElementById('timer');
@@ -283,7 +298,6 @@ window.onload = function(){
     //     alert("选中的radio的值是：" + scan);
     // }
 
-    
     
 }
 
