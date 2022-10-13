@@ -10,12 +10,14 @@ var settings = document.getElementsByClassName('settings')
 var settings2 = document.getElementsByClassName('settings2')
 var light = document.getElementsByClassName('light-settings')
 var light2 = document.getElementsByClassName('light-settings2')
+var light3 = document.getElementsByClassName('light-settings3')
 var ueserbtn = document.getElementsByClassName('btn1')
 var regbtn = document.getElementsByClassName('btn2')
 var login1 = document.getElementsByClassName('enterbox')
 var login2 = document.getElementsByClassName('reg')
 var mainthings1 = document.getElementsByClassName('mainthings1')
 var mainthings2 = document.getElementsByClassName('mainthings2')
+var outline = document.getElementsByClassName('out-line')
 
 
 
@@ -165,24 +167,70 @@ function other1(){
     console.log('other')
 }
 
-
+var random = null
 
 function submit(){
     var selectbar = document.getElementsByClassName('Language')
-    var ind = selectbar.value
-    var val = selectbar.value
-    var tex = selectbar.options[selectbar.value].text
-    alert('ind = ' + ind + 'val = ' + val + 'text = ' + tex);
-
-
-    console.log(selectbar.options[index].value)
-
-
-
+    console.log(selectbar[0].value)
 }
 
+function start_game(){
+    var before_start = document.getElementById('before-start')
+    var intro = document.getElementById('intro')
+    random = null
+    before_start.style.display = 'inline-block'
+    intro.style.display = 'none'
+}
 
+function Games1(){
+    var before_start = document.getElementById('before-start')
+    var intro = document.getElementById('intro')
+    light3[0].style.display = 'inline-block'
+    outline[0].style.display = 'inline-block'
+    intro.style.display = 'inline-block'
+    before_start.style.display = 'none'
+}
 
+function exit_game1(){
+    var input = document.getElementById('input')
+    outline[0].style.display = 'none'
+    light3[0].style.display = 'none'
+    input.value = ''
+}
+
+function button1(){
+    var word = document.getElementById('number')
+
+    if(random == null){
+        random = Math.floor(Math.random()*100+1)
+        console.log('random1=' + random)
+    }
+    var input = document.getElementById('input')
+    console.log('input='+input.value)
+
+    console.log(parseInt(input.value) == parseInt(random))
+    if(input.value == random){
+        alert('猜对了!')
+    }
+    else if(input.value > random){
+        console.log('big')
+        console.log('random2=' + random)
+        // var bignum = input.value
+        // word.innerHTML = '请输入' + smallnum + '到' + bignum + '之间的数字'
+        alert('猜大了')
+    }
+    else if(input.value < random){
+        console.log('small')
+        console.log('random3=' + random)
+        // var smallnum = input.value
+        // word.innerHTML = '请输入' + smallnum + '到' + bignum + '之间的数字'
+        alert('猜小了')
+    }
+    else{
+        alert('请输入数字')
+    }
+    // console.log(input.value)
+}
 
 
 
@@ -297,8 +345,6 @@ window.onload = function(){
     //     var scan = $("input[name='hide1']:checked").val();
     //     alert("选中的radio的值是：" + scan);
     // }
-
-    
 }
 
 

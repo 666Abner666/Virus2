@@ -99,8 +99,8 @@
 
                 
                 语言：<select name="Language" class="Language">
-                    <option value="Language">中文</option>
-                    <option value="Language">English</option>
+                    <option value="cn">中文</option>
+                    <option value="en">English</option>
                 </select>
                 
                 <input class="submit" type="submit" onclick="submit()">
@@ -112,6 +112,14 @@
 
 
     <div class="middle">
+
+        <div class="Language">
+            <div class="choose">
+                
+            </div>
+        </div>
+
+
 
         <div id="mid-ctrl-pad">
 
@@ -126,7 +134,33 @@
         </div>
 
         <div class="games">
-            <div class="mainthings1" style="background-color: orange;">games</div>
+            <div class="mainthings1" style="background-color: orange;" onclick="Games1()">猜数字</div>
+
+            <div class="light-settings3"></div>
+
+            <div class="out-line">
+                <div class="img">
+                    <img src="img/R-C.png" class="test3" onclick="exit_game1()">
+                </div>
+
+                <div id="before-start">
+                    <span id="number">请输入1到100之间的数字</span> <input type="text" id="input" maxlength="3"><br>
+                    <button class="number-btn" onclick="button1()">确定</button>
+                </div>
+
+                <div id="intro">
+                    <span id="intro-word">
+                        游戏规则：<br>
+                        开始游戏后系统会随机生成一个数字，你可以在输入框里面猜一个1-100的数字，
+                        之后系统会告诉你，你猜的数字是猜大了，还是猜小了，猜对时游戏获胜
+                    </span>
+    
+                    <button class="number-btn" onclick="start_game()" style="margin-top: 3px;">开始游戏</button>
+                </div>
+
+
+            </div>
+
             <div class="mainthings1" style="background-color: orange;"></div>
             <div class="mainthings1" style="background-color: orange;"></div>
             <div class="mainthings1" style="background-color: orange;"></div>
@@ -161,7 +195,6 @@
     </div>
 
     <div id="timer">10</div>
-
 
 
 </body>

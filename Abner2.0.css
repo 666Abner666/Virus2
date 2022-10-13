@@ -234,7 +234,7 @@
     float: left;
 }
 
-.mainthings1:hover{
+.mainthings1:hover, .mainthings2:hover{
     transform: scale(1.05);
     /* transition-duration: 0.5s; */
 }
@@ -303,5 +303,58 @@
 #Language{
     width: 120px;
     height: 35px;
+}
 
+.out-line{
+    width: 450px;
+    height: 300px;
+    border-radius: 45px;
+    background-color:rgb(128, 128, 128);
+    display: none;
+    position: absolute;
+    z-index: 10;
+    top: 30%;
+    right: 32%;
+    text-align: center;
+    padding-top: 20px;
+    z-index: 20;
+}
+
+.number-btn{
+    margin-top: 15px;
+    height: 40px;
+    width: 62px;
+}
+
+.test3{
+    width: 42px;
+    height: 42px;
+    border-radius: 50px;
+    display: inline-block;
+    position: relative;
+    left: 193px;
+    top: -10px;
+}
+
+#before-start{
+    display: none;
+}
+
+#intro-word{
+    display: inline-block;
+    margin: 13px;
+    font-size: large;
+    color: aqua;
+}
+
+.light-settings3{
+    position: absolute;
+    top: -71px;
+    left: -16px;
+    width: 102.1%;
+    height: 111.5%;
+    background-color:rgba(40, 40, 40, 0.800);
+    z-index: 19;
+    text-align: center;
+    display: none;
 }
