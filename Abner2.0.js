@@ -249,6 +249,7 @@ function submit(){
     var UB2 = document.getElementsByClassName('ueser-btn2')
     var IW = document.getElementById('intro-word')
     var NB = document.getElementsByClassName('number-btn')
+    var NB2 = document.getElementsByClassName('number-btn2')
     var num = document.getElementById('number')
     var LW = document.getElementById('Language-word')
     var submit = document.getElementsByClassName('submit')
@@ -275,7 +276,7 @@ function submit(){
         IW.innerHTML = '游戏规则：<br>开始游戏后系统会随机生成一个数字，你可以在输入框里面猜一个1-100的数字，之后系统会告诉你，你猜的数字是猜大了，还是猜小了，猜对时游戏获胜'
         NB[0].innerHTML = '开始游戏'
         num.innerHTML = '请输入1到100之间的数字'
-        NB[1].innerHTML = '确定'
+        NB2[0].innerHTML = '确定'
         LW.innerHTML = '语言：'
         submit[0].value = '确定'
         VS.innerHTML = '启动病毒！'
@@ -309,7 +310,7 @@ function submit(){
         IW.innerHTML = 'Game rule: <br> When you start the game, the system will generate a random number. You can guess a number from 1 to 100 in the input field.The system then tells you whether your guess is too high or too low, guess it right and you win the game!'
         NB[0].innerHTML = 'Start Game'
         num.innerHTML = 'Please enter a number between 1 and 100'
-        NB[1].innerHTML = 'Confirm'
+        NB2[0].innerHTML = 'Confirm'
         LW.innerHTML = 'Language: '
         submit[0].value = 'Submit'
         VS.innerHTML = 'Start the virus!'
