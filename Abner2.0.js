@@ -171,7 +171,30 @@ var random = null
 
 function submit(){
     var selectbar = document.getElementsByClassName('Language')
-    console.log(selectbar[0].value)
+    var CB1 = document.getElementsByClassName('ctrl-btn1')
+    var CB2 = document.getElementsByClassName('ctrl-btn2')
+    var CB3 = document.getElementsByClassName('ctrl-btn3')
+    var CB4 = document.getElementsByClassName('ctrl-btn4')
+    var M1 = document.getElementsByClassName('mainthings1')
+    var UB1 = document.getElementsByClassName('ueser-btn1')
+    //console.log(selectbar[0].value)
+    if(selectbar[0].value == 'en'){
+        CB1[0].innerHTML = 'Games'
+        CB2[0].innerHTML = 'Website'
+        CB3[0].innerHTML = 'Virus'
+        CB4[0].innerHTML = 'Other'
+        M1[0].innerHTML = 'Gess the number'
+        UB1[0].innerHTML = 'Ueser'
+        console.log('English')
+    }
+    else if(selectbar[0].value == 'cn'){
+        CB1[0].innerHTML = '小游戏'
+        CB2[0].innerHTML = '快捷网页'
+        CB3[0].innerHTML = '病毒'
+        CB4[0].innerHTML = '其他'
+        M1[0].innerHTML = '猜数字'
+        console.log('Chinese')
+    }
 }
 
 function start_game(){
@@ -217,7 +240,9 @@ function button1(){
     }
     else if(input.value > random){
         console.log('big')
-        console.log('random2=' + random)
+        //console.log('random2=' + random)
+        console.log('大=' + small)
+        console.log('input大=' + input.value)
         // var bignum = input.value
         // word.innerHTML = '请输入' + smallnum + '到' + bignum + '之间的数字'
         if(input.value < big){
@@ -225,16 +250,28 @@ function button1(){
             word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
             console.log('改变数字 大')
         }
+        // else{
+        //     small = input.value
+        //     word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
+        //     console.log('改变数字 小2')
+        // }
         alert('猜大了')
     }
     else if(input.value < random){
         console.log('small')
-        console.log('random3=' + random)
+        //console.log('random3=' + random)
+        console.log('小=' + small)
+        console.log('input小=' + input.value)
         if(input.value > small){
             small = input.value
             word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
             console.log('改变数字 小')
         }
+        // else{
+        //     big = input.value
+        //     word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
+        //     console.log('改变数字 大2')
+        // }
         alert('猜小了')
     }
     else{
