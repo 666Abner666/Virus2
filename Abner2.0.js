@@ -198,9 +198,10 @@ function exit_game1(){
     input.value = ''
 }
 
+var small = 1
+var big = 100
 function button1(){
     var word = document.getElementById('number')
-
     if(random == null){
         random = Math.floor(Math.random()*100+1)
         console.log('random1=' + random)
@@ -217,13 +218,21 @@ function button1(){
         console.log('random2=' + random)
         // var bignum = input.value
         // word.innerHTML = '请输入' + smallnum + '到' + bignum + '之间的数字'
+        if(input.value < big){
+            big = input.value
+            word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
+            console.log('改变数字 大')
+        }
         alert('猜大了')
     }
     else if(input.value < random){
         console.log('small')
         console.log('random3=' + random)
-        // var smallnum = input.value
-        // word.innerHTML = '请输入' + smallnum + '到' + bignum + '之间的数字'
+        if(input.value > small){
+            small = input.value
+            word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
+            console.log('改变数字 小')
+        }
         alert('猜小了')
     }
     else{
