@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=0.3, minimum-scale=0, maximum-scale=10.0, user-scalable=yes"/>
     <link rel="stylesheet" href="Abner2.0.css">
     <script src="Abner2.0.js"></script>
     <title>Test2.0</title>
@@ -41,7 +41,7 @@
             <div class="main-settings">
 
                 <div class="img">
-                    <img src="img/R-C.png" alt="" class="test2" onclick="exit()">
+                    <img src="img/R-C.png" class="test2" onclick="exit()">
                 </div>
 
                 <div class="login">
@@ -62,7 +62,7 @@
                     <span class="na">账号:</span> <input type = "text" id = "name" placeholder = "请输入账号"> <br>
                     <span class="na">密码:</span> <input type = "password" id = "password" placeholder = "请输入密码">
                     <button class="button" style="height: 38px; width: 60px;" onclick="empty2()">
-                        <span>登录</span>
+                        <span id="login-word">登录</span>
                     </button>
                 </div>
 
@@ -76,7 +76,7 @@
                     </div>
                     
                     <button class="button" style="height: 38px; width: 60px;" onclick="reg1()">
-                        <span>注册</span>
+                        <span id="reg-word">注册</span>
                     </button>
                 </div>
 
@@ -98,12 +98,12 @@
                 <label for="hide2">no</label> -->
 
                 
-                语言：<select name="Language" class="Language">
+                <span id="Language-word">语言：</span><select name="Language" class="Language">
                     <option value="cn">中文</option>
                     <option value="en">English</option>
                 </select>
                 
-                <input class="submit" type="submit" onclick="submit()">
+                <input class="submit" type="submit" onclick="submit()" value="确定">
 
 
 
@@ -142,12 +142,7 @@
                 <div class="img">
                     <img src="img/R-C.png" class="test3" onclick="exit_game1()">
                 </div>
-
-                <div id="before-start">
-                    <span id="number">请输入1到100之间的数字</span> <input type="text" id="input" maxlength="3"><br>
-                    <button class="number-btn" onclick="button1()">确定</button>
-                </div>
-
+                
                 <div id="intro">
                     <span id="intro-word">
                         游戏规则：<br>
@@ -157,6 +152,12 @@
     
                     <button class="number-btn" onclick="start_game()" style="margin-top: 3px;">开始游戏</button>
                 </div>
+
+                <div id="before-start">
+                    <span id="number">请输入1到100之间的数字</span> <input type="text" id="input" maxlength="3"><br>
+                    <button class="number-btn" onclick="button1()">确定</button>
+                </div>
+
 
 
             </div>
@@ -176,7 +177,7 @@
         </div>
 
         <div class="virus">
-            <div class="mainthings2" style="background-color:red;"><span style="font-size: 30px;text-align:center;display: inline-block;">启动病毒！</span></div>
+            <div class="mainthings2" style="background-color:red;"><span id="virus-start" style="font-size: 30px;text-align:center;display: inline-block;">启动病毒！</span></div>
             <div class="mainthings1" style="background-color:red;"></div>
             <div class="mainthings1" style="background-color:red;"></div>
             <div class="mainthings1" style="background-color:red;"></div>
@@ -196,9 +197,6 @@
 
     <div id="timer">10</div>
 
-
 </body>
 </html>
-
-
 

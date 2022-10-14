@@ -168,32 +168,99 @@ function other1(){
 }
 
 var random = null
-
+var selectbar = document.getElementsByClassName('Language')
 function submit(){
-    var selectbar = document.getElementsByClassName('Language')
     var CB1 = document.getElementsByClassName('ctrl-btn1')
     var CB2 = document.getElementsByClassName('ctrl-btn2')
     var CB3 = document.getElementsByClassName('ctrl-btn3')
     var CB4 = document.getElementsByClassName('ctrl-btn4')
     var M1 = document.getElementsByClassName('mainthings1')
     var UB1 = document.getElementsByClassName('ueser-btn1')
+    var UB2 = document.getElementsByClassName('ueser-btn2')
+    var IW = document.getElementById('intro-word')
+    var NB = document.getElementsByClassName('number-btn')
+    var num = document.getElementById('number')
+    var LW = document.getElementById('Language-word')
+    var submit = document.getElementsByClassName('submit')
+    var VS = document.getElementById('virus-start')
+    var BW = document.getElementsByClassName('btn-word')
+    var L2 = document.getElementsByClassName('login2')
+    var na = document.getElementsByClassName('na')
+    var NP = document.getElementById('name')
+    var PWP = document.getElementById('password')
+    var LW1 = document.getElementById('login-word')
+    var NRP = document.getElementById('name-reg')
+    var PRP = document.getElementById('password-reg')
+    var PRP2 = document.getElementById('password-reg2')
+    var RW = document.getElementById('reg-word')
     //console.log(selectbar[0].value)
-    if(selectbar[0].value == 'en'){
-        CB1[0].innerHTML = 'Games'
-        CB2[0].innerHTML = 'Website'
-        CB3[0].innerHTML = 'Virus'
-        CB4[0].innerHTML = 'Other'
-        M1[0].innerHTML = 'Gess the number'
-        UB1[0].innerHTML = 'Ueser'
-        console.log('English')
-    }
-    else if(selectbar[0].value == 'cn'){
+    if(selectbar[0].value == 'cn'){
         CB1[0].innerHTML = '小游戏'
         CB2[0].innerHTML = '快捷网页'
         CB3[0].innerHTML = '病毒'
         CB4[0].innerHTML = '其他'
         M1[0].innerHTML = '猜数字'
+        UB1[0].innerHTML = '用户'
+        UB2[0].innerHTML = '设置'
+        IW.innerHTML = '游戏规则：<br>开始游戏后系统会随机生成一个数字，你可以在输入框里面猜一个1-100的数字，之后系统会告诉你，你猜的数字是猜大了，还是猜小了，猜对时游戏获胜'
+        NB[0].innerHTML = '开始游戏'
+        num.innerHTML = '请输入1到100之间的数字'
+        NB[1].innerHTML = '确定'
+        LW.innerHTML = '语言：'
+        submit[0].value = '确定'
+        VS.innerHTML = '启动病毒！'
+        BW[0].innerHTML = '登录'
+        BW[1].innerHTML = '注册'
+        L2[0].innerHTML = '登录'
+        na[0].innerHTML = '账号:'
+        NP.setAttribute('placeholder','请输入账号')
+        na[1].innerHTML = '密码:'
+        PWP.setAttribute('placeholder','请输入密码')
+        LW1.innerHTML = '登录'
+        L2[1].innerHTML = '注册'
+        na[2].innerHTML = '账号:'
+        NRP.setAttribute('placeholder','请输入账号')
+        na[3].innerHTML = '密码:'
+        PRP.setAttribute('placeholder','请输入密码')
+        na[4].innerHTML = '确认密码:'
+        PRP2.setAttribute('placeholder','请再次输入密码')
+        RW.innerHTML = '注册'
         console.log('Chinese')
+    }
+
+    else if(selectbar[0].value == 'en'){
+        CB1[0].innerHTML = 'Games'
+        CB2[0].innerHTML = 'Website'
+        CB3[0].innerHTML = 'Virus'
+        CB4[0].innerHTML = 'Other'
+        M1[0].innerHTML = 'Guess the number'
+        UB1[0].innerHTML = 'User'
+        UB2[0].innerHTML = 'Setting'
+        IW.innerHTML = 'Game rule: <br> When you start the game, the system will generate a random number. You can guess a number from 1 to 100 in the input field.The system then tells you whether your guess is too high or too low, and the game is won'
+        NB[0].innerHTML = 'Start Game'
+        num.innerHTML = 'Please enter a number between 1 and 100'
+        NB[1].innerHTML = 'Confirm'
+        LW.innerHTML = 'Language: '
+        submit[0].value = 'Submit'
+        VS.innerHTML = 'Start the virus!'
+        BW[0].innerHTML = 'Login'
+        BW[1].innerHTML = 'Register'
+        L2[0].innerHTML = 'Login'
+        na[0].innerHTML = 'Account:'
+        NP.setAttribute('placeholder','Please enter account name')
+        na[1].innerHTML = 'Password:'
+        PWP.setAttribute('placeholder','Please enter your password')
+        LW1.innerHTML = 'Login'
+        L2[1].innerHTML = 'Register'
+        na[2].innerHTML = 'Account:'
+        NRP.setAttribute('placeholder','Please enter account name')
+        na[3].innerHTML = 'Password:'
+        PRP.setAttribute('placeholder','Please enter your password')
+        na[4].innerHTML = 'Confirm password:'
+        na[4].style.fontSize = '18px'
+        PRP2.setAttribute('placeholder','Please confirm your password')
+        RW.innerHTML = 'Register'
+        console.log('English')
     }
 }
 
@@ -221,10 +288,12 @@ function exit_game1(){
     light3[0].style.display = 'none'
     input.value = ''
     word.innerHTML = '请输入1到100之间的数字'
+    big = 100
+    small = 1
 }
 
-var small = 1
 var big = 100
+var small = 1
 function button1(){
     var word = document.getElementById('number')
     if(random == null){
@@ -236,7 +305,13 @@ function button1(){
 
     console.log(parseInt(input.value) == parseInt(random))
     if(input.value == random){
-        alert('猜对了!')
+        if(selectbar[0].value == 'cn'){
+            alert('猜对了!')
+        }
+
+        else if(selectbar[0].value == 'en'){
+            alert('Bingo!')
+        }
     }
     else if(input.value > random){
         console.log('big')
@@ -245,37 +320,67 @@ function button1(){
         console.log('input大=' + input.value)
         // var bignum = input.value
         // word.innerHTML = '请输入' + smallnum + '到' + bignum + '之间的数字'
-        if(input.value < big){
-            big = input.value
-            word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
-            console.log('改变数字 大')
+        if(selectbar[0].value == 'cn'){
+            if(input.value < big){
+                big = input.value
+                word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
+                console.log('改变数字 大 cn')
+            }
+            alert('猜大了')
+        }
+
+        else if(selectbar[0].value == 'en'){
+            if(input.value < big){
+                big = input.value
+                word.innerHTML = 'Please enter a number between' + small + 'and' + big
+                console.log('改变数字 大 en')
+            }
+            alert('The number is too big')
         }
         // else{
         //     small = input.value
         //     word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
         //     console.log('改变数字 小2')
         // }
-        alert('猜大了')
     }
+
     else if(input.value < random){
         console.log('small')
         //console.log('random3=' + random)
         console.log('小=' + small)
         console.log('input小=' + input.value)
-        if(input.value > small){
-            small = input.value
-            word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
-            console.log('改变数字 小')
+        if(selectbar[0].value == 'cn'){
+            if(input.value > small){
+                small = input.value
+                word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
+                console.log('改变数字 小 cn')
+            }
+            alert('猜小了')
+        }
+
+        else if(selectbar[0].value == 'en'){
+            if(input.value > small){
+                small = input.value
+                word.innerHTML = 'Please enter a number between' + small + 'and' + big
+                console.log('改变数字 小 en')
+            }
+            alert('The number is too small')
         }
         // else{
         //     big = input.value
         //     word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
         //     console.log('改变数字 大2')
         // }
-        alert('猜小了')
     }
+
     else{
-        alert('请输入数字')
+        if(selectbar[0].value == 'cn'){
+            alert('请输入数字')
+        }
+
+        else if(selectbar[0].value == 'en'){
+            alert('Please enter a number')
+        }
     }
     // console.log(input.value)
 }
@@ -394,5 +499,4 @@ window.onload = function(){
     //     alert("选中的radio的值是：" + scan);
     // }
 }
-
 

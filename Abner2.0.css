@@ -133,8 +133,8 @@
     border-radius: 50px;
     display: inline-block;
     position: relative;
-    left: 223px;
-    top: 10px;
+    left: 218px;
+    top: 12px;
 }
 
 .img :hover{
@@ -358,3 +358,25 @@
     text-align: center;
     display: none;
 }
+
+input::-webkit-input-placeholder{
+    font-size: 12.5px;
+}
+
+#Language-word{
+    font-size: 23px;
+}
+
+.Language{
+    height: 30px;
+    width: 120px;
+}
+
+.submit{
+    height: 40px;
+    width: 80px;
+    position: relative;
+    top: 400px;
+    left: -19%;
+}
+
