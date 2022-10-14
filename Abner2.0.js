@@ -192,10 +192,12 @@ function Games1(){
 }
 
 function exit_game1(){
+    var word = document.getElementById('number')
     var input = document.getElementById('input')
     outline[0].style.display = 'none'
     light3[0].style.display = 'none'
     input.value = ''
+    word.innerHTML = '请输入1到100之间的数字'
 }
 
 var small = 1
