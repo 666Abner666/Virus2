@@ -18,35 +18,68 @@ var login2 = document.getElementsByClassName('reg')
 var mainthings1 = document.getElementsByClassName('mainthings1')
 var mainthings2 = document.getElementsByClassName('mainthings2')
 var outline = document.getElementsByClassName('out-line')
-
+var selectbar = document.getElementsByClassName('Language')
 
 
 
 function empty2(){
     if (document.getElementById('name').value.length==0){
-        alert('请输入账号!');
-        document.getElementById('name').focus();
-        return false;
+        if(selectbar[0].value == 'cn'){
+            alert('请输入账号!');
+            document.getElementById('name').focus();
+            return false;
+        }
+
+        else if(selectbar[0].value == 'en'){
+            alert('Please enter your ueser name!');
+            document.getElementById('name').focus();
+            return false;
+        }
     }
 
 
     if (document.getElementById('password').value.length==0){
-        alert('请输入密码!');
-        document.getElementById('password').focus();
-        return false;
+        if(selectbar[0].value == 'cn'){
+            alert('请输入密码!');
+            document.getElementById('password').focus();
+            return false;
+        }
+
+        else if(selectbar[0].value == 'en'){
+            alert('Please enter your password!');
+            document.getElementById('password').focus();
+            return false;
+        }
     }
     
     if ((document.getElementById('name').value == 'Abner' || document.getElementById('name').value == namereg.value) && (document.getElementById('password').value == 'Abner666' || document.getElementById('password').value == passwordreg.value)){
     document.getElementById('ueser-name').innerHTML = document.getElementById('name').value
-    alert('登录成功')
-    num = true}
+    if(selectbar[0].value == 'cn'){
+        alert('登录成功!')
+        num = true
+    }
+
+    else if(selectbar[0].value == 'en'){
+        alert('Login successfully!')
+        num = true
+    }
+}
 
     else{
-        alert('用户名或密码错误！')
-        console.log(document.getElementById('name').value)
-        console.log(document.getElementById('password').value)
-    }   
-}
+        if(selectbar[0].value == 'cn'){
+            alert('用户名或密码错误！')
+            console.log(document.getElementById('name').value)
+            console.log(document.getElementById('password').value)
+        }
+
+        else if(selectbar[0].value == 'en'){
+            alert('ERROR Incorrect username or password!')
+            console.log(document.getElementById('name').value)
+            console.log(document.getElementById('password').value)
+        }
+    }
+}   
+
 
 function reg1(){
     var reg1 = document.getElementById('button-reg')
@@ -55,27 +88,59 @@ function reg1(){
     var settings = document.getElementsByClassName('reg')
 
     if (document.getElementById('name-reg').value.length==0){
-        alert('请输入账号!');
-        document.getElementById('name-reg').focus();
-        return false;
+        if(selectbar[0].value == 'cn'){
+            alert('请输入账号!');
+            document.getElementById('name-reg').focus();
+            return false;
+        }
+
+        else if(selectbar[0].value == 'en'){
+            alert('Please enter your ueser name!');
+            document.getElementById('name-reg').focus();
+            return false;
+        }
     }
 
     if (document.getElementById('password-reg').value.length==0){
-        alert('请输入密码!');
-        document.getElementById('password-reg').focus();
-        return false;
+        if(selectbar[0].value == 'cn'){
+            alert('请输入密码!');
+            document.getElementById('password-reg').focus();
+            return false;
+        }
+
+        else if(selectbar[0].value == 'en'){
+            alert('Please enter your password!');
+            document.getElementById('password-reg').focus();
+            return false;
+        }
     }
 
     if (document.getElementById('password-reg2').value.length==0){
-        alert('你的 ‘确认密码’ 未填写');
-        document.getElementById('password-reg').focus();
-        return false;
+        if(selectbar[0].value == 'cn'){
+            alert('你的 ‘确认密码’ 未填写');
+            document.getElementById('password-reg').focus();
+            return false;
+        }
+
+        else if(selectbar[0].value == 'en'){
+            alert('Your ‘Confirmation password’ is not filled in');
+            document.getElementById('password-reg').focus();
+            return false;
+        }
     }
 
     if (document.getElementById('password-reg2').value != document.getElementById('password-reg').value){
-        alert('你第二次输入的密码与第一个密码不相等!')
-        document.getElementById('password-reg').focus();
-        return false;
+        if(selectbar[0].value == 'cn'){
+            alert('你第二次输入的密码与第一个密码不相符!')
+            document.getElementById('password-reg').focus();
+            return false;
+        }
+
+        else if(selectbar[0].value == 'en'){
+            alert('The password you entered for the second time does not match the first one!!')
+            document.getElementById('password-reg').focus();
+            return false;
+        }
     }
 
     else{
@@ -85,7 +150,13 @@ function reg1(){
         passwordreg = password
         console.log(namereg.value)
         console.log(passwordreg.value)
-        alert('注册成功!')
+        if(selectbar[0].value == 'cn'){
+            alert('注册成功!')
+        }
+
+        else if(selectbar[0].value == 'en'){
+            alert('Registered successfully')
+        }
     }
 }
 
@@ -168,7 +239,6 @@ function other1(){
 }
 
 var random = null
-var selectbar = document.getElementsByClassName('Language')
 function submit(){
     var CB1 = document.getElementsByClassName('ctrl-btn1')
     var CB2 = document.getElementsByClassName('ctrl-btn2')
@@ -235,8 +305,8 @@ function submit(){
         CB4[0].innerHTML = 'Other'
         M1[0].innerHTML = 'Guess the number'
         UB1[0].innerHTML = 'User'
-        UB2[0].innerHTML = 'Setting'
-        IW.innerHTML = 'Game rule: <br> When you start the game, the system will generate a random number. You can guess a number from 1 to 100 in the input field.The system then tells you whether your guess is too high or too low, and the game is won'
+        UB2[0].innerHTML = 'Settings'
+        IW.innerHTML = 'Game rule: <br> When you start the game, the system will generate a random number. You can guess a number from 1 to 100 in the input field.The system then tells you whether your guess is too high or too low, guess it right and you win the game!'
         NB[0].innerHTML = 'Start Game'
         num.innerHTML = 'Please enter a number between 1 and 100'
         NB[1].innerHTML = 'Confirm'
@@ -247,13 +317,13 @@ function submit(){
         BW[1].innerHTML = 'Register'
         L2[0].innerHTML = 'Login'
         na[0].innerHTML = 'Account:'
-        NP.setAttribute('placeholder','Please enter account name')
+        NP.setAttribute('placeholder','Please enter your ueser name')
         na[1].innerHTML = 'Password:'
         PWP.setAttribute('placeholder','Please enter your password')
         LW1.innerHTML = 'Login'
         L2[1].innerHTML = 'Register'
         na[2].innerHTML = 'Account:'
-        NRP.setAttribute('placeholder','Please enter account name')
+        NRP.setAttribute('placeholder','Please enter your ueser name')
         na[3].innerHTML = 'Password:'
         PRP.setAttribute('placeholder','Please enter your password')
         na[4].innerHTML = 'Confirm password:'
@@ -287,9 +357,15 @@ function exit_game1(){
     outline[0].style.display = 'none'
     light3[0].style.display = 'none'
     input.value = ''
-    word.innerHTML = '请输入1到100之间的数字'
     big = 100
     small = 1
+    if(selectbar[0].value == 'cn'){
+        word.innerHTML = '请输入1到100之间的数字'
+    }
+    else if(selectbar[0].value == 'en'){
+        'Please enter a number between 1 and 100'
+    }
+    
 }
 
 var big = 100
@@ -332,7 +408,7 @@ function button1(){
         else if(selectbar[0].value == 'en'){
             if(input.value < big){
                 big = input.value
-                word.innerHTML = 'Please enter a number between' + small + 'and' + big
+                word.innerHTML = 'Please enter a number between ' + small + ' and ' + big
                 console.log('改变数字 大 en')
             }
             alert('The number is too big')
@@ -361,7 +437,7 @@ function button1(){
         else if(selectbar[0].value == 'en'){
             if(input.value > small){
                 small = input.value
-                word.innerHTML = 'Please enter a number between' + small + 'and' + big
+                word.innerHTML = 'Please enter a number between ' + small + ' and ' + big
                 console.log('改变数字 小 en')
             }
             alert('The number is too small')

@@ -320,10 +320,16 @@
     z-index: 20;
 }
 
-.number-btn{
-    margin-top: 15px;
+.number-btn, .number-btn2{
+    position: relative;
+    top: -10px;
     height: 40px;
     width: 62px;
+}
+
+.number-btn2{
+    position: relative;
+    top: 12px;
 }
 
 .test3{
@@ -345,6 +351,8 @@
     margin: 13px;
     font-size: large;
     color: aqua;
+    position: relative;
+    top: -22px;
 }
 
 .light-settings3{
