@@ -19,7 +19,8 @@ var mainthings1 = document.getElementsByClassName('mainthings1')
 var mainthings2 = document.getElementsByClassName('mainthings2')
 var outline = document.getElementsByClassName('out-line')
 var selectbar = document.getElementsByClassName('Language')
-
+var regtest = /^[a-z A-Z 0-9]{4,12}$/
+var regpass = /^[a-z A-Z 0-9]{4,12}$/
 
 
 function empty2(){
@@ -137,13 +138,13 @@ function reg1(){
         }
 
         else if(selectbar[0].value == 'en'){
-            alert('The password you entered for the second time does not match the first one!!')
+            alert('The password you entered for the second time does not match the first one!')
             document.getElementById('password-reg').focus();
             return false;
         }
     }
 
-    else{
+    if(regtest.test(document.getElementById('name-reg').value) && regpass.test(document.getElementById('password-reg')).value){
         console.log(name.value)
         console.log(password.value)
         namereg = name
@@ -156,6 +157,18 @@ function reg1(){
 
         else if(selectbar[0].value == 'en'){
             alert('Registered successfully')
+        }
+    }
+
+    else{
+        if(selectbar[0].value == 'cn'){
+            alert('名字和密码的内容需要包含：小写字母，大写字母和数字，且不能小于4和大于12个字符')
+            return false
+        }
+
+        else if(selectbar[0].value == 'en'){
+            alert('The name and password must contain lowercase letters, uppercase letters, and numbers, also cannot be less than 4 characters or more than 12 characters')
+            return false
         }
     }
 }
@@ -279,6 +292,7 @@ function submit(){
         NB2[0].innerHTML = '确定'
         LW.innerHTML = '语言：'
         submit[0].value = '确定'
+        submit[0].style.left = '-19%'
         VS.innerHTML = '启动病毒！'
         BW[0].innerHTML = '登录'
         BW[1].innerHTML = '注册'
@@ -294,6 +308,7 @@ function submit(){
         na[3].innerHTML = '密码:'
         PRP.setAttribute('placeholder','请输入密码')
         na[4].innerHTML = '确认密码:'
+        na[4].style.fontSize = '20px'
         PRP2.setAttribute('placeholder','请再次输入密码')
         RW.innerHTML = '注册'
         console.log('Chinese')
@@ -307,12 +322,13 @@ function submit(){
         M1[0].innerHTML = 'Guess the number'
         UB1[0].innerHTML = 'User'
         UB2[0].innerHTML = 'Settings'
-        IW.innerHTML = 'Game rule: <br> When you start the game, the system will generate a random number. You can guess a number from 1 to 100 in the input field.The system then tells you whether your guess is too high or too low, guess it right and you win the game!'
+        IW.innerHTML = 'Game rule: <br> When you start the game, the system will generate a random number. You can guess a number from 1 to 100 in the input field.The system then tells you whether your guess is too high or too low, and the game wins when you guess correctly!'
         NB[0].innerHTML = 'Start Game'
         num.innerHTML = 'Please enter a number between 1 and 100'
         NB2[0].innerHTML = 'Confirm'
         LW.innerHTML = 'Language: '
         submit[0].value = 'Submit'
+        submit[0].style.left = '-24%'
         VS.innerHTML = 'Start the virus!'
         BW[0].innerHTML = 'Login'
         BW[1].innerHTML = 'Register'
