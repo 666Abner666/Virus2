@@ -144,7 +144,7 @@ function reg1(){
         }
     }
 
-    if(regtest.test(document.getElementById('name-reg').value) && regpass.test(document.getElementById('password-reg')).value){
+    if(regtest.test((document.getElementById('name-reg').value)) && regpass.test((document.getElementById('password-reg')).value)){
         console.log(name.value)
         console.log(password.value)
         namereg = name
@@ -379,8 +379,9 @@ function exit_game1(){
     if(selectbar[0].value == 'cn'){
         word.innerHTML = '请输入1到100之间的数字'
     }
+
     else if(selectbar[0].value == 'en'){
-        'Please enter a number between 1 and 100'
+        word.innerHTML = 'Please enter a number between 1 and 100'
     }
     
 }
