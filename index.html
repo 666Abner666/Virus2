@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=0.3, minimum-scale=0, maximum-scale=10.0, user-scalable=yes"/>
     <link rel="stylesheet" href="Abner2.0.css">
-    <script src="Abner2.0.js"></script>
+    <!-- JS在最后 因为自动翻译 -->
     <title>Test2.0</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
 
@@ -15,8 +17,11 @@
         <div class="top">
 
             <div class="ueser">
-                <div class="test"></div>
-                <span id="ueser-name">未登录</span>
+                <!-- <div class="test"></div> -->
+
+                <img src="../img/Black_colour.jpg" height="200" id="img2">
+                
+                <span class="ueser-name">未登录</span>
             </div>
 
         </div>
@@ -38,7 +43,7 @@
         
         <!-- 账户设置 -->
         <div class="light-settings">
-            <div class="main-settings">
+            <!-- <div class="main-settings">
 
                 <div class="img">
                     <img src="img/R-C.png" class="test2" onclick="exit()">
@@ -55,18 +60,48 @@
                     <button class="btn2" onclick="reg()">
                         <span class="btn-word">注册</span>
                     </button>
-                </div>
+                </div> -->
 
-                <div class="enterbox">
+                <!-- <div class="enterbox">
                     <span class="login2">登录</span>
                     <span class="na">账号:</span> <input type = "text" id = "name" placeholder = "请输入账号"> <br>
                     <span class="na">密码:</span> <input type = "password" id = "password" placeholder = "请输入密码">
                     <button class="button" style="height: 38px; width: 60px;" onclick="empty2()">
                         <span id="login-word">登录</span>
                     </button>
+                </div> -->
+                <div class="box">
+                    <form autocomplete="off">
+                        <h2 class="SI">登录</h2>
+
+                        <span class="icon">
+                            <ion-icon name="close-outline" class="test2" onclick="exit()"></ion-icon>
+                        </span>
+
+                        <div class="inputBox">
+                            <input type="text" required="required" id="name">
+                            <span class="UAP">用户名</span>
+                            <i></i>
+                        </div>
+
+                        <div class="inputBox">
+                            <input type="password" required="required" id="password">
+                            <span class="UAP">密码</span>
+                            <i></i>
+                        </div>
+
+                        <div class="links">
+                            <a href="#" class="OtherStuff" onclick="FP()">忘记密码?</a>
+                            <a href="#" class="OtherStuff" onclick="to_reg()">注册</a>
+                        </div>
+
+                        <!-- <input type="submit" value="登录" onclick="empty2()" id="Login_new"> -->
+
+                        <button onclick="empty2()" class="Login_new" type="button">登录</button>
+                    </form>
                 </div>
 
-                <div class="reg">
+                <!-- <div class="reg">
                     <span class="login2">注册</span>
                     <span class="na">账号:</span> <input type = "text" id="name-reg" placeholder = "请输入账号"> <br>
                     <span class="na">密码:</span> <input type = "password" id="password-reg" placeholder = "请输入密码"> <br>
@@ -78,6 +113,43 @@
                     <button class="button" style="height: 38px; width: 60px;" onclick="reg1()">
                         <span id="reg-word">注册</span>
                     </button>
+                </div> -->
+
+                <div class="box" style="height: 460px;">
+                    <form autocomplete="off">
+                        <h2 class="SI">注册</h2>
+
+                        <span class="icon">
+                            <ion-icon name="close-outline" class="test2" onclick="exit()"></ion-icon>
+                        </span>
+
+                        <div class="inputBox">
+                            <input type="text" required="required" id="name-reg">
+                            <span class="UAP">用户名</span>
+                            <i></i>
+                        </div>
+
+                        <div class="inputBox">
+                            <input type="password" required="required" id="password-reg">
+                            <span class="UAP">密码</span>
+                            <i></i>
+                        </div>
+                        
+                        <div class="inputBox">
+                            <input type="password" required="required" id="password-reg2">
+                            <span class="UAP">确认密码</span>
+                            <i></i>
+                        </div>
+
+                        <div class="links">
+                            <a href="#" class="OtherStuff"></a>
+                            <a href="#" class="OtherStuff" onclick="to_login()">去登录</a>
+                        </div>
+
+                        <!-- <input type="submit" value="登录" onclick="empty2()" id="Login_new"> -->
+
+                        <button onclick="reg1()" class="Login_new" type="button">登录</button>
+                    </form>
                 </div>
 
             </div>
@@ -87,9 +159,13 @@
         <div class="light-settings2">
             <div class="main-settings2">
 
-                <div class="img">
+                <!-- <div class="img">
                     <img src="img/R-C.png" alt="" class="test2" onclick="exit()">
-                </div>
+                </div> -->
+
+                <span class="icon" style="color:black;">
+                    <ion-icon name="close-outline" class="test3" onclick="exit()"></ion-icon>
+                </span>
                 
                 <!-- <input id="hide1" type="radio" value="yes" name="hide1">
                 <label for="hide1">yes</label>
@@ -104,15 +180,56 @@
                 </select>
                 
                 <input class="submit" type="submit" onclick="submit()" value="确定">
+            </div>
+        </div>
 
+        <!-- 账户界面 -->
 
+        <div class="light-settings">
+            <div class="main-settings2">
+
+                <span class="icon" style="color:black;">
+                    <ion-icon name="close-outline" class="test3" onclick="exit()" style="left: 448px;top: 12px;position: absolute;"></ion-icon>
+                </span>
+
+                <!-- <div id="IMG"></div> -->
+
+                <h5 class="ueser-name" style="color: black;font-size: 34px;display:inline-block;position: relative;text-align: center;left: 50%;top: 130px;margin-left: -484px;">未登录</h5>
+                
+                <!-- <span id="uploadImg">
+                    <input type="file" accept="image/*" capture="camera" onchange="upload('#fileBtn', '#img');" id="fileBtn" size="1">
+                <a href="#">上传图片</a></span> -->
+
+                <span id="uploadImg">
+                    <input type="file" accept="image/*" capture="camera" onchange="upload('#fileBtn', '#img', '#img2');" id="fileBtn" size="1" >
+                <a href="#">上传图片</a></span>
+
+                <img src="../img/Black_colour.jpg" height="200" id="img">
+
+                
+
+                <script>
+                    var upload = function (c, d, e) {
+                        "use strict";
+                        var $c = document.querySelector(c),
+                            $d = document.querySelector(d),
+                            $e = document.querySelector(e),
+                            file = $c.files[0],
+                            reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = function (e) {
+                            $d.setAttribute("src", e.target.result);
+                            $e.setAttribute("src", e.target.result);
+                        };
+                    };
+                </script>
 
             </div>
         </div>
 
 
-    <div class="middle">
 
+    <div class="middle">
         <div class="Language">
             <div class="choose">
                 
@@ -139,9 +256,10 @@
             <div class="light-settings3"></div>
 
             <div class="out-line">
-                <div class="img">
-                    <img src="img/R-C.png" class="test3" onclick="exit_game1()">
-                </div>
+                
+                <span class="icon" style="color:black;">
+                    <ion-icon name="close-outline" class="test4" onclick="exit_game1()"></ion-icon>
+                </span>
                 
                 <div id="intro">
                     <span id="intro-word">
@@ -196,6 +314,8 @@
     </div>
 
     <div id="timer">10</div>
+
+    <script src="Abner2.0.js"></script>
 
 </body>
 </html>
