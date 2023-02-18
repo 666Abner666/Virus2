@@ -128,22 +128,6 @@ function init() {
     }
 }
 
-//查找Cookie
-function getCookie(name) {
-    console.log('name=' + name)
-    const cookieString = document.cookie;
-    if (cookieString) {
-      const cookies = cookieString.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.startsWith(name + '=')) {
-          return cookie.substring(name.length + 1);
-        }
-      }
-    }
-    return '';
-}
-
 // 用户登录后的回调函数
 function onUserLoggedIn() {
     // 获取用户名和密码
@@ -165,6 +149,22 @@ function onUserLoggedIn() {
     showLoggedInContent();
 }
 
+//查找Cookie
+function getCookie(name) {
+    // console.log('name=' + name)
+    const cookieString = document.cookie;
+    if (cookieString) {
+      const cookies = cookieString.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(name + '=')) {
+          return cookie.substring(name.length + 1);
+        }
+      }
+    }
+    return '';
+}
+
 // 用户登出后的回调函数
 function onUserLoggedOut() {
     // 删除保存在 Cookie 中的登录状态、用户名和密码
@@ -179,9 +179,8 @@ function onUserLoggedOut() {
 // 显示已登录的内容
 function showLoggedInContent() {
     console.log('已登陆(COOKIE)')
-    document.getElementsByClassName("ueser-name")[0].innerHTML = getCookie(namereg)
-    document.getElementsByClassName("ueser-name")[1].innerHTML = getCookie(namereg)
-    // console.log(namereg)
+    document.getElementsByClassName("ueser-name")[0].innerHTML = getCookie('namereg')
+    document.getElementsByClassName("ueser-name")[1].innerHTML = getCookie('namereg')
     LOGIN = true
 }
 
