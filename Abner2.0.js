@@ -61,6 +61,8 @@ function handleCredentialResponse(response) {
     var name = responsePayload.name
     var img = responsePayload.picture
     document.getElementsByClassName('ueser-name')[0].innerHTML = name;
+    document.getElementsByClassName('ueser-name')[1].innerHTML = name;
+    document.getElementById('img').src = img;
     document.getElementById('img2').src = img;
     LOGIN = true
 }
