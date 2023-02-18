@@ -2,10 +2,8 @@ var num = false
 var tb = false
 var namereg = 'Abner'
 var passwordreg = 'Abner666'
-var LOGIN = false
-var LANGUGE = navigator.language
-var DL = null
-console.log(LANGUGE)
+
+
 
 var ueser = document.getElementsByClassName('ueser')
 var settings = document.getElementsByClassName('settings')
@@ -23,57 +21,7 @@ var outline = document.getElementsByClassName('out-line')
 var selectbar = document.getElementsByClassName('Language')
 var regtest = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[^]{4,12}$/
 var regpass = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[^]{4,12}$/
-// selectbar[0].value = null 拿不到
 
-if(LANGUGE == 'zh-CN' || LANGUGE == 'zh'){
-    DL = 'cn'
-    // console.log('VALUE = ' + selectbar[0].value) 拿不到
-    // selectbar = DL
-    // submit() // 调用funtction 结果报错
-    ChangeToChinese()
-    console.log(DL)
-    console.log('中文')
-}
-
-else if(LANGUGE == 'en-US' || LANGUGE == 'en'){
-    DL = 'en'
-    // selectbar = DL
-    // submit() // 调用funtction 结果报错
-    ChangeToEnglish()
-    selectbar[0].value = 'en'
-    console.log(DL)
-    console.log('ENGLISH')
-}
-
-function handleCredentialResponse(response) {
-    console.log("Encoded JWT ID token:" + response.credential);
-    // decodeJwtResponse() is a custom function defined by you
-    // to decode the credential response.
-    const responsePayload = decodeJwtResponse(response.credential);
-
-    console.log("ID: " + responsePayload.sub);
-    console.log('Full Name: ' + responsePayload.name);
-    console.log('Given Name: ' + responsePayload.given_name);
-    console.log('Family Name: ' + responsePayload.family_name);
-    console.log("Image URL: " + responsePayload.picture);
-    console.log("Email: " + responsePayload.email);
-
-    var name = responsePayload.name
-    var img = responsePayload.picture
-    document.getElementsByClassName('ueser-name')[0].innerHTML = name;
-    document.getElementsByClassName('ueser-name')[1].innerHTML = name;
-    document.getElementById('img').src = img;
-    document.getElementById('img2').src = img;
-    LOGIN = true
-}
-
- function decodeJwtResponse(response) {
-    const encodedPayload = response.split('.')[1];
-    const base64 = encodedPayload.replace(/-/g, '+').replace(/_/g, '/');
-    const decodedPayload = atob(base64);
-    const jwtPayload = JSON.parse(decodedPayload);
-    return jwtPayload;
-}
 
 function empty2(){
     if (document.getElementById('name').value.length==0){
@@ -106,62 +54,32 @@ function empty2(){
     }
     
     if ((document.getElementById('name').value == 'Abner' || document.getElementById('name').value == namereg.value) && (document.getElementById('password').value == 'Abner666' || document.getElementById('password').value == passwordreg.value)){
-    document.getElementsByClassName('ueser-name')[0].innerHTML = document.getElementById('name').value
-    document.getElementsByClassName('ueser-name')[1].innerHTML = document.getElementById('name').value
+    document.getElementById('ueser-name').innerHTML = document.getElementById('name').value
     if(selectbar[0].value == 'cn'){
         alert('登录成功!')
-        light[0].style.display = 'none'
-        light2[0].style.display = 'none'
-        document.getElementById('name').value = ''
-        document.getElementById('password').value = ''
-        document.getElementById('name-reg').value = ''
-        document.getElementById('password-reg').value = ''
-        document.getElementById('password-reg2').value = ''
-        LOGIN = true
         num = true
     }
 
     else if(selectbar[0].value == 'en'){
         alert('Login successfully!')
-        light[0].style.display = 'none'
-        light2[0].style.display = 'none'
-        document.getElementById('name').value = ''
-        document.getElementById('password').value = ''
-        document.getElementById('name-reg').value = ''
-        document.getElementById('password-reg').value = ''
-        document.getElementById('password-reg2').value = ''
-        LOGIN = true
         num = true
     }
 }
 
     else{
         if(selectbar[0].value == 'cn'){
+            alert('用户名或密码错误！')
             console.log(document.getElementById('name').value)
             console.log(document.getElementById('password').value)
-            alert('用户名或密码错误！')
         }
 
         else if(selectbar[0].value == 'en'){
+            alert('ERROR Incorrect username or password!')
             console.log(document.getElementById('name').value)
             console.log(document.getElementById('password').value)
-            alert('ERROR Incorrect username or password!')
         }
     }
 }   
-
-function to_reg(){
-    var box = document.getElementsByClassName('box')
-    box[0].style.display = 'none'
-    box[1].style.display = 'block'
-}
-
-function to_login(){
-    var box = document.getElementsByClassName('box')
-    box[1].style.display = 'none'
-    box[0].style.display = 'block'
-}
-
 
 
 function reg1(){
@@ -201,13 +119,13 @@ function reg1(){
     if (document.getElementById('password-reg2').value.length==0){
         if(selectbar[0].value == 'cn'){
             alert('你的 ‘确认密码’ 未填写');
-            document.getElementById('password-reg2').focus();
+            document.getElementById('password-reg').focus();
             return false;
         }
 
         else if(selectbar[0].value == 'en'){
             alert('Your ‘Confirmation password’ is not filled in');
-            document.getElementById('password-reg2').focus();
+            document.getElementById('password-reg').focus();
             return false;
         }
     }
@@ -215,11 +133,13 @@ function reg1(){
     if (document.getElementById('password-reg2').value != document.getElementById('password-reg').value){
         if(selectbar[0].value == 'cn'){
             alert('你第二次输入的密码与第一个密码不相符!')
+            document.getElementById('password-reg').focus();
             return false;
         }
 
         else if(selectbar[0].value == 'en'){
             alert('The password you entered for the second time does not match the first one!')
+            document.getElementById('password-reg').focus();
             return false;
         }
     }
@@ -231,16 +151,12 @@ function reg1(){
         passwordreg = password
         console.log(namereg.value)
         console.log(passwordreg.value)
-        light[0].style.display = 'none'
-        LOGIN = true
-        document.getElementsByClassName('ueser-name')[0].innerHTML = document.getElementById('name-reg').value
-        document.getElementsByClassName('ueser-name')[1].innerHTML = document.getElementById('name-reg').value
         if(selectbar[0].value == 'cn'){
-            alert('注册成功! 已为您自动登录!')
+            alert('注册成功!')
         }
 
         else if(selectbar[0].value == 'en'){
-            alert('Registered successfully! You have been automatically logged in!')
+            alert('Registered successfully')
         }
     }
 
@@ -260,18 +176,7 @@ function reg1(){
 }
 
 function btn1(){
-    if(LOGIN == false){
-        var box = document.getElementsByClassName('box')
-        light[0].style.display = 'block'
-        box[0].style.display = 'block'
-        box[1].style.display = 'none'
-
-    }
-
-    else if(LOGIN == true){
-        light[1].style.display = 'block'
-        console.log(LOGIN)
-    }
+    light[0].style.display = 'block'
 }
 
 function btn2(){
@@ -280,17 +185,16 @@ function btn2(){
 
 function exit(){
     light[0].style.display = 'none'
-    light[1].style.display = 'none'
     light2[0].style.display = 'none'
     document.getElementById('name').value = ''
     document.getElementById('password').value = ''
     document.getElementById('name-reg').value = ''
     document.getElementById('password-reg').value = ''
     document.getElementById('password-reg2').value = ''
-    // regbtn[0].style.backgroundColor = 'gray'
-    // ueserbtn[0].style.backgroundColor = 'white'
-    // login1[0].style.display = 'inline-block'
-    // login2[0].style.display = 'none'
+    regbtn[0].style.backgroundColor = 'gray'
+    ueserbtn[0].style.backgroundColor = 'white'
+    login1[0].style.display = 'inline-block'
+    login2[0].style.display = 'none'
 }
 
 function login(){
@@ -349,143 +253,105 @@ function other1(){
     console.log('other')
 }
 
-/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
-
 var random = null
 function submit(){
-    let timer = setTimeout(() => {
-        var CB1 = document.getElementsByClassName('ctrl-btn1')
-        var CB2 = document.getElementsByClassName('ctrl-btn2')
-        var CB3 = document.getElementsByClassName('ctrl-btn3')
-        var CB4 = document.getElementsByClassName('ctrl-btn4')
-        var M1 = document.getElementsByClassName('mainthings1')
-        var UB1 = document.getElementsByClassName('ueser-btn1')
-        var UB2 = document.getElementsByClassName('ueser-btn2')
-        var IW = document.getElementById('intro-word')
-        var NB = document.getElementsByClassName('number-btn')
-        var NB2 = document.getElementsByClassName('number-btn2')
-        var num = document.getElementById('number')
-        var LW = document.getElementById('Language-word')
-        var submit = document.getElementsByClassName('submit')
-        var VS = document.getElementById('virus-start')
-        // var BW = document.getElementsByClassName('btn-word')
-        // var L2 = document.getElementsByClassName('login2')
-        // var na = document.getElementsByClassName('na')
-        var NP = document.getElementById('name')
-        var PWP = document.getElementById('password')
-        // var LW1 = document.getElementById('login-word')
-        var NRP = document.getElementById('name-reg')
-        var PRP = document.getElementById('password-reg')
-        var PRP2 = document.getElementById('password-reg2')
-        // var RW = document.getElementById('reg-word')
-        var SI = document.getElementsByClassName('SI')
-        var UAP = document.getElementsByClassName('UAP')
-        var OS = document.getElementsByClassName('OtherStuff')
-        var LE = document.getElementsByClassName('Login_new')
-        var EXIT = document.getElementsByClassName('test3')
-        //console.log(selectbar[0].value)
-        if(selectbar[0].value == 'cn'){
-            CB1[0].innerHTML = '小游戏'
-            CB2[0].innerHTML = '快捷网页'
-            CB3[0].innerHTML = '病毒'
-            CB4[0].innerHTML = '其他'
-            M1[0].innerHTML = '猜数字'
-            UB1[0].innerHTML = '用户'
-            UB2[0].innerHTML = '设置'
-            IW.innerHTML = '游戏规则：<br>开始游戏后系统会随机生成一个数字，你可以在输入框里面猜一个1-100的数字，之后系统会告诉你，你猜的数字是猜大了，还是猜小了，猜对时游戏获胜'
-            NB[0].innerHTML = '开始游戏'
-            num.innerHTML = '请输入1到100之间的数字'
-            NB2[0].innerHTML = '确定'
-            LW.innerHTML = '语言：'
-            submit[0].value = '确定'
-            submit[0].style.left = '-19%'
-            VS.innerHTML = '启动病毒！'
-            // BW[0].innerHTML = '登录'
-            // BW[1].innerHTML = '注册'
-            // L2[0].innerHTML = '登录'
-            // NP.setAttribute('placeholder','请输入账号')
-            // na[0].innerHTML = '账号:'
-            // na[1].innerHTML = '密码:'
-            // PWP.setAttribute('placeholder','请输入密码')
-            // LW1.innerHTML = '登录'
-            // L2[1].innerHTML = '注册'
-            // na[2].innerHTML = '账号:'
-            // NRP.setAttribute('placeholder','请输入账号')
-            // na[3].innerHTML = '密码:'
-            // PRP.setAttribute('placeholder','请输入密码')
-            // na[4].innerHTML = '确认密码:'
-            // na[4].style.fontSize = '20px'
-            // PRP2.setAttribute('placeholder','请再次输入密码')
-            // RW.innerHTML = '注册'
-            SI[0].innerHTML = '登录'
-            UAP[0].innerHTML = '用户名'
-            UAP[1].innerHTML = '密码'
-            OS[0].innerHTML = '忘记密码?'
-            OS[1].innerHTML = '注册'
-            LE[0].innerHTML = '登录'
-            EXIT[0].style.left = '361px'
-            UAP[2].innerHTML = '用户名'
-            UAP[3].innerHTML = '密码'
-            UAP[4].innerHTML = '确认密码'
-            OS[3].innerHTML = '去登录'
-            LE[1].innerHTML = '注册'
-            SI[1].innerHTML = '注册'
-            console.log('Chinese')
-        }
+    var CB1 = document.getElementsByClassName('ctrl-btn1')
+    var CB2 = document.getElementsByClassName('ctrl-btn2')
+    var CB3 = document.getElementsByClassName('ctrl-btn3')
+    var CB4 = document.getElementsByClassName('ctrl-btn4')
+    var M1 = document.getElementsByClassName('mainthings1')
+    var UB1 = document.getElementsByClassName('ueser-btn1')
+    var UB2 = document.getElementsByClassName('ueser-btn2')
+    var IW = document.getElementById('intro-word')
+    var NB = document.getElementsByClassName('number-btn')
+    var NB2 = document.getElementsByClassName('number-btn2')
+    var num = document.getElementById('number')
+    var LW = document.getElementById('Language-word')
+    var submit = document.getElementsByClassName('submit')
+    var VS = document.getElementById('virus-start')
+    var BW = document.getElementsByClassName('btn-word')
+    var L2 = document.getElementsByClassName('login2')
+    var na = document.getElementsByClassName('na')
+    var NP = document.getElementById('name')
+    var PWP = document.getElementById('password')
+    var LW1 = document.getElementById('login-word')
+    var NRP = document.getElementById('name-reg')
+    var PRP = document.getElementById('password-reg')
+    var PRP2 = document.getElementById('password-reg2')
+    var RW = document.getElementById('reg-word')
+    //console.log(selectbar[0].value)
+    if(selectbar[0].value == 'cn'){
+        CB1[0].innerHTML = '小游戏'
+        CB2[0].innerHTML = '快捷网页'
+        CB3[0].innerHTML = '病毒'
+        CB4[0].innerHTML = '其他'
+        M1[0].innerHTML = '猜数字'
+        UB1[0].innerHTML = '用户'
+        UB2[0].innerHTML = '设置'
+        IW.innerHTML = '游戏规则：<br>开始游戏后系统会随机生成一个数字，你可以在输入框里面猜一个1-100的数字，之后系统会告诉你，你猜的数字是猜大了，还是猜小了，猜对时游戏获胜'
+        NB[0].innerHTML = '开始游戏'
+        num.innerHTML = '请输入1到100之间的数字'
+        NB2[0].innerHTML = '确定'
+        LW.innerHTML = '语言：'
+        submit[0].value = '确定'
+        submit[0].style.left = '-19%'
+        VS.innerHTML = '启动病毒！'
+        BW[0].innerHTML = '登录'
+        BW[1].innerHTML = '注册'
+        L2[0].innerHTML = '登录'
+        na[0].innerHTML = '账号:'
+        NP.setAttribute('placeholder','请输入账号')
+        na[1].innerHTML = '密码:'
+        PWP.setAttribute('placeholder','请输入密码')
+        LW1.innerHTML = '登录'
+        L2[1].innerHTML = '注册'
+        na[2].innerHTML = '账号:'
+        NRP.setAttribute('placeholder','请输入账号')
+        na[3].innerHTML = '密码:'
+        PRP.setAttribute('placeholder','请输入密码')
+        na[4].innerHTML = '确认密码:'
+        na[4].style.fontSize = '20px'
+        PRP2.setAttribute('placeholder','请再次输入密码')
+        RW.innerHTML = '注册'
+        console.log('Chinese')
+    }
 
-        else if(selectbar[0].value == 'en'){
-            CB1[0].innerHTML = 'Games'
-            CB2[0].innerHTML = 'Website'
-            CB3[0].innerHTML = 'Virus'
-            CB4[0].innerHTML = 'Other'
-            M1[0].innerHTML = 'Guess the number'
-            UB1[0].innerHTML = 'User'
-            UB2[0].innerHTML = 'Settings'
-            IW.innerHTML = 'Game rule: <br> When you start the game, the system will generate a random number. You can guess a number from 1 to 100 in the input field.The system then tells you whether your guess is too high or too low, and the game wins when you guess correctly!'
-            NB[0].innerHTML = 'Start Game'
-            num.innerHTML = 'Please enter a number between 1 and 100'
-            NB2[0].innerHTML = 'Confirm'
-            LW.innerHTML = 'Language: '
-            submit[0].value = 'Submit'
-            submit[0].style.left = '-24%'
-            VS.innerHTML = 'Start the virus!'
-            // BW[0].innerHTML = 'Login'
-            // BW[1].innerHTML = 'Register'
-            // L2[0].innerHTML = 'Login'
-            // na[0].innerHTML = 'Account:'
-            // NP.setAttribute('placeholder','Please enter your ueser name')
-            // na[1].innerHTML = 'Password:'
-            // PWP.setAttribute('placeholder','Please enter your password')
-            // LW1.innerHTML = 'Login'
-            // L2[1].innerHTML = 'Register'
-            // na[2].innerHTML = 'Account:'
-            // NRP.setAttribute('placeholder','Please enter your ueser name')
-            // na[3].innerHTML = 'Password:'
-            // PRP.setAttribute('placeholder','Please enter your password')
-            // na[4].innerHTML = 'Confirm password:'
-            // na[4].style.fontSize = '18px'
-            // PRP2.setAttribute('placeholder','Please confirm your password')
-            // RW.innerHTML = 'Register'
-            SI[0].innerHTML = 'Sign in'
-            UAP[0].innerHTML = 'UserName'
-            UAP[1].innerHTML = 'Password'
-            OS[0].innerHTML = 'Forgot Password?'
-            OS[1].innerHTML = 'Signup'
-            LE[0].innerHTML = 'Login'
-            EXIT[0].style.left = '382px'
-            UAP[2].innerHTML = 'UserName'
-            UAP[3].innerHTML = 'Password'
-            UAP[4].innerHTML = 'Confirm password'
-            OS[3].innerHTML = 'Go Login'
-            LE[1].innerHTML = 'Signup'
-            SI[1].innerHTML = 'Signup'
-            console.log('English')
-        }
-        clearTimeout(timer)
-    })
+    else if(selectbar[0].value == 'en'){
+        CB1[0].innerHTML = 'Games'
+        CB2[0].innerHTML = 'Website'
+        CB3[0].innerHTML = 'Virus'
+        CB4[0].innerHTML = 'Other'
+        M1[0].innerHTML = 'Guess the number'
+        UB1[0].innerHTML = 'User'
+        UB2[0].innerHTML = 'Settings'
+        IW.innerHTML = 'Game rule: <br> When you start the game, the system will generate a random number. You can guess a number from 1 to 100 in the input field.The system then tells you whether your guess is too high or too low, and the game wins when you guess correctly!'
+        NB[0].innerHTML = 'Start Game'
+        num.innerHTML = 'Please enter a number between 1 and 100'
+        NB2[0].innerHTML = 'Confirm'
+        LW.innerHTML = 'Language: '
+        submit[0].value = 'Submit'
+        submit[0].style.left = '-24%'
+        VS.innerHTML = 'Start the virus!'
+        BW[0].innerHTML = 'Login'
+        BW[1].innerHTML = 'Register'
+        L2[0].innerHTML = 'Login'
+        na[0].innerHTML = 'Account:'
+        NP.setAttribute('placeholder','Please enter your ueser name')
+        na[1].innerHTML = 'Password:'
+        PWP.setAttribute('placeholder','Please enter your password')
+        LW1.innerHTML = 'Login'
+        L2[1].innerHTML = 'Register'
+        na[2].innerHTML = 'Account:'
+        NRP.setAttribute('placeholder','Please enter your ueser name')
+        na[3].innerHTML = 'Password:'
+        PRP.setAttribute('placeholder','Please enter your password')
+        na[4].innerHTML = 'Confirm password:'
+        na[4].style.fontSize = '18px'
+        PRP2.setAttribute('placeholder','Please confirm your password')
+        RW.innerHTML = 'Register'
+        console.log('English')
+    }
 }
-
-/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 function start_game(){
     var before_start = document.getElementById('before-start')
@@ -498,7 +364,7 @@ function start_game(){
 function Games1(){
     var before_start = document.getElementById('before-start')
     var intro = document.getElementById('intro')
-    light3[0].style.display = 'block'
+    light3[0].style.display = 'inline-block'
     outline[0].style.display = 'inline-block'
     intro.style.display = 'inline-block'
     before_start.style.display = 'none'
@@ -620,137 +486,6 @@ function button1(){
     // console.log(input.value)
 }
 
-/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
-
-function ChangeToChinese(){
-    var CB1 = document.getElementsByClassName('ctrl-btn1')
-    var CB2 = document.getElementsByClassName('ctrl-btn2')
-    var CB3 = document.getElementsByClassName('ctrl-btn3')
-    var CB4 = document.getElementsByClassName('ctrl-btn4')
-    var M1 = document.getElementsByClassName('mainthings1')
-    var UB1 = document.getElementsByClassName('ueser-btn1')
-    var UB2 = document.getElementsByClassName('ueser-btn2')
-    var IW = document.getElementById('intro-word')
-    var NB = document.getElementsByClassName('number-btn')
-    var NB2 = document.getElementsByClassName('number-btn2')
-    var num = document.getElementById('number')
-    var LW = document.getElementById('Language-word')
-    var submit = document.getElementsByClassName('submit')
-    var VS = document.getElementById('virus-start')
-    var NP = document.getElementById('name')
-    var PWP = document.getElementById('password')
-    var NRP = document.getElementById('name-reg')
-    var PRP = document.getElementById('password-reg')
-    var PRP2 = document.getElementById('password-reg2')
-    // var RW = document.getElementById('reg-word')
-    var SI = document.getElementsByClassName('SI')
-    var UAP = document.getElementsByClassName('UAP')
-    var OS = document.getElementsByClassName('OtherStuff')
-    var LE = document.getElementsByClassName('Login_new')
-    var EXIT = document.getElementsByClassName('test3')
-
-    CB1[0].innerText = '小游戏'
-    CB2[0].innerHTML = '快捷网页'
-    CB3[0].innerHTML = '病毒'
-    CB4[0].innerHTML = '其他'
-    M1[0].innerHTML = '猜数字'
-    UB1[0].innerHTML = '用户'
-    UB2[0].innerHTML = '设置'
-    IW.innerHTML = '游戏规则：<br>开始游戏后系统会随机生成一个数字，你可以在输入框里面猜一个1-100的数字，之后系统会告诉你，你猜的数字是猜大了，还是猜小了，猜对时游戏获胜'
-    NB[0].innerHTML = '开始游戏'
-    num.innerHTML = '请输入1到100之间的数字'
-    NB2[0].innerHTML = '确定'
-    LW.innerHTML = '语言：'
-    submit[0].value = '确定'
-    submit[0].style.left = '-19%'
-    VS.innerHTML = '启动病毒！'
-    // RW.innerHTML = '注册'
-    SI[0].innerHTML = '登录'
-    UAP[0].innerHTML = '用户名'
-    UAP[1].innerHTML = '密码'
-    OS[0].innerHTML = '忘记密码?'
-    OS[1].innerHTML = '注册'
-    LE[0].innerHTML = '登录'
-    EXIT[0].style.left = '361px'
-    UAP[2].innerHTML = '用户名'
-    UAP[3].innerHTML = '密码'
-    UAP[4].innerHTML = '确认密码'
-    OS[3].innerHTML = '去登录'
-    LE[1].innerHTML = '注册'
-    SI[1].innerHTML = '注册'
-    console.log('Chinese')
-}
-
-/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
-
-function ChangeToEnglish(){
-    var CB1 = document.getElementsByClassName('ctrl-btn1')
-    var CB2 = document.getElementsByClassName('ctrl-btn2')
-    var CB3 = document.getElementsByClassName('ctrl-btn3')
-    var CB4 = document.getElementsByClassName('ctrl-btn4')
-    var M1 = document.getElementsByClassName('mainthings1')
-    var UB1 = document.getElementsByClassName('ueser-btn1')
-    var UB2 = document.getElementsByClassName('ueser-btn2')
-    var IW = document.getElementById('intro-word')
-    var NB = document.getElementsByClassName('number-btn')
-    var NB2 = document.getElementsByClassName('number-btn2')
-    var num = document.getElementById('number')
-    var LW = document.getElementById('Language-word')
-    var submit = document.getElementsByClassName('submit')
-    var VS = document.getElementById('virus-start')
-    var NP = document.getElementById('name')
-    var PWP = document.getElementById('password')
-    var NRP = document.getElementById('name-reg')
-    var PRP = document.getElementById('password-reg')
-    var PRP2 = document.getElementById('password-reg2')
-    // var RW = document.getElementById('reg-word')
-    var SI = document.getElementsByClassName('SI')
-    var UAP = document.getElementsByClassName('UAP')
-    var OS = document.getElementsByClassName('OtherStuff')
-    var LE = document.getElementsByClassName('Login_new')
-    var EXIT = document.getElementsByClassName('test3')
-
-    CB1[0].innerHTML = 'Games'
-    CB2[0].innerHTML = 'Website'
-    CB3[0].innerHTML = 'Virus'
-    CB4[0].innerHTML = 'Other'
-    M1[0].innerHTML = 'Guess the number'
-    UB1[0].innerHTML = 'User'
-    UB2[0].innerHTML = 'Settings'
-    IW.innerHTML = 'Game rule: <br> When you start the game, the system will generate a random number. You can guess a number from 1 to 100 in the input field.The system then tells you whether your guess is too high or too low, and the game wins when you guess correctly!'
-    NB[0].innerHTML = 'Start Game'
-    num.innerHTML = 'Please enter a number between 1 and 100'
-    NB2[0].innerHTML = 'Confirm'
-    LW.innerHTML = 'Language: '
-    submit[0].value = 'Submit'
-    submit[0].style.left = '-24%'
-    VS.innerHTML = 'Start the virus!'
-    // RW.innerHTML = 'Register'
-    SI[0].innerHTML = 'Sign in'
-    UAP[0].innerHTML = 'UserName'
-    UAP[1].innerHTML = 'Password'
-    OS[0].innerHTML = 'Forgot Password?'
-    OS[1].innerHTML = 'Signup'
-    LE[0].innerHTML = 'Login'
-    EXIT[0].style.left = '382px'
-    UAP[2].innerHTML = 'UserName'
-    UAP[3].innerHTML = 'Password'
-    UAP[4].innerHTML = 'Confirm password'
-    OS[3].innerHTML = 'Go Login'
-    LE[1].innerHTML = 'Signup'
-    SI[1].innerHTML = 'Signup'
-    console.log('English')
-}
-
-/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
-
-function Calculator(){
-    light3[1].style.display = 'block'
-    outline[1].style.display = 'inline-block'
-}
-
-
-
 
 
 window.onload = function(){
@@ -809,13 +544,7 @@ window.onload = function(){
 
     mainthings2[0].onclick = function(){
         if (num == true){
-            if(selectbar[0].value == 'cn'){
-                alert('病毒将会在倒数结束后运行，请尽快推出否则网页将会卡死！！')
-            }
-
-            else if(selectbar[0].value == 'en'){
-                alert('The virus will run after the countdown ends, please exit it as soon as possible or the webpage will be stuck! !')
-            }
+            alert('病毒将会在倒数结束后运行，请尽快推出否则网页将会卡死！！')
             var timer = document.getElementById('timer');
             timer.style.display = 'block';
             var p = 10
@@ -854,22 +583,21 @@ window.onload = function(){
             },1000)
         }
         else{
-            if(selectbar[0].value == 'cn'){
-                alert('请先登录！')
-            }
-
-            else if(selectbar[0].value == 'en'){
-                alert('Login first!')
-            }
+            alert('请先登录！')
         }
     }
 
-    // if(LOGIN == true){
-    //     console.log('1')
-    // }
+
+    var hide1 = document.getElementById('hide1')
+    var hide2 = document.getElementById('hide2')
+    var submit = document.getElementsByClassName('submit')
     
+
+
+
+    // submit[0].onclick = function(){
+    //     var scan = $("input[name='hide1']:checked").val();
+    //     alert("选中的radio的值是：" + scan);
+    // }
 }
-
-
-
 
