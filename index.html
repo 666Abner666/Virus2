@@ -1,49 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=0.3, minimum-scale=0, maximum-scale=10.0, user-scalable=yes"/>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=0.3, minimum-scale=0, maximum-scale=10.0, user-scalable=yes" />
+    <meta name="google-signin-client_id"
+        content="1097504830403-uujkl2ue0n6ok3tchisr66ll0pq02cge.apps.googleusercontent.com">
     <link rel="stylesheet" href="Abner2.0.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <!-- JS在最后 因为自动翻译 -->
     <title>Test2.0</title>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
-<body>
 
+<body>
     <div class="all">
 
-        <div class="top">
+        <div class="animation-area">
+            <ul class="box-area">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
 
-            <div class="ueser">
-                <!-- <div class="test"></div> -->
+            <div class="top">
 
-                <img src="../img/Black_colour.jpg" height="200" id="img2">
-                
-                <span class="ueser-name">未登录</span>
-            </div>
+                <div class="ueser">
+                    <!-- <div class="test"></div> -->
 
-        </div>
-        
-        <div class="settings2">
+                    <img src="../img/Black_colour.jpg" height="200" id="img2">
 
-            <div class="settings">
-
-                <div class="a">
-                    <button class="ueser-btn1" onclick="btn1()">账户</button>
+                    <span class="ueser-name">未登录</span>
                 </div>
 
-                <div class="a">
-                    <button class="ueser-btn2" onclick="btn2()">设置</button>
-                </div>
             </div>
 
-        </div>
-        
-        <!-- 账户设置 -->
-        <div class="light-settings">
-            <!-- <div class="main-settings">
+            <div class="settings2">
+
+                <div class="settings">
+
+                    <div class="a">
+                        <button class="ueser-btn1" onclick="btn1()">账户</button>
+                    </div>
+
+                    <div class="a">
+                        <button class="ueser-btn2" onclick="btn2()">设置</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 账户设置 -->
+            <div class="light-settings">
+                <!-- <div class="main-settings">
 
                 <div class="img">
                     <img src="img/R-C.png" class="test2" onclick="exit()">
@@ -98,6 +113,16 @@
                         <!-- <input type="submit" value="登录" onclick="empty2()" id="Login_new"> -->
 
                         <button onclick="empty2()" class="Login_new" type="button">登录</button>
+
+                        <div id="g_id_onload"
+                            data-client_id="1097504830403-uujkl2ue0n6ok3tchisr66ll0pq02cge.apps.googleusercontent.com"
+                            data-callback="handleCredentialResponse">
+                        </div>
+
+                        <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="filled_blue"
+                            data-text="signin_with" data-size="large" data-logo_alignment="left">
+                        </div>
+
                     </form>
                 </div>
 
@@ -134,7 +159,7 @@
                             <span class="UAP">密码</span>
                             <i></i>
                         </div>
-                        
+
                         <div class="inputBox">
                             <input type="password" required="required" id="password-reg2">
                             <span class="UAP">确认密码</span>
@@ -166,19 +191,19 @@
                 <span class="icon" style="color:black;">
                     <ion-icon name="close-outline" class="test3" onclick="exit()"></ion-icon>
                 </span>
-                
+
                 <!-- <input id="hide1" type="radio" value="yes" name="hide1">
                 <label for="hide1">yes</label>
 
                 <input id="hide2" type="radio" value="no" name="hide1" checked>
                 <label for="hide2">no</label> -->
 
-                
+
                 <span id="Language-word">语言：</span><select name="Language" class="Language">
                     <option value="cn">中文</option>
                     <option value="en">English</option>
                 </select>
-                
+
                 <input class="submit" type="submit" onclick="submit()" value="确定">
             </div>
         </div>
@@ -189,24 +214,28 @@
             <div class="main-settings2">
 
                 <span class="icon" style="color:black;">
-                    <ion-icon name="close-outline" class="test3" onclick="exit()" style="left: 448px;top: 12px;position: absolute;"></ion-icon>
+                    <ion-icon name="close-outline" class="test3" onclick="exit()"
+                        style="left: 448px;top: 12px;position: absolute;"></ion-icon>
                 </span>
 
                 <!-- <div id="IMG"></div> -->
 
-                <h5 class="ueser-name" style="color: black;font-size: 34px;display:inline-block;position: relative;text-align: center;left: 50%;top: 130px;margin-left: -484px;">未登录</h5>
-                
+                <h5 class="ueser-name"
+                    style="color: black;font-size: 34px;display:inline-block;position: relative;text-align: center;left: 50%;top: 130px;margin-left: -484px;">
+                    未登录</h5>
+
                 <!-- <span id="uploadImg">
                     <input type="file" accept="image/*" capture="camera" onchange="upload('#fileBtn', '#img');" id="fileBtn" size="1">
                 <a href="#">上传图片</a></span> -->
 
                 <span id="uploadImg">
-                    <input type="file" accept="image/*" capture="camera" onchange="upload('#fileBtn', '#img', '#img2');" id="fileBtn" size="1" >
-                <a href="#">上传图片</a></span>
+                    <input type="file" accept="image/*" capture="camera" onchange="upload('#fileBtn', '#img', '#img2');"
+                        id="fileBtn" size="1">
+                    <a href="#">上传图片</a></span>
 
                 <img src="../img/Black_colour.jpg" height="200" id="img">
 
-                
+
 
                 <script>
                     var upload = function (c, d, e) {
@@ -229,94 +258,108 @@
 
 
 
-    <div class="middle">
-        <div class="Language">
-            <div class="choose">
-                
-            </div>
-        </div>
+        <div class="middle">
+            <div class="Language">
+                <div class="choose">
 
-
-
-        <div id="mid-ctrl-pad">
-
-            <div>
-                <button class="ctrl-btn1" onclick="games1()">小游戏</button>
-                <button class="ctrl-btn2" onclick="web1()">快捷网页</button>
-                <button class="ctrl-btn3" onclick="virus1()">病毒</button>
-                <button class="ctrl-btn4" onclick="other1()">其他</button>
-            </div>
-            
-
-        </div>
-
-        <div class="games">
-            <div class="mainthings1" style="background-color: orange;" onclick="Games1()">猜数字</div>
-
-            <div class="light-settings3"></div>
-
-            <div class="out-line">
-                
-                <span class="icon" style="color:black;">
-                    <ion-icon name="close-outline" class="test4" onclick="exit_game1()"></ion-icon>
-                </span>
-                
-                <div id="intro">
-                    <span id="intro-word">
-                        游戏规则：<br>
-                        开始游戏后系统会随机生成一个数字，你可以在输入框里面猜一个1-100的数字，
-                        之后系统会告诉你，你猜的数字是猜大了，还是猜小了，猜对时游戏获胜
-                    </span>
-    
-                    <button class="number-btn" onclick="start_game()" style="margin-top: 3px;">开始游戏</button>
                 </div>
+            </div>
 
-                <div id="before-start">
-                    <span id="number">请输入1到100之间的数字</span> <input type="text" id="input" maxlength="3"><br>
-                    <button class="number-btn2" onclick="button1()">确定</button>
+
+
+            <div id="mid-ctrl-pad">
+
+                <div>
+                    <button class="ctrl-btn1" onclick="games1()">小游戏</button>
+                    <button class="ctrl-btn2" onclick="web1()">快捷网页</button>
+                    <button class="ctrl-btn3" onclick="virus1()">病毒</button>
+                    <button class="ctrl-btn4" onclick="other1()">其他</button>
                 </div>
 
 
-
             </div>
 
-            <div class="mainthings1" style="background-color: orange;"></div>
-            <div class="mainthings1" style="background-color: orange;"></div>
-            <div class="mainthings1" style="background-color: orange;"></div>
-            <div class="mainthings1" style="background-color: orange;"></div>
+            <div class="games">
+                <div class="mainthings1" style="background-color: orange;" onclick="Games1()">猜数字</div>
+
+                <div class="light-settings3">
+                    <div class="out-line">
+
+                        <span class="icon" style="color:black;">
+                            <ion-icon name="close-outline" class="test4" onclick="exit_game1()"></ion-icon>
+                        </span>
+
+                        <div id="intro">
+                            <span id="intro-word">
+                                游戏规则：<br>
+                                开始游戏后系统会随机生成一个数字，你可以在输入框里面猜一个1-100的数字，
+                                之后系统会告诉你，你猜的数字是猜大了，还是猜小了，猜对时游戏获胜
+                            </span>
+
+                            <button class="number-btn" onclick="start_game()" style="margin-top: 3px;">开始游戏</button>
+                        </div>
+
+                        <div id="before-start">
+                            <span id="number">请输入1到100之间的数字</span> <input type="text" id="input" maxlength="3"><br>
+                            <button class="number-btn2" onclick="button1()">确定</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mainthings1" style="background-color: orange;" onclick="Calculator()">计算器
+
+                    <div class="light-settings3">
+                        <div class="out-line">
+
+                            <span class="icon" style="color:black;">
+                                <ion-icon name="close-outline" class="test4" onclick="exit_game1()"></ion-icon>
+                            </span>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mainthings1" style="background-color: orange;"></div>
+                <div class="mainthings1" style="background-color: orange;"></div>
+                <div class="mainthings1" style="background-color: orange;"></div>
+            </div>
+
+            <div class="web">
+                <div class="mainthings1">web</div>
+                <div class="mainthings1"></div>
+                <div class="mainthings1"></div>
+                <div class="mainthings1"></div>
+                <div class="mainthings1"></div>
+            </div>
+
+            <div class="virus">
+                <div class="mainthings2" style="background-color:red;"><span id="virus-start"
+                        style="font-size: 30px;text-align:center;display: inline-block;">启动病毒！</span></div>
+                <div class="mainthings1" style="background-color:red;"></div>
+                <div class="mainthings1" style="background-color:red;"></div>
+                <div class="mainthings1" style="background-color:red;"></div>
+                <div class="mainthings1" style="background-color:red;"></div>
+            </div>
+
+            <div class="other">
+                <div class="mainthings1" style="background-color: rgb(0, 238, 255);">other</div>
+                <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
+                <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
+                <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
+                <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
+            </div>
+
+
         </div>
 
-        <div class="web">
-            <div class="mainthings1">web</div>
-            <div class="mainthings1"></div>
-            <div class="mainthings1"></div>
-            <div class="mainthings1"></div>
-            <div class="mainthings1"></div>
-        </div>
+        <div id="timer">10</div>
 
-        <div class="virus">
-            <div class="mainthings2" style="background-color:red;"><span id="virus-start" style="font-size: 30px;text-align:center;display: inline-block;">启动病毒！</span></div>
-            <div class="mainthings1" style="background-color:red;"></div>
-            <div class="mainthings1" style="background-color:red;"></div>
-            <div class="mainthings1" style="background-color:red;"></div>
-            <div class="mainthings1" style="background-color:red;"></div>
-        </div>
-
-        <div class="other">
-            <div class="mainthings1" style="background-color: rgb(0, 238, 255);">other</div>
-            <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
-            <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
-            <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
-            <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
-        </div>
-
-        
-    </div>
-
-    <div id="timer">10</div>
-
-    <script src="Abner2.0.js"></script>
+        <script src="Abner2.0.js"></script>
 
 </body>
-</html>
 
+</html>
