@@ -25,7 +25,7 @@ var regtest = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[^]{4,12}$/
 var regpass = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[^]{4,12}$/
 // selectbar[0].value = null 拿不到
 
-if(LANGUGE == 'zh-CN' || LANGUGE == 'zh'){
+if (LANGUGE == 'zh-CN' || LANGUGE == 'zh') {
     DL = 'cn'
     // console.log('VALUE = ' + selectbar[0].value) 拿不到
     // selectbar = DL
@@ -35,7 +35,7 @@ if(LANGUGE == 'zh-CN' || LANGUGE == 'zh'){
     console.log('中文')
 }
 
-else if(LANGUGE == 'en-US' || LANGUGE == 'en'){
+else if (LANGUGE == 'en-US' || LANGUGE == 'en') {
     DL = 'en'
     // selectbar = DL
     // submit() // 调用funtction 结果报错
@@ -44,6 +44,10 @@ else if(LANGUGE == 'en-US' || LANGUGE == 'en'){
     console.log(DL)
     console.log('ENGLISH')
 }
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
 
 function handleCredentialResponse(response) {
     console.log("Encoded JWT ID token:" + response.credential);
@@ -64,10 +68,26 @@ function handleCredentialResponse(response) {
     document.getElementsByClassName('ueser-name')[1].innerHTML = name;
     document.getElementById('img').src = img;
     document.getElementById('img2').src = img;
-    LOGIN = true
+    exit();
+    LOGIN = true;
+    // 将用户的访问令牌保存到 Cookie 中
+    var expires = new Date();
+    expires.setTime(expires.getTime() + (30 * 60 * 1000)); // 令牌将在 30 分钟后过期
+    document.cookie = 'access_token=' + requestAccessToken() + '; expires=' + expires.toUTCString() + '; path=/';
 }
 
- function decodeJwtResponse(response) {
+// 用户登出后的回调函数
+function onUserSignedOut() {
+    // 删除保存在 Cookie 中的访问令牌
+    document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    LOGIN = false
+    document.getElementsByClassName('ueser-name')[0].innerHTML = '未登录';
+    document.getElementsByClassName('ueser-name')[1].innerHTML = '未登录';
+    document.getElementById('img').src = "../img/Black_colour.jpg";
+    document.getElementById('img2').src = "../img/Black_colour.jpg";
+}   
+
+function decodeJwtResponse(response) {
     const encodedPayload = response.split('.')[1];
     const base64 = encodedPayload.replace(/-/g, '+').replace(/_/g, '/');
     const decodedPayload = atob(base64);
@@ -75,15 +95,18 @@ function handleCredentialResponse(response) {
     return jwtPayload;
 }
 
-function empty2(){
-    if (document.getElementById('name').value.length==0){
-        if(selectbar[0].value == 'cn'){
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+
+function empty2() {
+    if (document.getElementById('name').value.length == 0) {
+        if (selectbar[0].value == 'cn') {
             alert('请输入账号!');
             document.getElementById('name').focus();
             return false;
         }
 
-        else if(selectbar[0].value == 'en'){
+        else if (selectbar[0].value == 'en') {
             alert('Please enter your ueser name!');
             document.getElementById('name').focus();
             return false;
@@ -91,72 +114,72 @@ function empty2(){
     }
 
 
-    if (document.getElementById('password').value.length==0){
-        if(selectbar[0].value == 'cn'){
+    if (document.getElementById('password').value.length == 0) {
+        if (selectbar[0].value == 'cn') {
             alert('请输入密码!');
             document.getElementById('password').focus();
             return false;
         }
 
-        else if(selectbar[0].value == 'en'){
+        else if (selectbar[0].value == 'en') {
             alert('Please enter your password!');
             document.getElementById('password').focus();
             return false;
         }
     }
-    
-    if ((document.getElementById('name').value == 'Abner' || document.getElementById('name').value == namereg.value) && (document.getElementById('password').value == 'Abner666' || document.getElementById('password').value == passwordreg.value)){
-    document.getElementsByClassName('ueser-name')[0].innerHTML = document.getElementById('name').value
-    document.getElementsByClassName('ueser-name')[1].innerHTML = document.getElementById('name').value
-    if(selectbar[0].value == 'cn'){
-        alert('登录成功!')
-        light[0].style.display = 'none'
-        light2[0].style.display = 'none'
-        document.getElementById('name').value = ''
-        document.getElementById('password').value = ''
-        document.getElementById('name-reg').value = ''
-        document.getElementById('password-reg').value = ''
-        document.getElementById('password-reg2').value = ''
-        LOGIN = true
-        num = true
+
+    if ((document.getElementById('name').value == 'Abner' || document.getElementById('name').value == namereg.value) && (document.getElementById('password').value == 'Abner666' || document.getElementById('password').value == passwordreg.value)) {
+        document.getElementsByClassName('ueser-name')[0].innerHTML = document.getElementById('name').value
+        document.getElementsByClassName('ueser-name')[1].innerHTML = document.getElementById('name').value
+        if (selectbar[0].value == 'cn') {
+            alert('登录成功!')
+            light[0].style.display = 'none'
+            light2[0].style.display = 'none'
+            document.getElementById('name').value = ''
+            document.getElementById('password').value = ''
+            document.getElementById('name-reg').value = ''
+            document.getElementById('password-reg').value = ''
+            document.getElementById('password-reg2').value = ''
+            LOGIN = true
+            num = true
+        }
+
+        else if (selectbar[0].value == 'en') {
+            alert('Login successfully!')
+            light[0].style.display = 'none'
+            light2[0].style.display = 'none'
+            document.getElementById('name').value = ''
+            document.getElementById('password').value = ''
+            document.getElementById('name-reg').value = ''
+            document.getElementById('password-reg').value = ''
+            document.getElementById('password-reg2').value = ''
+            LOGIN = true
+            num = true
+        }
     }
 
-    else if(selectbar[0].value == 'en'){
-        alert('Login successfully!')
-        light[0].style.display = 'none'
-        light2[0].style.display = 'none'
-        document.getElementById('name').value = ''
-        document.getElementById('password').value = ''
-        document.getElementById('name-reg').value = ''
-        document.getElementById('password-reg').value = ''
-        document.getElementById('password-reg2').value = ''
-        LOGIN = true
-        num = true
-    }
-}
-
-    else{
-        if(selectbar[0].value == 'cn'){
+    else {
+        if (selectbar[0].value == 'cn') {
             console.log(document.getElementById('name').value)
             console.log(document.getElementById('password').value)
             alert('用户名或密码错误！')
         }
 
-        else if(selectbar[0].value == 'en'){
+        else if (selectbar[0].value == 'en') {
             console.log(document.getElementById('name').value)
             console.log(document.getElementById('password').value)
             alert('ERROR Incorrect username or password!')
         }
     }
-}   
+}
 
-function to_reg(){
+function to_reg() {
     var box = document.getElementsByClassName('box')
     box[0].style.display = 'none'
     box[1].style.display = 'block'
 }
 
-function to_login(){
+function to_login() {
     var box = document.getElementsByClassName('box')
     box[1].style.display = 'none'
     box[0].style.display = 'block'
@@ -164,67 +187,67 @@ function to_login(){
 
 
 
-function reg1(){
+function reg1() {
     var reg1 = document.getElementById('button-reg')
     var name = document.getElementById('name-reg')
     var password = document.getElementById('password-reg')
     var settings = document.getElementsByClassName('reg')
 
-    if (document.getElementById('name-reg').value.length==0){
-        if(selectbar[0].value == 'cn'){
+    if (document.getElementById('name-reg').value.length == 0) {
+        if (selectbar[0].value == 'cn') {
             alert('请输入账号!');
             document.getElementById('name-reg').focus();
             return false;
         }
 
-        else if(selectbar[0].value == 'en'){
+        else if (selectbar[0].value == 'en') {
             alert('Please enter your ueser name!');
             document.getElementById('name-reg').focus();
             return false;
         }
     }
 
-    if (document.getElementById('password-reg').value.length==0){
-        if(selectbar[0].value == 'cn'){
+    if (document.getElementById('password-reg').value.length == 0) {
+        if (selectbar[0].value == 'cn') {
             alert('请输入密码!');
             document.getElementById('password-reg').focus();
             return false;
         }
 
-        else if(selectbar[0].value == 'en'){
+        else if (selectbar[0].value == 'en') {
             alert('Please enter your password!');
             document.getElementById('password-reg').focus();
             return false;
         }
     }
 
-    if (document.getElementById('password-reg2').value.length==0){
-        if(selectbar[0].value == 'cn'){
+    if (document.getElementById('password-reg2').value.length == 0) {
+        if (selectbar[0].value == 'cn') {
             alert('你的 ‘确认密码’ 未填写');
             document.getElementById('password-reg2').focus();
             return false;
         }
 
-        else if(selectbar[0].value == 'en'){
+        else if (selectbar[0].value == 'en') {
             alert('Your ‘Confirmation password’ is not filled in');
             document.getElementById('password-reg2').focus();
             return false;
         }
     }
 
-    if (document.getElementById('password-reg2').value != document.getElementById('password-reg').value){
-        if(selectbar[0].value == 'cn'){
+    if (document.getElementById('password-reg2').value != document.getElementById('password-reg').value) {
+        if (selectbar[0].value == 'cn') {
             alert('你第二次输入的密码与第一个密码不相符!')
             return false;
         }
 
-        else if(selectbar[0].value == 'en'){
+        else if (selectbar[0].value == 'en') {
             alert('The password you entered for the second time does not match the first one!')
             return false;
         }
     }
 
-    if(regtest.test(document.getElementById('name-reg').value) && regpass.test(document.getElementById('password-reg').value)){
+    if (regtest.test(document.getElementById('name-reg').value) && regpass.test(document.getElementById('password-reg').value)) {
         console.log(name.value)
         console.log(password.value)
         namereg = name
@@ -235,32 +258,32 @@ function reg1(){
         LOGIN = true
         document.getElementsByClassName('ueser-name')[0].innerHTML = document.getElementById('name-reg').value
         document.getElementsByClassName('ueser-name')[1].innerHTML = document.getElementById('name-reg').value
-        if(selectbar[0].value == 'cn'){
+        if (selectbar[0].value == 'cn') {
             alert('注册成功! 已为您自动登录!')
         }
 
-        else if(selectbar[0].value == 'en'){
+        else if (selectbar[0].value == 'en') {
             alert('Registered successfully! You have been automatically logged in!')
         }
     }
 
-    else{
-        if(selectbar[0].value == 'cn'){
+    else {
+        if (selectbar[0].value == 'cn') {
             alert('名字和密码的内容需要包含：小写字母，大写字母和数字，且不能小于4和大于12个字符')
             console.log('名字=' + document.getElementById('name-reg').value)
             console.log('密码=' + document.getElementById('password-reg').value)
             return false
         }
 
-        else if(selectbar[0].value == 'en'){
+        else if (selectbar[0].value == 'en') {
             alert('The name and password must contain lowercase letters, uppercase letters, and numbers, also cannot be less than 4 characters or more than 12 characters')
             return false
         }
     }
 }
 
-function btn1(){
-    if(LOGIN == false){
+function btn1() {
+    if (LOGIN == false) {
         var box = document.getElementsByClassName('box')
         light[0].style.display = 'block'
         box[0].style.display = 'block'
@@ -268,17 +291,17 @@ function btn1(){
 
     }
 
-    else if(LOGIN == true){
+    else if (LOGIN == true) {
         light[1].style.display = 'block'
         console.log(LOGIN)
     }
 }
 
-function btn2(){
+function btn2() {
     light2[0].style.display = 'block'
 }
 
-function exit(){
+function exit() {
     light[0].style.display = 'none'
     light[1].style.display = 'none'
     light2[0].style.display = 'none'
@@ -293,14 +316,14 @@ function exit(){
     // login2[0].style.display = 'none'
 }
 
-function login(){
+function login() {
     regbtn[0].style.backgroundColor = 'gray'
     ueserbtn[0].style.backgroundColor = 'white'
     login1[0].style.display = 'inline-block'
     login2[0].style.display = 'none'
 }
 
-function reg(){
+function reg() {
     regbtn[0].style.backgroundColor = 'white'
     ueserbtn[0].style.backgroundColor = 'gray'
     login1[0].style.display = 'none'
@@ -317,7 +340,7 @@ var virus = document.getElementsByClassName('virus')
 var other = document.getElementsByClassName('other')
 
 
-function games1(){
+function games1() {
     games[0].style.display = 'inline-block'
     web[0].style.display = 'none'
     virus[0].style.display = 'none'
@@ -325,7 +348,7 @@ function games1(){
     console.log('games')
 }
 
-function web1(){
+function web1() {
     games[0].style.display = 'none'
     web[0].style.display = 'inline-block'
     virus[0].style.display = 'none'
@@ -333,7 +356,7 @@ function web1(){
     console.log('web')
 }
 
-function virus1(){
+function virus1() {
     games[0].style.display = 'none'
     web[0].style.display = 'none'
     virus[0].style.display = 'inline-block'
@@ -341,7 +364,7 @@ function virus1(){
     console.log('virus')
 }
 
-function other1(){
+function other1() {
     games[0].style.display = 'none'
     web[0].style.display = 'none'
     virus[0].style.display = 'none'
@@ -352,7 +375,7 @@ function other1(){
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 var random = null
-function submit(){
+function submit() {
     let timer = setTimeout(() => {
         var CB1 = document.getElementsByClassName('ctrl-btn1')
         var CB2 = document.getElementsByClassName('ctrl-btn2')
@@ -384,7 +407,7 @@ function submit(){
         var LE = document.getElementsByClassName('Login_new')
         var EXIT = document.getElementsByClassName('test3')
         //console.log(selectbar[0].value)
-        if(selectbar[0].value == 'cn'){
+        if (selectbar[0].value == 'cn') {
             CB1[0].innerHTML = '小游戏'
             CB2[0].innerHTML = '快捷网页'
             CB3[0].innerHTML = '病毒'
@@ -433,7 +456,7 @@ function submit(){
             console.log('Chinese')
         }
 
-        else if(selectbar[0].value == 'en'){
+        else if (selectbar[0].value == 'en') {
             CB1[0].innerHTML = 'Games'
             CB2[0].innerHTML = 'Website'
             CB3[0].innerHTML = 'Virus'
@@ -487,7 +510,7 @@ function submit(){
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
-function start_game(){
+function start_game() {
     var before_start = document.getElementById('before-start')
     var intro = document.getElementById('intro')
     random = null
@@ -495,7 +518,7 @@ function start_game(){
     intro.style.display = 'none'
 }
 
-function Games1(){
+function Games1() {
     var before_start = document.getElementById('before-start')
     var intro = document.getElementById('intro')
     light3[0].style.display = 'block'
@@ -504,7 +527,7 @@ function Games1(){
     before_start.style.display = 'none'
 }
 
-function exit_game1(){
+function exit_game1() {
     var word = document.getElementById('number')
     var input = document.getElementById('input')
     outline[0].style.display = 'none'
@@ -512,45 +535,45 @@ function exit_game1(){
     input.value = ''
     big = 100
     small = 1
-    if(selectbar[0].value == 'cn'){
+    if (selectbar[0].value == 'cn') {
         word.innerHTML = '请输入1到100之间的数字'
     }
-    else if(selectbar[0].value == 'en'){
+    else if (selectbar[0].value == 'en') {
         'Please enter a number between 1 and 100'
     }
-    
+
 }
 
 var big = 100
 var small = 1
-function button1(){
+function button1() {
     var word = document.getElementById('number')
-    if(random == null){
-        random = Math.floor(Math.random()*100+1)
+    if (random == null) {
+        random = Math.floor(Math.random() * 100 + 1)
         console.log('random1=' + random)
     }
     var input = document.getElementById('input')
-    console.log('input='+input.value)
+    console.log('input=' + input.value)
 
     console.log(parseInt(input.value) == parseInt(random))
-    if(input.value == random){
-        if(selectbar[0].value == 'cn'){
+    if (input.value == random) {
+        if (selectbar[0].value == 'cn') {
             alert('猜对了!')
         }
 
-        else if(selectbar[0].value == 'en'){
+        else if (selectbar[0].value == 'en') {
             alert('Bingo!')
         }
     }
-    else if(input.value > random){
+    else if (input.value > random) {
         console.log('big')
         //console.log('random2=' + random)
         console.log('大=' + small)
         console.log('input大=' + input.value)
         // var bignum = input.value
         // word.innerHTML = '请输入' + smallnum + '到' + bignum + '之间的数字'
-        if(selectbar[0].value == 'cn'){
-            if(input.value < big){
+        if (selectbar[0].value == 'cn') {
+            if (input.value < big) {
                 big = input.value
                 word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
                 console.log('改变数字 大 cn')
@@ -559,8 +582,8 @@ function button1(){
             input.value = ''
         }
 
-        else if(selectbar[0].value == 'en'){
-            if(input.value < big){
+        else if (selectbar[0].value == 'en') {
+            if (input.value < big) {
                 big = input.value
                 word.innerHTML = 'Please enter a number between ' + small + ' and ' + big
                 console.log('改变数字 大 en')
@@ -575,13 +598,13 @@ function button1(){
         // }
     }
 
-    else if(input.value < random){
+    else if (input.value < random) {
         console.log('small')
         //console.log('random3=' + random)
         console.log('小=' + small)
         console.log('input小=' + input.value)
-        if(selectbar[0].value == 'cn'){
-            if(input.value > small){
+        if (selectbar[0].value == 'cn') {
+            if (input.value > small) {
                 small = input.value
                 word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
                 console.log('改变数字 小 cn')
@@ -590,8 +613,8 @@ function button1(){
             input.value = ''
         }
 
-        else if(selectbar[0].value == 'en'){
-            if(input.value > small){
+        else if (selectbar[0].value == 'en') {
+            if (input.value > small) {
                 small = input.value
                 word.innerHTML = 'Please enter a number between ' + small + ' and ' + big
                 console.log('改变数字 小 en')
@@ -606,13 +629,13 @@ function button1(){
         // }
     }
 
-    else{
-        if(selectbar[0].value == 'cn'){
+    else {
+        if (selectbar[0].value == 'cn') {
             alert('请输入数字')
             input.value = ''
         }
 
-        else if(selectbar[0].value == 'en'){
+        else if (selectbar[0].value == 'en') {
             alert('Please enter a number')
             input.value = ''
         }
@@ -622,7 +645,7 @@ function button1(){
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
-function ChangeToChinese(){
+function ChangeToChinese() {
     var CB1 = document.getElementsByClassName('ctrl-btn1')
     var CB2 = document.getElementsByClassName('ctrl-btn2')
     var CB3 = document.getElementsByClassName('ctrl-btn3')
@@ -683,7 +706,7 @@ function ChangeToChinese(){
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
-function ChangeToEnglish(){
+function ChangeToEnglish() {
     var CB1 = document.getElementsByClassName('ctrl-btn1')
     var CB2 = document.getElementsByClassName('ctrl-btn2')
     var CB3 = document.getElementsByClassName('ctrl-btn3')
@@ -744,7 +767,7 @@ function ChangeToEnglish(){
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
-function Calculator(){
+function Calculator() {
     light3[1].style.display = 'block'
     outline[1].style.display = 'inline-block'
 }
@@ -753,39 +776,39 @@ function Calculator(){
 
 
 
-window.onload = function(){
+window.onload = function () {
 
-    ueser[0].onmouseover = function(){
+    ueser[0].onmouseover = function () {
         settings[0].style.display = 'block'
         settings2[0].style.display = 'block'
         // console.log(settings + '1')
     }
 
-    ueser[0].onmouseleave = function(){
+    ueser[0].onmouseleave = function () {
         settings[0].style.display = 'none'
         settings2[0].style.display = 'none'
         // console.log(settings + '2')
     }
 
-    settings[0].onmouseover = function(){
+    settings[0].onmouseover = function () {
         settings[0].style.display = 'block'
         settings2[0].style.display = 'block'
         // console.log(settings + '3')
     }
 
-    settings[0].onmouseleave = function(){
+    settings[0].onmouseleave = function () {
         settings[0].style.display = 'none'
         settings2[0].style.display = 'none'
         // console.log(settings + '4')
     }
 
-    settings2[0].onmouseover = function(){
+    settings2[0].onmouseover = function () {
         settings[0].style.display = 'block'
         settings2[0].style.display = 'block'
         // console.log(settings + '5')
     }
 
-    settings2[0].onmouseleave = function(){
+    settings2[0].onmouseleave = function () {
         settings[0].style.display = 'none'
         settings2[0].style.display = 'none'
         // console.log(settings + '6')
@@ -803,35 +826,35 @@ window.onload = function(){
     //     console.log('121')
     // }
 
-    for (var i = 0;mainthings1[i].onmouseover;i++){
+    for (var i = 0; mainthings1[i].onmouseover; i++) {
         console.log('123')
     }
 
-    mainthings2[0].onclick = function(){
-        if (LOGIN == true){
-            if(selectbar[0].value == 'cn'){
+    mainthings2[0].onclick = function () {
+        if (LOGIN == true) {
+            if (selectbar[0].value == 'cn') {
                 alert('病毒将会在倒数结束后运行，请尽快推出否则网页将会卡死！！')
             }
 
-            else if(selectbar[0].value == 'en'){
+            else if (selectbar[0].value == 'en') {
                 alert('The virus will run after the countdown ends, please exit it as soon as possible or the webpage will be stuck! !')
             }
             var timer = document.getElementById('timer');
             timer.style.display = 'block';
             var p = 10
-            var abc = setInterval(function(){
-                if (p >= 8){
+            var abc = setInterval(function () {
+                if (p >= 8) {
                     p--
                     timer.innerHTML = p;
                     console.log(p)
                 }
-                else if (p >= 5 && p < 8){
+                else if (p >= 5 && p < 8) {
                     timer.style.color = 'orangered'
                     p--
                     timer.innerHTML = p;
                     console.log(p)
                 }
-                else if (p <= 4 && p > 0){
+                else if (p <= 4 && p > 0) {
                     timer.style.color = 'red'
                     p--
                     timer.innerHTML = p;
@@ -843,22 +866,21 @@ window.onload = function(){
                 //     timer.innerHTML = p;
                 //     console.log(p)
                 // }
-                else{
+                else {
                     var total = " ";
-                    for (var i = 0; i < 100000; i++)
-                    {
+                    for (var i = 0; i < 100000; i++) {
                         total = total + i.toString();
-                        history.pushState(0,0,total);
+                        history.pushState(0, 0, total);
                     }
                 }
-            },1000)
+            }, 1000)
         }
-        else{
-            if(selectbar[0].value == 'cn'){
+        else {
+            if (selectbar[0].value == 'cn') {
                 alert('请先登录！')
             }
 
-            else if(selectbar[0].value == 'en'){
+            else if (selectbar[0].value == 'en') {
                 alert('Login first!')
             }
         }
@@ -867,7 +889,7 @@ window.onload = function(){
     // if(LOGIN == true){
     //     console.log('1')
     // }
-    
+
 }
 
 
