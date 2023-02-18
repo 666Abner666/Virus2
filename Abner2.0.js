@@ -71,21 +71,22 @@ function handleCredentialResponse(response) {
     exit();
     LOGIN = true;
     // 将用户的访问令牌保存到 Cookie 中
-    var expires = new Date();
-    expires.setTime(expires.getTime() + (30 * 60 * 1000)); // 令牌将在 30 分钟后过期
-    document.cookie = 'access_token=' + requestAccessToken() + '; expires=' + expires.toUTCString() + '; path=/';
+    // var expires = new Date();
+    // expires.setTime(expires.getTime() + (30 * 60 * 1000)); // 令牌将在 30 分钟后过期
+    // document.cookie = 'access_token=' + requestAccessToken() + '; expires=' + expires.toUTCString() + '; path=/';
 }
 
 // 用户登出后的回调函数
 function onUserSignedOut() {
     // 删除保存在 Cookie 中的访问令牌
-    document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    // document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     LOGIN = false
+    exit()
     document.getElementsByClassName('ueser-name')[0].innerHTML = '未登录';
     document.getElementsByClassName('ueser-name')[1].innerHTML = '未登录';
     document.getElementById('img').src = "../img/Black_colour.jpg";
     document.getElementById('img2').src = "../img/Black_colour.jpg";
-}   
+}
 
 function decodeJwtResponse(response) {
     const encodedPayload = response.split('.')[1];
@@ -96,6 +97,87 @@ function decodeJwtResponse(response) {
 }
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+function init() {
+    console.log('Function init()')
+	// 从 Cookie 中获取用户登录状态、用户名和密码
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        if (cookie.indexOf('LOGIN=') === 0) {
+            LOGIN = cookie.substring('LOGIN='.length) === 'true';
+        } else if (cookie.indexOf('namereg=') === 0) {
+            username = decodeURIComponent(cookie.substring('namereg='.length));
+        } else if (cookie.indexOf('passwordreg=') === 0) {
+            password = decodeURIComponent(cookie.substring('passwordreg='.length));
+        }
+    }
+
+    // 根据用户登录状态显示不同的内容
+    if (LOGIN) {
+        showLoggedInContent();
+        console.log('已登陆111(COOKIE)')
+    } else {
+        showLoggedOutContent();
+        console.log('未登陆222(COOKIE)')
+    }
+}
+
+// 用户登录后的回调函数
+function onUserLoggedIn() {
+    // 获取用户名和密码
+    namereg = document.getElementById('name').value;
+    passwordreg = document.getElementById('password').value;
+    console.log(namereg)
+    console.log(passwordreg)
+
+    // 将用户登录状态、用户名和密码保存到 Cookie 中
+    var expires = new Date();
+    expires.setTime(expires.getTime() + (30 * 60 * 1000)); // 登录状态将在 30 分钟后过期
+    document.cookie = 'LOGIN=true; expires=' + expires.toUTCString() + '; path=/';
+    document.cookie = 'namereg=' + encodeURIComponent(namereg) + '; expires=' + expires.toUTCString() + '; path=/';
+    document.cookie = 'passwordreg=' + encodeURIComponent(passwordreg) + '; expires=' + expires.toUTCString() + '; path=/';
+
+    console.log('登陆回调(COOKIE)')
+
+    // 显示登录后的内容
+    showLoggedInContent();
+}
+
+// 用户登出后的回调函数
+function onUserLoggedOut() {
+    // 删除保存在 Cookie 中的登录状态、用户名和密码
+    document.cookie = 'LOGIN=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie = 'namereg=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie = 'passwordreg=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+    // 显示登出后的内容
+    showLoggedOutContent();
+}
+
+// 显示已登录的内容
+function showLoggedInContent() {
+    console.log('已登陆(COOKIE)')
+    LOGIN = true
+}
+
+// 显示未登录的内容
+function showLoggedOutContent() {
+    console.log('未登录(COOKIE)')
+    LOGIN = false
+}
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+
+
+
 
 
 function empty2() {
@@ -132,6 +214,7 @@ function empty2() {
         document.getElementsByClassName('ueser-name')[0].innerHTML = document.getElementById('name').value
         document.getElementsByClassName('ueser-name')[1].innerHTML = document.getElementById('name').value
         if (selectbar[0].value == 'cn') {
+            onUserLoggedIn()
             alert('登录成功!')
             light[0].style.display = 'none'
             light2[0].style.display = 'none'
@@ -258,6 +341,7 @@ function reg1() {
         LOGIN = true
         document.getElementsByClassName('ueser-name')[0].innerHTML = document.getElementById('name-reg').value
         document.getElementsByClassName('ueser-name')[1].innerHTML = document.getElementById('name-reg').value
+        onUserLoggedIn()
         if (selectbar[0].value == 'cn') {
             alert('注册成功! 已为您自动登录!')
         }
@@ -771,7 +855,6 @@ function Calculator() {
     light3[1].style.display = 'block'
     outline[1].style.display = 'inline-block'
 }
-
 
 
 
