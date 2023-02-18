@@ -1,35 +1,3 @@
-function handleCredentialResponse(response) {
-    console.log("Encoded JWT ID token:" + response.credential);
-    // decodeJwtResponse() is a custom function defined by you
-    // to decode the credential response.
-    const responsePayload = decodeJwtResponse(response.credential);
-
-    console.log("ID: " + responsePayload.sub);
-    console.log('Full Name: ' + responsePayload.name);
-    console.log('Given Name: ' + responsePayload.given_name);
-    console.log('Family Name: ' + responsePayload.family_name);
-    console.log("Image URL: " + responsePayload.picture);
-    console.log("Email: " + responsePayload.email);
-
-    var name = responsePayload.name
-    var img = responsePayload.picture
-    document.getElementsByClassName('ueser-name')[0].innerHTML = name;
-    document.getElementById('img2').src = img;
- }
-
- function decodeJwtResponse(response) {
-    const encodedPayload = response.split('.')[1];
-    const base64 = encodedPayload.replace(/-/g, '+').replace(/_/g, '/');
-    const decodedPayload = atob(base64);
-    const jwtPayload = JSON.parse(decodedPayload);
-    return jwtPayload;
-  }
-
-
-
-
-
-
 var num = false
 var tb = false
 var namereg = 'Abner'
@@ -77,6 +45,33 @@ else if(LANGUGE == 'en-US' || LANGUGE == 'en'){
     console.log('ENGLISH')
 }
 
+function handleCredentialResponse(response) {
+    console.log("Encoded JWT ID token:" + response.credential);
+    // decodeJwtResponse() is a custom function defined by you
+    // to decode the credential response.
+    const responsePayload = decodeJwtResponse(response.credential);
+
+    console.log("ID: " + responsePayload.sub);
+    console.log('Full Name: ' + responsePayload.name);
+    console.log('Given Name: ' + responsePayload.given_name);
+    console.log('Family Name: ' + responsePayload.family_name);
+    console.log("Image URL: " + responsePayload.picture);
+    console.log("Email: " + responsePayload.email);
+
+    var name = responsePayload.name
+    var img = responsePayload.picture
+    document.getElementsByClassName('ueser-name')[0].innerHTML = name;
+    document.getElementById('img2').src = img;
+    LOGIN = true
+}
+
+ function decodeJwtResponse(response) {
+    const encodedPayload = response.split('.')[1];
+    const base64 = encodedPayload.replace(/-/g, '+').replace(/_/g, '/');
+    const decodedPayload = atob(base64);
+    const jwtPayload = JSON.parse(decodedPayload);
+    return jwtPayload;
+}
 
 function empty2(){
     if (document.getElementById('name').value.length==0){
