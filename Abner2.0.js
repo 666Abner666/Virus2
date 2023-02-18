@@ -82,6 +82,7 @@ function onUserSignedOut() {
     // document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     LOGIN = false
     exit()
+    onUserLoggedOut()
     document.getElementsByClassName('ueser-name')[0].innerHTML = '未登录';
     document.getElementsByClassName('ueser-name')[1].innerHTML = '未登录';
     document.getElementById('img').src = "../img/Black_colour.jpg";
@@ -120,11 +121,27 @@ function init() {
     // 根据用户登录状态显示不同的内容
     if (LOGIN) {
         showLoggedInContent();
-        console.log('已登陆111(COOKIE)')
+        console.log('已登陆init(COOKIE)')
     } else {
         showLoggedOutContent();
-        console.log('未登陆222(COOKIE)')
+        console.log('未登陆init(COOKIE)')
     }
+}
+
+//查找Cookie
+function getCookie(name) {
+    console.log('name=' + name)
+    const cookieString = document.cookie;
+    if (cookieString) {
+      const cookies = cookieString.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(name + '=')) {
+          return cookie.substring(name.length + 1);
+        }
+      }
+    }
+    return '';
 }
 
 // 用户登录后的回调函数
@@ -162,6 +179,9 @@ function onUserLoggedOut() {
 // 显示已登录的内容
 function showLoggedInContent() {
     console.log('已登陆(COOKIE)')
+    document.getElementsByClassName("ueser-name")[0].innerHTML = getCookie(namereg)
+    document.getElementsByClassName("ueser-name")[1].innerHTML = getCookie(namereg)
+    // console.log(namereg)
     LOGIN = true
 }
 
@@ -170,7 +190,6 @@ function showLoggedOutContent() {
     console.log('未登录(COOKIE)')
     LOGIN = false
 }
-
 
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -856,10 +875,9 @@ function Calculator() {
     outline[1].style.display = 'inline-block'
 }
 
-
-
-
 window.onload = function () {
+
+    init()
 
     ueser[0].onmouseover = function () {
         settings[0].style.display = 'block'
