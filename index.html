@@ -9,7 +9,9 @@
     <meta name="google-signin-client_id"
         content="1097504830403-uujkl2ue0n6ok3tchisr66ll0pq02cge.apps.googleusercontent.com">
     <link rel="stylesheet" href="Abner2.0.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <!-- <script src="Cookie.js"></script> -->
     <!-- JS在最后 因为自动翻译 -->
     <title>Test2.0</title>
@@ -230,8 +232,8 @@
                 <a href="#">上传图片</a></span> -->
 
                 <span id="uploadImg">
-                    <input type="file" accept="image/*" capture="camera" onchange="upload('#fileBtn', '#img', '#img2');"
-                        id="fileBtn" size="1">
+                    <input type="file" accept="image/*" capture="camera"
+                        onchange="upload('#fileBtn', '#img', '#img2'); onUploadImage(this)" id="fileBtn" size="1">
                     <a href="#">上传图片</a></span>
 
                 <img src="../img/Black_colour.jpg" height="200" id="img">
@@ -252,6 +254,28 @@
                             $e.setAttribute("src", e.target.result);
                         };
                     };
+
+
+                    function onUploadImage(input) {
+
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+
+                            reader.onload = function (f) {
+                                imagePath = f.target.result;
+                                console.log(imagePath);
+                            };
+
+                            reader.readAsDataURL(input.files[0]);
+
+                            // 将图片路径存储到 cookie 中
+                            document.cookie = 'imagePath=' + encodeURIComponent(imagePath) + '; path=/;';
+
+                            // 获取用户上传的图片路径
+                            //var imagePath = document.getElementById('img').value;
+                            //console.log(imagePath)
+                        }
+                    }
                 </script>
 
             </div>
@@ -275,6 +299,7 @@
                     <button class="ctrl-btn2" onclick="web1()">快捷网页</button>
                     <button class="ctrl-btn3" onclick="virus1()">病毒</button>
                     <button class="ctrl-btn4" onclick="other1()">其他</button>
+                    <button class="ctrl-btn4" onclick="BQB1()">表情包</button>
                 </div>
 
 
@@ -354,6 +379,23 @@
                 <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
             </div>
 
+            <div class="BQB">
+                <video width="300" height="300" controls class="Jayden">
+                    <source src="XG.mp4" type=video/mp4>
+                </video>
+
+                <video width="300" height="300" controls class="Jayden">
+                    <source src="YB.mp4" type=video/mp4>
+                </video>
+            </div>
+
+            <div class="alert hide">
+                <span class="fas fa-exclamation-circle"></span>
+                <span class="msg">Warning: This is a warning alert!</span>
+                <div class="close-btn">
+                    <span class="fas fa-times"></span>
+                </div>
+            </div>
 
         </div>
 

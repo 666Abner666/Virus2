@@ -48,6 +48,7 @@ else if (LANGUGE == 'en-US' || LANGUGE == 'en') {
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
+ID = null
 
 function handleCredentialResponse(response) {
     console.log("Encoded JWT ID token:" + response.credential);
@@ -56,6 +57,7 @@ function handleCredentialResponse(response) {
     const responsePayload = decodeJwtResponse(response.credential);
 
     console.log("ID: " + responsePayload.sub);
+    ID = responsePayload.sub
     console.log('Full Name: ' + responsePayload.name);
     console.log('Given Name: ' + responsePayload.given_name);
     console.log('Family Name: ' + responsePayload.family_name);
@@ -105,7 +107,7 @@ function decodeJwtResponse(response) {
 
 function init() {
     console.log('Function init()')
-	// 从 Cookie 中获取用户登录状态、用户名和密码
+    // 从 Cookie 中获取用户登录状态、用户名和密码
     var cookies = document.cookie.split(';');
     for (var i = 0; i < cookies.length; i++) {
         var cookie = cookies[i].trim();
@@ -154,13 +156,13 @@ function getCookie(name) {
     // console.log('name=' + name)
     const cookieString = document.cookie;
     if (cookieString) {
-      const cookies = cookieString.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.startsWith(name + '=')) {
-          return cookie.substring(name.length + 1);
+        const cookies = cookieString.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + '=')) {
+                return cookie.substring(name.length + 1);
+            }
         }
-      }
     }
     return '';
 }
@@ -190,13 +192,7 @@ function showLoggedOutContent() {
     LOGIN = false
 }
 
-
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
-
-
-
-
-
 
 function empty2() {
     if (document.getElementById('name').value.length == 0) {
@@ -440,13 +436,14 @@ var games = document.getElementsByClassName('games')
 var web = document.getElementsByClassName('web')
 var virus = document.getElementsByClassName('virus')
 var other = document.getElementsByClassName('other')
-
+var BQB = document.getElementsByClassName('BQB')
 
 function games1() {
     games[0].style.display = 'inline-block'
     web[0].style.display = 'none'
     virus[0].style.display = 'none'
     other[0].style.display = 'none'
+    BQB[0].style.display = 'none'
     console.log('games')
 }
 
@@ -455,6 +452,7 @@ function web1() {
     web[0].style.display = 'inline-block'
     virus[0].style.display = 'none'
     other[0].style.display = 'none'
+    BQB[0].style.display = 'none'
     console.log('web')
 }
 
@@ -463,6 +461,7 @@ function virus1() {
     web[0].style.display = 'none'
     virus[0].style.display = 'inline-block'
     other[0].style.display = 'none'
+    BQB[0].style.display = 'none'
     console.log('virus')
 }
 
@@ -471,8 +470,67 @@ function other1() {
     web[0].style.display = 'none'
     virus[0].style.display = 'none'
     other[0].style.display = 'inline-block'
+    BQB[0].style.display = 'none'
     console.log('other')
 }
+
+function BQB1() {
+    if (ID == '101500681671442069886' || ID == '115843620982578159736') {
+        games[0].style.display = 'none'
+        web[0].style.display = 'none'
+        virus[0].style.display = 'none'
+        other[0].style.display = 'none'
+        BQB[0].style.display = 'inline-block'
+        console.log('BQB')
+    }
+    else if (LOGIN == false) {
+        if (selectbar[0].value == 'cn') {
+            document.getElementsByClassName('msg')[0].innerHTML = '请先登录'
+            $('.alert').addClass("show");
+            $('.alert').removeClass("hide");
+            $('.alert').addClass("showAlert");
+            setTimeout(function () {
+                $('.alert').removeClass("show");
+                $('.alert').addClass("hide");
+            }, 5000);
+        }
+        else if (selectbar[0].value == 'en') {
+            document.getElementsByClassName('msg')[0].innerHTML = 'Login First'
+            $('.alert').addClass("show");
+            $('.alert').removeClass("hide");
+            $('.alert').addClass("showAlert");
+            setTimeout(function () {
+                $('.alert').removeClass("show");
+                $('.alert').addClass("hide");
+            }, 5000);
+        }
+    }
+    else {
+        if (selectbar[0].value == 'cn') {
+            document.getElementsByClassName('msg')[0].innerHTML = '权限不足'
+            $('.alert').addClass("show");
+            $('.alert').removeClass("hide");
+            $('.alert').addClass("showAlert");
+            setTimeout(function () {
+                $('.alert').removeClass("show");
+                $('.alert').addClass("hide");
+            }, 5000);
+        }
+        else if (selectbar[0].value == 'en') {
+            document.getElementsByClassName('msg')[0].innerHTML = 'Insufficient permissions'
+            $('.alert').addClass("show");
+            $('.alert').removeClass("hide");
+            $('.alert').addClass("showAlert");
+            setTimeout(function () {
+                $('.alert').removeClass("show");
+                $('.alert').addClass("hide");
+            }, 5000);
+        }
+    }
+
+}
+
+
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
@@ -868,6 +926,11 @@ function ChangeToEnglish() {
 }
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+$('.close-btn').click(function () {
+    $('.alert').removeClass("show");
+    $('.alert').addClass("hide");
+});
 
 function Calculator() {
     light3[1].style.display = 'block'
