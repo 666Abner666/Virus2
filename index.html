@@ -299,7 +299,7 @@
                     <button class="ctrl-btn2" onclick="web1()">快捷网页</button>
                     <button class="ctrl-btn3" onclick="virus1()">病毒</button>
                     <button class="ctrl-btn4" onclick="other1()">其他</button>
-                    <button class="ctrl-btn4" onclick="BQB1()">表情包</button>
+                    <button class="ctrl-btn5" onclick="BQB1()">表情包</button>
                 </div>
 
 
@@ -372,7 +372,19 @@
             </div>
 
             <div class="other">
-                <div class="mainthings1" style="background-color: rgb(0, 238, 255);">other</div>
+                <div class="mainthings1" style="background-color: rgb(0, 238, 255);" onclick="Shiny_Button()">
+                    Shiny-button</div>
+
+                <div class="light-settings4">
+                    <div style="height:80vh; width:80vw;">
+                        <iframe src="" frameborder="0" id="Shiny_Button_Iframe" allow="camera"></iframe>
+    
+                        <span class="icon" style="color:black;">
+                            <ion-icon name="close-outline" class="test5" onclick="exit_SB()"></ion-icon>
+                        </span>
+                    </div>
+                </div>
+
                 <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
                 <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
                 <div class="mainthings1" style="background-color: rgb(0, 238, 255);"></div>
@@ -391,7 +403,40 @@
 
             <div class="alert hide">
                 <span class="fas fa-exclamation-circle"></span>
-                <span class="msg">Warning: This is a warning alert!</span>
+                <span class="msg">Warning: This is a warning alert!</span> <!-- 0 -->
+                <div class="close-btn">
+                    <span class="fas fa-times"></span>
+                </div>
+            </div>
+
+            <div class="alert hide">
+                <span class="fas fa-exclamation-circle"></span>
+                <span class="nmsg">Warning: This is a warning alert!</span> <!-- 0 -->
+                <span class="msg2"></span> <!-- 0 -->
+                <div class="close-btn">
+                    <span class="fas fa-times"></span>
+                </div>
+            </div>
+
+            <div class="danger hide">
+                <span class="fas fa-exclamation-circle"></span>
+                <span class="msg">Danger: This is a danger alert!</span> <!-- 1 -->
+                <div class="close-btn">
+                    <span class="fas fa-times"></span>
+                </div>
+            </div>
+
+            <div class="success hide">
+                <span class="fas fa-check-circle"></span>
+                <span class="msg">Success: This is a success alert!</span> <!-- 2 -->
+                <div class="close-btn">
+                    <span class="fas fa-times"></span>
+                </div>
+            </div>
+
+            <div class="info hide">
+                <span class="fas fa-info-circle"></span>
+                <span class="msg">Info: This is a Info alert!</span> <!-- 3 -->
                 <div class="close-btn">
                     <span class="fas fa-times"></span>
                 </div>

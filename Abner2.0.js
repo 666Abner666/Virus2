@@ -5,6 +5,7 @@ var passwordreg = 'Abner666'
 var LOGIN = false
 var LANGUGE = navigator.language
 var DL = null
+OnClick = false
 console.log(LANGUGE)
 
 var ueser = document.getElementsByClassName('ueser')
@@ -89,6 +90,7 @@ function onUserSignedOut() {
     document.getElementsByClassName('ueser-name')[1].innerHTML = '未登录';
     document.getElementById('img').src = "../img/Black_colour.jpg";
     document.getElementById('img2').src = "../img/Black_colour.jpg";
+    ID = null
 }
 
 function decodeJwtResponse(response) {
@@ -197,13 +199,41 @@ function showLoggedOutContent() {
 function empty2() {
     if (document.getElementById('name').value.length == 0) {
         if (selectbar[0].value == 'cn') {
-            alert('请输入账号!');
+            if (OnClick == false) {
+                console.log(document.getElementById('name').value)
+                console.log(document.getElementById('password').value)
+                document.getElementsByClassName('msg')[0].innerHTML = '请输入账号!'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
             document.getElementById('name').focus();
             return false;
         }
 
         else if (selectbar[0].value == 'en') {
-            alert('Please enter your ueser name!');
+            if (OnClick == false) {
+                console.log(document.getElementById('name').value)
+                console.log(document.getElementById('password').value)
+                document.getElementsByClassName('msg')[0].innerHTML = 'Please enter your ueser name!'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
             document.getElementById('name').focus();
             return false;
         }
@@ -212,13 +242,41 @@ function empty2() {
 
     if (document.getElementById('password').value.length == 0) {
         if (selectbar[0].value == 'cn') {
-            alert('请输入密码!');
+            if (OnClick == false) {
+                console.log(document.getElementById('name').value)
+                console.log(document.getElementById('password').value)
+                document.getElementsByClassName('msg')[0].innerHTML = '请输入密码!'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
             document.getElementById('password').focus();
             return false;
         }
 
         else if (selectbar[0].value == 'en') {
-            alert('Please enter your password!');
+            if (OnClick == false) {
+                console.log(document.getElementById('name').value)
+                console.log(document.getElementById('password').value)
+                document.getElementsByClassName('msg')[0].innerHTML = 'Please enter your password!'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
             document.getElementById('password').focus();
             return false;
         }
@@ -227,9 +285,22 @@ function empty2() {
     if ((document.getElementById('name').value == 'Abner' || document.getElementById('name').value == namereg.value) && (document.getElementById('password').value == 'Abner666' || document.getElementById('password').value == passwordreg.value)) {
         document.getElementsByClassName('ueser-name')[0].innerHTML = document.getElementById('name').value
         document.getElementsByClassName('ueser-name')[1].innerHTML = document.getElementById('name').value
+        console.log('NAME = ' + document.getElementById('name').value)
         if (selectbar[0].value == 'cn') {
             onUserLoggedIn()
-            alert('登录成功!')
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[2].innerHTML = '登陆成功'
+                document.getElementsByClassName('success')[0].style.zIndex = '9999'
+                $('.success').addClass("show");
+                $('.success').removeClass("hide");
+                $('.success').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.success').removeClass("show");
+                    $('.success').addClass("hide");
+                    OnClick = false
+                }, 5000);
+            }
             light[0].style.display = 'none'
             light2[0].style.display = 'none'
             document.getElementById('name').value = ''
@@ -242,7 +313,20 @@ function empty2() {
         }
 
         else if (selectbar[0].value == 'en') {
-            alert('Login successfully!')
+            onUserLoggedIn()
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[2].innerHTML = 'Login successfully!'
+                document.getElementsByClassName('success')[0].style.zIndex = '9999'
+                $('.success').addClass("show");
+                $('.success').removeClass("hide");
+                $('.success').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.success').removeClass("show");
+                    $('.success').addClass("hide");
+                    OnClick = false
+                }, 5000);
+            }
             light[0].style.display = 'none'
             light2[0].style.display = 'none'
             document.getElementById('name').value = ''
@@ -257,15 +341,41 @@ function empty2() {
 
     else {
         if (selectbar[0].value == 'cn') {
-            console.log(document.getElementById('name').value)
-            console.log(document.getElementById('password').value)
-            alert('用户名或密码错误！')
+            if (OnClick == false) {
+                console.log(document.getElementById('name').value)
+                console.log(document.getElementById('password').value)
+                document.getElementsByClassName('msg')[0].innerHTML = '用户名或密码错误！'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
         }
 
         else if (selectbar[0].value == 'en') {
-            console.log(document.getElementById('name').value)
-            console.log(document.getElementById('password').value)
-            alert('ERROR Incorrect username or password!')
+            if (OnClick == false) {
+                console.log(document.getElementById('name').value)
+                console.log(document.getElementById('password').value)
+                console.log(document.getElementById('name').value)
+                console.log(document.getElementById('password').value)
+                document.getElementsByClassName('msg')[0].innerHTML = 'ERROR! Incorrect username or password!'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
         }
     }
 }
@@ -292,13 +402,37 @@ function reg1() {
 
     if (document.getElementById('name-reg').value.length == 0) {
         if (selectbar[0].value == 'cn') {
-            alert('请输入账号!');
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[0].innerHTML = '请输入账号!'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
             document.getElementById('name-reg').focus();
             return false;
         }
 
         else if (selectbar[0].value == 'en') {
-            alert('Please enter your ueser name!');
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[0].innerHTML = 'Please enter your ueser name!'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
             document.getElementById('name-reg').focus();
             return false;
         }
@@ -306,13 +440,37 @@ function reg1() {
 
     if (document.getElementById('password-reg').value.length == 0) {
         if (selectbar[0].value == 'cn') {
-            alert('请输入密码!');
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[0].innerHTML = '请输入密码!'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
             document.getElementById('password-reg').focus();
             return false;
         }
 
         else if (selectbar[0].value == 'en') {
-            alert('Please enter your password!');
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[0].innerHTML = 'Please enter your password!'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
             document.getElementById('password-reg').focus();
             return false;
         }
@@ -320,13 +478,37 @@ function reg1() {
 
     if (document.getElementById('password-reg2').value.length == 0) {
         if (selectbar[0].value == 'cn') {
-            alert('你的 ‘确认密码’ 未填写');
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[0].innerHTML = '你的 ‘确认密码’ 未填写'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
             document.getElementById('password-reg2').focus();
             return false;
         }
 
         else if (selectbar[0].value == 'en') {
-            alert('Your ‘Confirmation password’ is not filled in');
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[0].innerHTML = 'Your "Confirm password" is not filled in'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
             document.getElementById('password-reg2').focus();
             return false;
         }
@@ -334,12 +516,36 @@ function reg1() {
 
     if (document.getElementById('password-reg2').value != document.getElementById('password-reg').value) {
         if (selectbar[0].value == 'cn') {
-            alert('你第二次输入的密码与第一个密码不相符!')
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[0].innerHTML = '你第二次输入的密码与第一个密码不相符!'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
             return false;
         }
 
         else if (selectbar[0].value == 'en') {
-            alert('The password you entered for the second time does not match the first one!')
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[0].innerHTML = 'The password you entered for the second time does not match the first one!'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
+            }
             return false;
         }
     }
@@ -357,24 +563,81 @@ function reg1() {
         document.getElementsByClassName('ueser-name')[1].innerHTML = document.getElementById('name-reg').value
         onUserLoggedIn()
         if (selectbar[0].value == 'cn') {
-            alert('注册成功! 已为您自动登录!')
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[2].innerHTML = '注册成功! 已为您自动登录!'
+                document.getElementsByClassName('success')[0].style.zIndex = '9999'
+                $('.success').addClass("show");
+                $('.success').removeClass("hide");
+                $('.success').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.success').removeClass("show");
+                    $('.success').addClass("hide");
+                    OnClick = false
+                }, 5000);
+            }
         }
 
         else if (selectbar[0].value == 'en') {
-            alert('Registered successfully! You have been automatically logged in!')
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[2].innerHTML = 'Registered successfully! You have been automatically logged in'
+                document.getElementsByClassName('success')[0].style.zIndex = '9999'
+                $('.success').addClass("show");
+                $('.success').removeClass("hide");
+                $('.success').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.success').removeClass("show");
+                    $('.success').addClass("hide");
+                    OnClick = false
+                }, 5000);
+            }
         }
     }
 
     else {
         if (selectbar[0].value == 'cn') {
-            alert('名字和密码的内容需要包含：小写字母，大写字母和数字，且不能小于4和大于12个字符')
+            if (OnClick == false) {
+                document.getElementsByClassName('msg2')[0].style.marginTop = '8px'
+                document.getElementsByClassName('nmsg')[0].style.marginTop = '-14px'
+                document.getElementsByClassName('nmsg')[0].innerHTML = '名字和密码的内容需要包含：小写字母，'
+                document.getElementsByClassName('msg2')[0].innerHTML = '大写字母和数字，且不能小于4和大于12个字符'
+                document.getElementsByClassName('alert')[1].style.height = '62px'
+                document.getElementsByClassName('alert')[1].style.zIndex = '9999'
+                $('.alert:eq(1)').addClass("show");
+                $('.alert:eq(1)').removeClass("hide");
+                $('.alert:eq(1)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(1)').removeClass("show");
+                    $('.alert:eq(1)').addClass("hide");
+                    OnClick = false
+                }, 5000);
+            }
             console.log('名字=' + document.getElementById('name-reg').value)
             console.log('密码=' + document.getElementById('password-reg').value)
             return false
         }
 
         else if (selectbar[0].value == 'en') {
-            alert('The name and password must contain lowercase letters, uppercase letters, and numbers, also cannot be less than 4 characters or more than 12 characters')
+            if (OnClick == false) {
+                document.getElementsByClassName('msg2')[0].style.marginTop = '6px'
+                document.getElementsByClassName('nmsg')[0].innerHTML = 'The name and password must contain lowercase letters, uppercase letters,'
+                document.getElementsByClassName('msg2')[0].innerHTML = ' and numbers, also cannot be less than 4 characters or more than 12 characters'
+                document.getElementsByClassName('alert')[1].style.height = '62px'
+                document.getElementsByClassName('alert')[1].style.zIndex = '9999'
+                $('.alert:eq(1)').addClass("show");
+                $('.alert:eq(1)').removeClass("hide");
+                $('.alert:eq(1)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(1)').removeClass("show");
+                    $('.alert:eq(1)').addClass("hide");
+                    OnClick = false
+                }, 5000);
+            }
+            console.log('名字=' + document.getElementById('name-reg').value)
+            console.log('密码=' + document.getElementById('password-reg').value)
             return false
         }
     }
@@ -484,50 +747,71 @@ function BQB1() {
         console.log('BQB')
     }
     else if (LOGIN == false) {
-        if (selectbar[0].value == 'cn') {
-            document.getElementsByClassName('msg')[0].innerHTML = '请先登录'
-            $('.alert').addClass("show");
-            $('.alert').removeClass("hide");
-            $('.alert').addClass("showAlert");
-            setTimeout(function () {
-                $('.alert').removeClass("show");
-                $('.alert').addClass("hide");
-            }, 5000);
-        }
-        else if (selectbar[0].value == 'en') {
-            document.getElementsByClassName('msg')[0].innerHTML = 'Login First'
-            $('.alert').addClass("show");
-            $('.alert').removeClass("hide");
-            $('.alert').addClass("showAlert");
-            setTimeout(function () {
-                $('.alert').removeClass("show");
-                $('.alert').addClass("hide");
-            }, 5000);
-        }
-    }
-    else {
-        if (selectbar[0].value == 'cn') {
-            document.getElementsByClassName('msg')[0].innerHTML = '权限不足'
-            $('.alert').addClass("show");
-            $('.alert').removeClass("hide");
-            $('.alert').addClass("showAlert");
-            setTimeout(function () {
-                $('.alert').removeClass("show");
-                $('.alert').addClass("hide");
-            }, 5000);
-        }
-        else if (selectbar[0].value == 'en') {
-            document.getElementsByClassName('msg')[0].innerHTML = 'Insufficient permissions'
-            $('.alert').addClass("show");
-            $('.alert').removeClass("hide");
-            $('.alert').addClass("showAlert");
-            setTimeout(function () {
-                $('.alert').removeClass("show");
-                $('.alert').addClass("hide");
-            }, 5000);
+        if (OnClick == false) {
+            if (selectbar[0].value == 'cn') {
+                if (OnClick == false) {
+                    document.getElementsByClassName('msg')[0].innerHTML = '请先登录'
+                    $('.alert:eq(0)').addClass("show");
+                    $('.alert:eq(0)').removeClass("hide");
+                    $('.alert:eq(0)').addClass("showAlert");
+                    OnClick = true
+                    setTimeout(function () {
+                        $('.alert:eq(0)').removeClass("show");
+                        $('.alert:eq(0)').addClass("hide");
+                        OnClick = false
+                    }, 5000);
+                }
+            }
+            else if (selectbar[0].value == 'en') {
+                if (OnClick == false) {
+                    document.getElementsByClassName('msg')[0].innerHTML = 'Login First'
+                    $('.alert:eq(0)').addClass("show");
+                    $('.alert:eq(0)').removeClass("hide");
+                    $('.alert:eq(0)').addClass("showAlert");
+                    OnClick = true
+                    setTimeout(function () {
+                        $('.alert:eq(0)').removeClass("show");
+                        $('.alert:eq(0)').addClass("hide");
+                        OnClick = false
+                    }, 5000);
+                }
+            }
         }
     }
 
+    else {
+        if (OnClick == false) {
+            if (selectbar[0].value == 'cn') {
+                if (OnClick == false) {
+                    document.getElementsByClassName('msg')[1].innerHTML = '权限不足'
+                    $('.danger').addClass("show");
+                    $('.danger').removeClass("hide");
+                    $('.danger').addClass("showAlert");
+                    OnClick = true
+                    setTimeout(function () {
+                        $('.danger').removeClass("show");
+                        $('.danger').addClass("hide");
+                        OnClick = false
+                    }, 5000);
+                }
+            }
+            else if (selectbar[0].value == 'en') {
+                if (OnClick == false) {
+                    document.getElementsByClassName('msg')[1].innerHTML = 'Insufficient permissions'
+                    $('.danger').addClass("show");
+                    $('.danger').removeClass("hide");
+                    $('.danger').addClass("showAlert");
+                    OnClick = true
+                    setTimeout(function () {
+                        $('.danger').removeClass("show");
+                        $('.danger').addClass("hide");
+                        OnClick = false
+                    }, 5000);
+                }
+            }
+        }
+
+    }
 }
 
 
@@ -566,8 +850,22 @@ function submit() {
         var OS = document.getElementsByClassName('OtherStuff')
         var LE = document.getElementsByClassName('Login_new')
         var EXIT = document.getElementsByClassName('test3')
+        var BQB = document.getElementsByClassName('ctrl-btn5')
         //console.log(selectbar[0].value)
         if (selectbar[0].value == 'cn') {
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[3].innerHTML = '已将语言换成中文'
+                document.getElementsByClassName('info')[0].style.zIndex = '9999'
+                $('.info').addClass("show");
+                $('.info').removeClass("hide");
+                $('.info').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.info').removeClass("show");
+                    $('.info').addClass("hide");
+                    OnClick = false
+                }, 2500);
+            }
             CB1[0].innerHTML = '小游戏'
             CB2[0].innerHTML = '快捷网页'
             CB3[0].innerHTML = '病毒'
@@ -613,10 +911,24 @@ function submit() {
             OS[3].innerHTML = '去登录'
             LE[1].innerHTML = '注册'
             SI[1].innerHTML = '注册'
+            BQB[0].innerHTML = '表情包'
             console.log('Chinese')
         }
 
         else if (selectbar[0].value == 'en') {
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[3].innerHTML = 'language changed to English'
+                document.getElementsByClassName('info')[0].style.zIndex = '9999'
+                $('.info').addClass("show");
+                $('.info').removeClass("hide");
+                $('.info').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.info').removeClass("show");
+                    $('.info').addClass("hide");
+                    OnClick = false
+                }, 2500);
+            }
             CB1[0].innerHTML = 'Games'
             CB2[0].innerHTML = 'Website'
             CB3[0].innerHTML = 'Virus'
@@ -649,19 +961,20 @@ function submit() {
             // na[4].style.fontSize = '18px'
             // PRP2.setAttribute('placeholder','Please confirm your password')
             // RW.innerHTML = 'Register'
-            SI[0].innerHTML = 'Sign in'
+            SI[0].innerHTML = 'Sign-in'
             UAP[0].innerHTML = 'UserName'
             UAP[1].innerHTML = 'Password'
             OS[0].innerHTML = 'Forgot Password?'
-            OS[1].innerHTML = 'Signup'
+            OS[1].innerHTML = 'Sign-up'
             LE[0].innerHTML = 'Login'
             EXIT[0].style.left = '382px'
             UAP[2].innerHTML = 'UserName'
             UAP[3].innerHTML = 'Password'
             UAP[4].innerHTML = 'Confirm password'
             OS[3].innerHTML = 'Go Login'
-            LE[1].innerHTML = 'Signup'
-            SI[1].innerHTML = 'Signup'
+            LE[1].innerHTML = 'Sign-up'
+            SI[1].innerHTML = 'Sign-up'
+            BQB[0].innerHTML = 'Emoticons'
             console.log('English')
         }
         clearTimeout(timer)
@@ -671,6 +984,8 @@ function submit() {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 function start_game() {
+    document.getElementsByClassName('test4')[0].style.left = '-18px';
+    document.getElementsByClassName('test4')[0].style.top =  '220px';
     var before_start = document.getElementById('before-start')
     var intro = document.getElementById('intro')
     random = null
@@ -688,6 +1003,8 @@ function Games1() {
 }
 
 function exit_game1() {
+    document.getElementsByClassName('test4')[0].style.left = '193px';
+    document.getElementsByClassName('test4')[0].style.top =  '-10px';
     var word = document.getElementById('number')
     var input = document.getElementById('input')
     outline[0].style.display = 'none'
@@ -718,11 +1035,37 @@ function button1() {
     console.log(parseInt(input.value) == parseInt(random))
     if (input.value == random) {
         if (selectbar[0].value == 'cn') {
-            alert('猜对了!')
+            if (OnClick == false) {
+                document.getElementsByClassName('msg')[3].innerHTML = '猜对了！'
+                document.getElementsByClassName('info')[0].style.zIndex = '9999'
+                $('.info').addClass("show");
+                $('.info').removeClass("hide");
+                $('.info').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.info').removeClass("show");
+                    $('.info').addClass("hide");
+                    OnClick = false
+                }, 2000);
+            }
         }
 
         else if (selectbar[0].value == 'en') {
-            alert('Bingo!')
+            if (selectbar[0].value == 'cn') {
+                if (OnClick == false) {
+                    document.getElementsByClassName('msg')[3].innerHTML = 'BINGO!'
+                    document.getElementsByClassName('info')[0].style.zIndex = '9999'
+                    $('.info').addClass("show");
+                    $('.info').removeClass("hide");
+                    $('.info').addClass("showAlert");
+                    OnClick = true
+                    setTimeout(function () {
+                        $('.info').removeClass("show");
+                        $('.info').addClass("hide");
+                        OnClick = false
+                    }, 2000);
+                }
+            }
         }
     }
     else if (input.value > random) {
@@ -738,7 +1081,21 @@ function button1() {
                 word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
                 console.log('改变数字 大 cn')
             }
-            alert('猜大了')
+            if (selectbar[0].value == 'cn') {
+                if (OnClick == false) {
+                    document.getElementsByClassName('msg')[3].innerHTML = '猜大了！'
+                    document.getElementsByClassName('info')[0].style.zIndex = '9999'
+                    $('.info').addClass("show");
+                    $('.info').removeClass("hide");
+                    $('.info').addClass("showAlert");
+                    OnClick = true
+                    setTimeout(function () {
+                        $('.info').removeClass("show");
+                        $('.info').addClass("hide");
+                        OnClick = false
+                    }, 2000);
+                }
+            }
             input.value = ''
         }
 
@@ -748,7 +1105,21 @@ function button1() {
                 word.innerHTML = 'Please enter a number between ' + small + ' and ' + big
                 console.log('改变数字 大 en')
             }
-            alert('The number is too big')
+            if (selectbar[0].value == 'cn') {
+                if (OnClick == false) {
+                    document.getElementsByClassName('msg')[3].innerHTML = 'The number is too big!'
+                    document.getElementsByClassName('info')[0].style.zIndex = '9999'
+                    $('.info').addClass("show");
+                    $('.info').removeClass("hide");
+                    $('.info').addClass("showAlert");
+                    OnClick = true
+                    setTimeout(function () {
+                        $('.info').removeClass("show");
+                        $('.info').addClass("hide");
+                        OnClick = false
+                    }, 2000);
+                }
+            }
             input.value = ''
         }
         // else{
@@ -769,7 +1140,21 @@ function button1() {
                 word.innerHTML = '请输入' + small + '到' + big + '之间的数字'
                 console.log('改变数字 小 cn')
             }
-            alert('猜小了')
+            if (selectbar[0].value == 'cn') {
+                if (OnClick == false) {
+                    document.getElementsByClassName('msg')[3].innerHTML = '猜小了！'
+                    document.getElementsByClassName('info')[0].style.zIndex = '9999'
+                    $('.info').addClass("show");
+                    $('.info').removeClass("hide");
+                    $('.info').addClass("showAlert");
+                    OnClick = true
+                    setTimeout(function () {
+                        $('.info').removeClass("show");
+                        $('.info').addClass("hide");
+                        OnClick = false
+                    }, 2000);
+                }
+            }
             input.value = ''
         }
 
@@ -779,7 +1164,21 @@ function button1() {
                 word.innerHTML = 'Please enter a number between ' + small + ' and ' + big
                 console.log('改变数字 小 en')
             }
-            alert('The number is too small')
+            if (selectbar[0].value == 'cn') {
+                if (OnClick == false) {
+                    document.getElementsByClassName('msg')[3].innerHTML = 'The number is too small!'
+                    document.getElementsByClassName('info')[0].style.zIndex = '9999'
+                    $('.info').addClass("show");
+                    $('.info').removeClass("hide");
+                    $('.info').addClass("showAlert");
+                    OnClick = true
+                    setTimeout(function () {
+                        $('.info').removeClass("show");
+                        $('.info').addClass("hide");
+                        OnClick = false
+                    }, 2000);
+                }
+            }
             input.value = ''
         }
         // else{
@@ -791,12 +1190,40 @@ function button1() {
 
     else {
         if (selectbar[0].value == 'cn') {
-            alert('请输入数字')
+            if (selectbar[0].value == 'cn') {
+                if (OnClick == false) {
+                    document.getElementsByClassName('msg')[0].innerHTML = '请输入数字！'
+                    document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                    $('.alert:eq(0)').addClass("show");
+                    $('.alert:eq(0)').removeClass("hide");
+                    $('.alert:eq(0)').addClass("showAlert");
+                    OnClick = true
+                    setTimeout(function () {
+                        $('.alert:eq(0)').removeClass("show");
+                        $('.alert:eq(0)').addClass("hide");
+                        OnClick = false
+                    }, 2000);
+                }
+            }
             input.value = ''
         }
 
         else if (selectbar[0].value == 'en') {
-            alert('Please enter a number')
+            if (selectbar[0].value == 'cn') {
+                if (OnClick == false) {
+                    document.getElementsByClassName('msg')[0].innerHTML = 'Please enter a number!'
+                    document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                    $('.alert:eq(0)').addClass("show");
+                    $('.alert:eq(0)').removeClass("hide");
+                    $('.alert:eq(0)').addClass("showAlert");
+                    OnClick = true
+                    setTimeout(function () {
+                        $('.alert:eq(0)').removeClass("show");
+                        $('.alert:eq(0)').addClass("hide");
+                        OnClick = false
+                    }, 2000);
+                }
+            }
             input.value = ''
         }
     }
@@ -831,6 +1258,7 @@ function ChangeToChinese() {
     var OS = document.getElementsByClassName('OtherStuff')
     var LE = document.getElementsByClassName('Login_new')
     var EXIT = document.getElementsByClassName('test3')
+    var BQB = document.getElementsByClassName('ctrl-btn5')
 
     CB1[0].innerText = '小游戏'
     CB2[0].innerHTML = '快捷网页'
@@ -861,6 +1289,7 @@ function ChangeToChinese() {
     OS[3].innerHTML = '去登录'
     LE[1].innerHTML = '注册'
     SI[1].innerHTML = '注册'
+    BQB[0].innerHTML = '表情包'
     console.log('Chinese')
 }
 
@@ -892,6 +1321,7 @@ function ChangeToEnglish() {
     var OS = document.getElementsByClassName('OtherStuff')
     var LE = document.getElementsByClassName('Login_new')
     var EXIT = document.getElementsByClassName('test3')
+    var BQB = document.getElementsByClassName('ctrl-btn5')
 
     CB1[0].innerHTML = 'Games'
     CB2[0].innerHTML = 'Website'
@@ -909,19 +1339,20 @@ function ChangeToEnglish() {
     submit[0].style.left = '-24%'
     VS.innerHTML = 'Start the virus!'
     // RW.innerHTML = 'Register'
-    SI[0].innerHTML = 'Sign in'
+    SI[0].innerHTML = 'Sign-in'
     UAP[0].innerHTML = 'UserName'
     UAP[1].innerHTML = 'Password'
     OS[0].innerHTML = 'Forgot Password?'
-    OS[1].innerHTML = 'Signup'
+    OS[1].innerHTML = 'Sign-up'
     LE[0].innerHTML = 'Login'
     EXIT[0].style.left = '382px'
     UAP[2].innerHTML = 'UserName'
     UAP[3].innerHTML = 'Password'
     UAP[4].innerHTML = 'Confirm password'
     OS[3].innerHTML = 'Go Login'
-    LE[1].innerHTML = 'Signup'
-    SI[1].innerHTML = 'Signup'
+    LE[1].innerHTML = 'Sign-up'
+    SI[1].innerHTML = 'Sign-up'
+    BQB[0].innerHTML = 'Emoticons'
     console.log('English')
 }
 
@@ -930,12 +1361,89 @@ function ChangeToEnglish() {
 $('.close-btn').click(function () {
     $('.alert').removeClass("show");
     $('.alert').addClass("hide");
+    OnClick = false
+});
+
+$('.close-btn').click(function () {
+    $('.danger').removeClass("show");
+    $('.danger').addClass("hide");
+    OnClick = false
+});
+
+$('.close-btn').click(function () {
+    $('.success').removeClass("show");
+    $('.success').addClass("hide");
+    OnClick = false
+});
+
+$('.close-btn').click(function () {
+    $('.info').removeClass("show");
+    $('.info').addClass("hide");
+    OnClick = false
 });
 
 function Calculator() {
     light3[1].style.display = 'block'
     outline[1].style.display = 'inline-block'
 }
+
+function Shiny_Button() {
+    if (selectbar[0].value == 'cn') {
+        document.getElementsByClassName('msg')[0].innerHTML = '需要获得摄像头权限来达到更好的体验'
+        document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+        $('.alert:eq(0)').addClass("show");
+        $('.alert:eq(0)').removeClass("hide");
+        $('.alert:eq(0)').addClass("showAlert");
+        OnClick = true
+        setTimeout(function () {
+            $('.alert:eq(0)').removeClass("show");
+            $('.alert:eq(0)').addClass("hide");
+            OnClick = false
+        }, 5000);
+    }
+    else if (selectbar[0].value == 'en') {
+        document.getElementsByClassName('msg')[0].innerHTML = 'Need camera permissions to achieve a better experience'
+        document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+        $('.alert:eq(0)').addClass("show");
+        $('.alert:eq(0)').removeClass("hide");
+        $('.alert:eq(0)').addClass("showAlert");
+        OnClick = true
+        setTimeout(function () {
+            $('.alert:eq(0)').removeClass("show");
+            $('.alert:eq(0)').addClass("hide");
+            OnClick = false
+        }, 5000);
+    }
+
+
+
+    var light4 = document.getElementsByClassName('light-settings4')
+    var iframe = document.getElementById('Shiny_Button_Iframe');
+    iframe.src = 'https://shiny-button.vercel.app/'
+    iframe.style.display = 'inline-block'
+    light4[0].style.display = 'block'
+    // navigator.mediaDevices.getUserMedia({ video: true })
+    //     .then(function () {
+    //         iframe.src = 'https://shiny-button.vercel.app/';
+    //         // iframe.allow = 'camera';
+    //         iframe.style.display = 'inline-block'
+    //         light4[0].style.display = 'block'
+    //     })
+    //     .catch(function (error) {
+    //         console.log('获取摄像头权限失败:', error);
+    //     });
+}
+
+function exit_SB() {
+    var light4 = document.getElementsByClassName('light-settings4')
+    var iframe = document.getElementById('Shiny_Button_Iframe');
+    iframe.src = ''
+    iframe.style.display = 'none'
+    light4[0].style.display = 'none'
+}
+
+
+
 
 window.onload = function () {
 
@@ -993,58 +1501,107 @@ window.onload = function () {
         console.log('123')
     }
 
+    V = true
+
     mainthings2[0].onclick = function () {
         if (LOGIN == true) {
-            if (selectbar[0].value == 'cn') {
-                alert('病毒将会在倒数结束后运行，请尽快推出否则网页将会卡死！！')
-            }
+            if (V == true) {
+                if (selectbar[0].value == 'cn') {
+                    console.log(document.getElementById('name').value)
+                    console.log(document.getElementById('password').value)
+                    document.getElementsByClassName('msg')[1].innerHTML = '病毒将会在倒数结束后运行，请尽快推出否则网页将会卡死！！'
+                    document.getElementsByClassName('danger')[0].style.zIndex = '9999'
+                    $('.danger:eq(0)').addClass("show");
+                    $('.danger:eq(0)').removeClass("hide");
+                    $('.danger:eq(0)').addClass("showAlert");
+                    OnClick = true
+                    setTimeout(function () {
+                        $('.danger:eq(0)').removeClass("show");
+                        $('.danger:eq(0)').addClass("hide");
+                        alert = false
+                    }, 5000);
+                }
 
-            else if (selectbar[0].value == 'en') {
-                alert('The virus will run after the countdown ends, please exit it as soon as possible or the webpage will be stuck! !')
-            }
-            var timer = document.getElementById('timer');
-            timer.style.display = 'block';
-            var p = 10
-            var abc = setInterval(function () {
-                if (p >= 8) {
-                    p--
-                    timer.innerHTML = p;
-                    console.log(p)
+                else if (selectbar[0].value == 'en') {
+                    console.log(document.getElementById('name').value)
+                    console.log(document.getElementById('password').value)
+                    document.getElementsByClassName('msg')[1].innerHTML = 'The virus will run after the countdown ends, please exit it as soon as possible or the webpage will be stuck!!'
+                    document.getElementsByClassName('danger')[0].style.zIndex = '9999'
+                    $('.danger:eq(0)').addClass("show");
+                    $('.danger:eq(0)').removeClass("hide");
+                    $('.danger:eq(0)').addClass("showAlert");
+                    OnClick = true
+                    setTimeout(function () {
+                        $('.danger:eq(0)').removeClass("show");
+                        $('.danger:eq(0)').addClass("hide");
+                        alert = false
+                    }, 5000);
                 }
-                else if (p >= 5 && p < 8) {
-                    timer.style.color = 'orangered'
-                    p--
-                    timer.innerHTML = p;
-                    console.log(p)
-                }
-                else if (p <= 4 && p > 0) {
-                    timer.style.color = 'red'
-                    p--
-                    timer.innerHTML = p;
-                    console.log(p)
-                }
-                // else if (p == 1){
-                //     timer.style.color = 'darkred'
-                //     p--
-                //     timer.innerHTML = p;
-                //     console.log(p)
-                // }
-                else {
-                    var total = " ";
-                    for (var i = 0; i < 100000; i++) {
-                        total = total + i.toString();
-                        history.pushState(0, 0, total);
+                V = false
+                var timer = document.getElementById('timer');
+                timer.style.display = 'block';
+                var p = 10
+                var abc = setInterval(function () {
+                    if (p >= 8) {
+                        p--
+                        timer.innerHTML = p;
+                        console.log(p)
                     }
-                }
-            }, 1000)
+                    else if (p >= 5 && p < 8) {
+                        timer.style.color = 'orangered'
+                        p--
+                        timer.innerHTML = p;
+                        console.log(p)
+                    }
+                    else if (p <= 4 && p > 0) {
+                        timer.style.color = 'red'
+                        p--
+                        timer.innerHTML = p;
+                        console.log(p)
+                    }
+                    // else if (p == 1){
+                    //     timer.style.color = 'darkred'
+                    //     p--
+                    //     timer.innerHTML = p;
+                    //     console.log(p)
+                    // }
+                    else {
+                        var total = " ";
+                        for (var i = 0; i < 100000; i++) {
+                            total = total + i.toString();
+                            history.pushState(0, 0, total);
+                        }
+                    }
+                }, 1000)
+            }
         }
         else {
             if (selectbar[0].value == 'cn') {
-                alert('请先登录！')
+                document.getElementsByClassName('msg')[0].innerHTML = '请先登录！'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
             }
 
             else if (selectbar[0].value == 'en') {
-                alert('Login first!')
+                document.getElementsByClassName('msg')[0].innerHTML = 'Login first!'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    alert = false
+                }, 5000);
             }
         }
     }
@@ -1053,7 +1610,17 @@ window.onload = function () {
     //     console.log('1')
     // }
 
+
+    setInterval(function () {
+        if (OnClick == true) {
+            OnClick = false
+            console.log('OnClick = ' + OnClick)
+        }
+    }, 3000)
+
 }
+
+
 
 
 
