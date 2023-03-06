@@ -738,7 +738,7 @@ function other1() {
 }
 
 function BQB1() {
-    if (ID == '101500681671442069886' || ID == '115843620982578159736') {
+    if (ID == '101500681671442069886' || ID == '115843620982578159736' || ID == '105127938811676800612') {
         games[0].style.display = 'none'
         web[0].style.display = 'none'
         virus[0].style.display = 'none'
