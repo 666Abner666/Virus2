@@ -738,7 +738,7 @@ function other1() {
 }
 
 function BQB1() {
-    if (ID == '101500681671442069886' || ID == '115843620982578159736' || ID == '105127938811676800612') {
+    if (ID == '101500681671442069886' || ID == '115843620982578159736' || ID == '105127938811676800612' || Id == '109537578674873788955') {
         games[0].style.display = 'none'
         web[0].style.display = 'none'
         virus[0].style.display = 'none'
@@ -1442,7 +1442,9 @@ function exit_SB() {
     light4[0].style.display = 'none'
 }
 
-
+function seibaba(){
+    ID = '109537578674873788955'
+}
 
 
 window.onload = function () {
