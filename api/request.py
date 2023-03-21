@@ -1,10 +1,7 @@
 # 导入pymongo
 import pymongo
-from flask import Flask, render_template, jsonify
-import json
-from bson import json_util
+from flask import Flask, request, jsonify
 
-from request import app as R
 # import os
 # from gridfs import GridFS
 
@@ -36,14 +33,6 @@ print(result)
 
 app = Flask(__name__)
 
-app.register_blueprint(R)
-
-@app.route('/')
-def index():
-    # 渲染index.html模板并返回结果
-    return render_template('index.html')
-
-
 @app.route('/data', methods=['POST'])
 def handle_data():
     print(request.form)  # 查看传递的数据
@@ -52,17 +41,6 @@ def handle_data():
     # ...
     db.NAME.insert_one(request.form.to_dict())
     return "success"
-
-
-@app.route('/send_data', methods=['GET'])
-def send_data():
-    # 查询所有数据
-    data = list(db.NAME.find())
-    # 转换为JSON格式字符串
-    json_str = json.dumps(data, default=json_util.default)
-    # 发送JSON数据给JS端
-    return jsonify(json_str)
-
 
 @app.route('/check_username')
 def check_username():
