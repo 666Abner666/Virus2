@@ -4,17 +4,18 @@ from pymongo import MongoClient
 from flask import Flask, render_template, request, jsonify
 import json
 from bson import ObjectId, json_util
-import os
-from gridfs import GridFS
+from Upload import app as U
+# import os
+# from gridfs import GridFS
 
-# client = pymongo.MongoClient(
-#     "mongodb+srv://Abner:Abner666@virus2.a6ehgde.mongodb.net/?retryWrites=true&w=majority")
-# db = client['Accounts(Test)']
+client = pymongo.MongoClient(
+    "mongodb+srv://Abner:Abner666@virus2.a6ehgde.mongodb.net/?retryWrites=true&w=majority")
+db = client['Accounts(Test)']
 # fs = GridFS(db)
 
-client = MongoClient(os.environ['MONGODB_URI'])
-db = client['Accounts(Test)']
-fs = GridFS(db)
+# client = MongoClient(os.environ['MONGODB_URI'])
+# db = client['Accounts(Test)']
+# fs = GridFS(db)
 
 # 插入数据
 # db.NAME.insert_many([
@@ -35,6 +36,7 @@ print(result)
 
 app = Flask(__name__)
 
+app.register_blueprint(U)
 
 @app.route('/')
 def index():
