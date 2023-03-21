@@ -41,7 +41,7 @@
                 <div class="ueser">
                     <!-- <div class="test"></div> -->
 
-                    <img src="../img/Black_colour.jpg" height="200" id="img2">
+                    <img src="../static/img/Black_colour.jpg" height="200" id="img2">
 
                     <span class="ueser-name">未登录</span>
                 </div>
@@ -240,7 +240,7 @@
                         onchange="upload('#fileBtn', '#img', '#img2'); onUploadImage(this)" id="fileBtn" size="1">
                     <a href="#">上传图片</a></span>
 
-                <img src="../img/Black_colour.jpg" height="200" id="img">
+                <img src="../static/img/Black_colour.jpg" height="200" id="img">
 
                 <button onclick="onUserSignedOut()">退出登录</button>
 
@@ -396,24 +396,38 @@
             </div>
 
             <div class="BQB">
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" onclick="toggleDropdown()">下拉框</a>
+                    <div class="dropdown-content">
+                      <a href="#" onclick="uploadImage()">图片</a>
+                      <a href="#">视频</a>
+                      <a href="#">文字</a>
+                      <a href="#">网页</a>
+                      加强样式，每一个选项都要有onclick和对应的功能，记住样式一定要好看
+                    </div>
+                  </div>
+                
+                  
+
+
                 <video width="300" height="300" controls class="Jayden">
-                    <source src="XG.mp4" type=video/mp4>
+                    <source src="../static/img/XG.mp4" type=video/mp4>
                 </video>
 
                 <video width="300" height="300" controls class="Jayden">
-                    <source src="YB.mp4" type=video/mp4>
+                    <source src="../static/img/YB.mp4" type=video/mp4>
                 </video>
 
                 <video width="300" height="300" controls class="Jayden">
-                    <source src="JAYDEN.mp4" type=video/mp4>
+                    <source src="../static/img/JAYDEN.mp4" type=video/mp4>
                 </video>
 
                 <video width="300" height="300" controls class="Jayden">
-                    <source src="JAYDEN2.mp4" type=video/mp4>
+                    <source src="../static/img/JAYDEN2.mp4" type=video/mp4>
                 </video>
 
                 <video width="300" height="300" controls class="Jayden">
-                    <source src="JAYDEN3.mp4" type=video/mp4>
+                    <source src="../static/img/JAYDEN3.mp4" type=video/mp4>
                 </video>
             </div>
 

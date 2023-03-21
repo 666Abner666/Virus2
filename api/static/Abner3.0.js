@@ -1818,6 +1818,26 @@ function seibaba() {
     HACK_IN = true
 }
 
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+function toggleDropdown() {
+    var dropdown = document.querySelector('.dropdown');
+    dropdown.classList.toggle('active');
+  }
+  
+  function uploadImage() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = function() {
+      var file = input.files[0];
+      // 处理上传逻辑
+    };
+    input.click();
+  }
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
 
 window.onload = function () {
 
