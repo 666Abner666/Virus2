@@ -4,5 +4,11 @@
       "source": "/(.*)",
       "destination": "/api/index"
     }
-  ]
+  ],
+  "functions": {
+    "api/index.js": {
+      "memory": 3008,
+      "maxDuration": 30
+    }
+  }
 }
