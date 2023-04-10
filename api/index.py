@@ -1,10 +1,10 @@
 # 导入pymongo
 import pymongo
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import json
 from bson import json_util
 
-from request import app as R
+# from request import app as R
 # import os
 # from gridfs import GridFS
 
@@ -36,7 +36,7 @@ print(result)
 
 app = Flask(__name__)
 
-app.register_blueprint(R)
+# app.register_blueprint(R)
 
 @app.route('/')
 def index():
@@ -94,6 +94,55 @@ def login():
     else:
         return jsonify({'success': True})
 
+doc = {'name': 'Abner', 'password': 'Abner666', 'id': '0'}
+if db.NAME.find_one(doc) is None:
+    db.NAME.insert_one(doc)
+
+# 在下方写你的代码：查询出 “名侦探柯南”这条文档，并且不返回"_id"键
+result = db.NAME.find_one({'name': 'Abner'}, {'_id': 0})
+print(result)
+
+
+app = Flask(__name__)
+
+@app.route('/data', methods=['POST'])
+def handle_data():
+    print(request.form)  # 查看传递的数据
+    data = request.form  # 获取 POST 请求传递的数据
+    # 处理数据
+    # ...
+    db.NAME.insert_one(request.form.to_dict())
+    return "success"
+
+@app.route('/check_username')
+def check_username():
+    # 从查询参数中获取要检查的用户名
+    username = request.args.get('name-reg')
+    print(username)
+    # 查询数据库，判断用户名是否存在
+    user = db.NAME.find_one({'name': username})
+    print(user)
+    exists = (user is not None)
+
+    # 将查询结果转换为 JSON 格式，返回给前端
+    response = {'exists': exists}
+    return jsonify(response)
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    user = db.NAME.find_one({'name': username})
+#   Pass = db.NAME.find_one({'password': password})
+    if not user:
+        print(user)
+        print(username)
+        return jsonify({'success': False, 'message': 'username_not_found'})
+    elif user['password'] != password:
+        return jsonify({'success': False, 'message': 'password_incorrect'})
+    else:
+        return jsonify({'success': True})
 
 if __name__ == '__main__':
     # 运行Flask应用程序
