@@ -1820,21 +1820,82 @@ function seibaba() {
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
-function toggleDropdown() {
-    var dropdown = document.querySelector('.dropdown');
-    dropdown.classList.toggle('active');
-  }
-  
-  function uploadImage() {
+
+// 获取下拉框的按钮和选项容器
+var dropdownBtn = document.querySelector(".dropbtn");
+var dropdownContent = document.querySelector(".dropdown-content");
+var dropdownHover = document.querySelector(".Hover");
+
+dropdownContent.addEventListener('animationend', () => {
+    if (dropdownContent.classList.contains('hide')) {
+        dropdownContent.style.display = 'none';
+    }
+});
+
+// 在按钮上添加点击事件
+dropdownBtn.addEventListener("click", function () {
+    // 切换选项容器的显示和隐藏
+    dropdownContent.style.display = 'block';
+    dropdownContent.classList.toggle("show");
+});
+
+// 在按钮上添加鼠标悬浮事件
+dropdownBtn.addEventListener("mouseover", function () {
+    // 显示选项容器
+    dropdownContent.style.display = 'block';
+    dropdownContent.classList.remove("hide");
+    dropdownContent.classList.add("show");
+});
+
+// 在按钮上添加鼠标离开事件
+dropdownBtn.addEventListener("mouseleave", function () {
+    // 隐藏选项容器
+    dropdownContent.classList.remove("show");
+    dropdownContent.classList.add("hide");
+});
+
+// 在选项容器上添加鼠标悬浮事件
+dropdownContent.addEventListener("mouseover", function () {
+    // 显示选项容器
+    dropdownContent.style.display = 'block';
+    dropdownContent.classList.remove("hide");
+    dropdownContent.classList.add("show");
+});
+
+// 在选项容器上添加鼠标离开事件
+dropdownContent.addEventListener("mouseleave", function () {
+    // 隐藏选项容器
+    dropdownContent.classList.remove("show");
+    dropdownContent.classList.add("hide");
+});
+
+// 在HOVER上添加鼠标悬浮事件
+dropdownHover.addEventListener("mouseover", function () {
+    // 显示选项容器
+    dropdownContent.style.display = 'block';
+    dropdownContent.classList.remove("hide");
+    dropdownContent.classList.add("show");
+});
+
+// 在HOVER上添加鼠标离开事件
+dropdownHover.addEventListener("mouseleave", function () {
+    // 隐藏选项容器
+    dropdownContent.classList.remove("show");
+    dropdownContent.classList.add("hide");
+});
+
+
+
+function uploadImage() {
     var input = document.createElement('input');
     input.type = 'file';
     input.accept = 'image/*';
-    input.onchange = function() {
-      var file = input.files[0];
-      // 处理上传逻辑
+    input.onchange = function () {
+        var file = input.files[0];
+        // 处理上传逻辑
     };
     input.click();
-  }
+}
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
