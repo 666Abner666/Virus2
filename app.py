@@ -1,8 +1,11 @@
 # 导入pymongo
 import pymongo
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, Response
 import json
 from bson import json_util
+from bson.objectid import ObjectId
+from gridfs import GridFS
+
 
 # from request import app as R
 # import os
@@ -11,7 +14,7 @@ from bson import json_util
 client = pymongo.MongoClient(
     "mongodb+srv://Abner:Abner666@virus2.a6ehgde.mongodb.net/?retryWrites=true&w=majority")
 db = client['Accounts(Test)']
-# fs = GridFS(db)
+fs = GridFS(db)
 
 # client = MongoClient(os.environ['MONGODB_URI'])
 # db = client['Accounts(Test)']
@@ -38,10 +41,22 @@ app = Flask(__name__)
 
 # app.register_blueprint(R)
 
+image_urls = []
+
+
 @app.route('/')
 def index():
     # 渲染index.html模板并返回结果
-    return render_template('index.html')
+    return render_template('index.html', image_urls=image_urls)
+
+
+@app.route('/get_all_images', methods=['GET'])
+def get_all_images():
+    global image_url
+    for grid_out in fs.find():
+        image_url = f'/get_image/{grid_out._id}'
+        image_urls.append(image_url)
+    return jsonify(image_urls)
 
 
 @app.route('/data', methods=['POST'])
@@ -64,7 +79,7 @@ def send_data():
     return jsonify(json_str)
 
 
-@app.route('/check_username')
+@app.route('/check_username', methods=['GET'])
 def check_username():
     # 从查询参数中获取要检查的用户名
     username = request.args.get('name-reg')
@@ -94,8 +109,56 @@ def login():
     else:
         return jsonify({'success': True})
 
-# if __name__ == '__main__':
-#     # 运行Flask应用程序
-#     app.run()
+
+image_id = None
+
+# @app.route('/upload_image', methods=['POST'])
+# def upload_image():
+#     global image_urls
+#     image_file = request.files['image']  # 获取上传的文件
+#     # 将文件存储到 MongoDB 中
+#     collection = db.images
+#     result = collection.insert_one({'image_data': image_file.read()})
+#     image_id = str(result.inserted_id)
+#     image_url = f'/get_image/{image_id}'
+#     image_urls.append(image_url)
+#     return {'success': True, 'url': image_url}
 
 
+# 上传图片并保存到 GridFS 中
+@app.route('/upload_image', methods=['POST'])
+def upload_image():
+    global image_urls
+    image_file = request.files['image']  # 获取上传的文件
+    # 将文件存储到 GridFS 中
+    file_id = fs.put(image_file.stream, filename=image_file.filename)
+    # 将文件 ID 存储到 MongoDB 的 images 集合中
+    collection = db.images
+    result = collection.insert_one({'file_id': file_id})
+    image_id = str(result.inserted_id)
+    image_url = f'/get_image/{image_id}'
+    image_urls.append(image_url)
+    return {'success': True, 'url': image_url}
+
+# 根据图片 ID 获取图片
+
+
+@app.route('/get_image/<string:image_id>', methods=['GET'])
+def get_image(image_id):
+    # 从 images 集合中获取文件 ID
+    collection = db.images
+    result = collection.find_one({'_id': ObjectId(image_id)})
+    if result is None:
+        print(f'File not found for ID {image_id}')
+        return 'File not found', 404
+    file_id = result['file_id']
+    # 从 GridFS 中获取文件内容
+    file = fs.get(file_id)
+    data = file.read()
+    # 返回图片的二进制数据
+    return Response(data, mimetype='image/jpeg')
+
+
+if __name__ == '__main__':
+    # 运行Flask应用程序
+    app.run()
