@@ -626,45 +626,9 @@ function checkUsername() {
             if (response.exists) {
                 // 用户名已存在，给出提示
                 if (selectbar[0].value == 'cn') {
-                    if (OnClick == false) {
-                        alert[0].style.display = 'inline-block';
-                        console.log('/check_username name = ' + document.getElementById('name').value)
-                        console.log('/check_username password = ' + document.getElementById('password').value)
-                        document.getElementsByClassName('msg')[0].innerHTML = '用户名已存在！'
-                        document.getElementsByClassName('alert')[0].style.zIndex = '9999'
-                        $('.alert:eq(0)').addClass("show");
-                        $('.alert:eq(0)').removeClass("hide");
-                        $('.alert:eq(0)').addClass("showAlert");
-                        OnClick = true
-                        setTimeout(function () {
-                            $('.alert:eq(0)').removeClass("show");
-                            $('.alert:eq(0)').addClass("hide");
-                            OnClick = false
-                            NONE = false
-                        }, 2000);
-                    }
-                }
-
-                else if (selectbar[0].value == 'en') {
-                    if (OnClick == false) {
-                        alert[0].style.display = 'inline-block';
-                        console.log(document.getElementById('name').value)
-                        console.log(document.getElementById('password').value)
-                        console.log(document.getElementById('name').value)
-                        console.log(document.getElementById('password').value)
-                        document.getElementsByClassName('msg')[0].innerHTML = 'Username already exists!'
-                        document.getElementsByClassName('alert')[0].style.zIndex = '9999'
-                        $('.alert:eq(0)').addClass("show");
-                        $('.alert:eq(0)').removeClass("hide");
-                        $('.alert:eq(0)').addClass("showAlert");
-                        OnClick = true
-                        setTimeout(function () {
-                            $('.alert:eq(0)').removeClass("show");
-                            $('.alert:eq(0)').addClass("hide");
-                            OnClick = false
-                            NONE = false
-                        }, 2000);
-                    }
+                    SHOW_ALERT_CN('用户名已存在！')
+                } else if (selectbar[0].value == 'en') {
+                    SHOW_ALERT_EN('Username already exists!')
                 }
             } else {
                 // 用户名不存在，可以继续注册
@@ -2008,6 +1972,8 @@ function uploadImage() {
 //     fileUpload.click();
 // }
 
+let file;
+
 function uploadImage() {
     //掉用input
     var fileUpload = document.getElementById("fileUpload");
@@ -2015,7 +1981,7 @@ function uploadImage() {
 
     // 监听input元素的change事件，上传图片
     document.getElementById("fileUpload").addEventListener("change", function () {
-        var file = this.files[0];
+        file = this.files[0]; // 将 file 定义为上传的文件
         if (!/^image\//.test(file.type)) {
             if (selectbar[0].value == 'cn') {
                 SHOW_ALERT_CN('只能上传图片！')
@@ -2040,12 +2006,34 @@ function uploadImage() {
 
 function confirmImage() {
     // TODO: 在这里处理确认图片的逻辑
+
+    let imageBlob = new FormData();
+    imageBlob.append('image', file); // 假设 file 是用户上传的图片文件
+
+    fetch('/upload_image', {
+        method: 'POST',
+        body: imageBlob
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // 将上传成功的图片显示在网页上
+            var container = document.getElementById('image-container');
+            var img = document.createElement('img');
+            img.src = data.url;
+            container.appendChild(img);
+            // let OtherImg = document.getElementById('OtherImg');
+            // OtherImg.src = data.url;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
     // 关闭确认框
     document.getElementById("confirmImageBox").style.display = "none";
 }
 
 function closeConfirmBox() {
-    // 关闭确认框
     document.getElementById("confirmImageBox").style.display = "none";
 }
 
@@ -2093,6 +2081,23 @@ function SHOW_ALERT_EN(Info) {
     }
 }
 
+function displayImage(image_id) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/get_images?id=' + image_id, true);
+    xhr.responseType = 'blob';
+    xhr.onload = function (e) {
+        if (this.status == 200) {
+            var blob = this.response;
+            var img = document.createElement('img');
+            img.onload = function (e) {
+                window.URL.revokeObjectURL(img.src);
+            };
+            img.src = window.URL.createObjectURL(blob);
+            document.body.appendChild(img);
+        }
+    };
+    xhr.send();
+}
 
 
 
@@ -2344,6 +2349,23 @@ window.onload = function () {
             console.log('OnClick = ' + OnClick)
         }
     }, 2640)
+
+    // 发送Ajax请求获取所有图片的URL
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/get_all_images');
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            // 将所有图片的URL插入到页面中
+            var images = JSON.parse(xhr.responseText);
+            var container = document.getElementById('image-container');
+            images.forEach(function (url) {
+                var img = document.createElement('img');
+                img.src = url;
+                container.appendChild(img);
+            });
+        }
+    };
+    xhr.send();
 
 }
 
