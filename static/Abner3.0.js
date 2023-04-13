@@ -9,6 +9,7 @@ OnClick = false
 console.log(LANGUGE)
 HACK_IN = null
 var NONE = false
+var ID = null
 
 var ueser = document.getElementsByClassName('ueser')
 var settings = document.getElementsByClassName('settings')
@@ -364,6 +365,7 @@ function login123() {
                     if (OnClick == false) {
                         danger[0].style.display = 'inline-block';
                         document.getElementsByClassName('msg')[1].innerHTML = '请求出错，请重试'
+                        document.getElementsByClassName('danger')[0].style.zIndex = '9999'
                         $('.danger').addClass("show");
                         $('.danger').removeClass("hide");
                         $('.danger').addClass("showAlert");
@@ -380,6 +382,7 @@ function login123() {
                     if (OnClick == false) {
                         danger[0].style.display = 'inline-block';
                         document.getElementsByClassName('msg')[1].innerHTML = 'Request error, please try again'
+                        document.getElementsByClassName('danger')[0].style.zIndex = '9999'
                         $('.danger').addClass("show");
                         $('.danger').removeClass("hide");
                         $('.danger').addClass("showAlert");
@@ -625,8 +628,8 @@ function checkUsername() {
                 if (selectbar[0].value == 'cn') {
                     if (OnClick == false) {
                         alert[0].style.display = 'inline-block';
-                        console.log(document.getElementById('name').value)
-                        console.log(document.getElementById('password').value)
+                        console.log('/check_username name = ' + document.getElementById('name').value)
+                        console.log('/check_username password = ' + document.getElementById('password').value)
                         document.getElementsByClassName('msg')[0].innerHTML = '用户名已存在！'
                         document.getElementsByClassName('alert')[0].style.zIndex = '9999'
                         $('.alert:eq(0)').addClass("show");
@@ -1197,6 +1200,10 @@ function submit() {
         var LE = document.getElementsByClassName('Login_new')
         var EXIT = document.getElementsByClassName('test3')
         var BQB = document.getElementsByClassName('ctrl-btn5')
+        var DB = document.getElementsByClassName('dropbtn')
+        var UPLOAD = document.getElementsByClassName('UPLOAD')
+        var Confirm = document.getElementById('Confirm')
+        var Confirm_Btn = document.getElementsByClassName('btn')
         //console.log(selectbar[0].value)
         if (selectbar[0].value == 'cn') {
             if (OnClick == false) {
@@ -1260,6 +1267,14 @@ function submit() {
             LE[1].innerHTML = '注册'
             SI[1].innerHTML = '注册'
             BQB[0].innerHTML = '表情包'
+            DB[0].innerHTML = '上传内容'
+            UPLOAD[0].innerHTML = '图片'
+            UPLOAD[1].innerHTML = '视频'
+            UPLOAD[2].innerHTML = '文字'
+            UPLOAD[3].innerHTML = '链接'
+            Confirm.innerHTML = '确认上传的图片'
+            Confirm_Btn[0].innerHTML = '取消'
+            Confirm_Btn[1].innerHTML = '确认'
             console.log('Chinese')
         }
 
@@ -1325,6 +1340,14 @@ function submit() {
             LE[1].innerHTML = 'Sign-up'
             SI[1].innerHTML = 'Sign-up'
             BQB[0].innerHTML = 'Emoticons'
+            DB[0].innerHTML = 'Upload Content'
+            UPLOAD[0].innerHTML = 'Picture'
+            UPLOAD[1].innerHTML = 'Video'
+            UPLOAD[2].innerHTML = 'Word'
+            UPLOAD[3].innerHTML = 'Link'
+            Confirm.innerHTML = 'Confirm uploaded image'
+            Confirm_Btn[0].innerHTML = 'Cancel'
+            Confirm_Btn[1].innerHTML = 'Confirm'
             console.log('English')
         }
         clearTimeout(timer)
@@ -1625,6 +1648,10 @@ function ChangeToChinese() {
     var LE = document.getElementsByClassName('Login_new')
     var EXIT = document.getElementsByClassName('test3')
     var BQB = document.getElementsByClassName('ctrl-btn5')
+    var DB = document.getElementsByClassName('dropbtn')
+    var UPLOAD = document.getElementsByClassName('UPLOAD')
+    var Confirm = document.getElementById('Confirm')
+    var Confirm_Btn = document.getElementsByClassName('btn')
 
     CB1[0].innerText = '小游戏'
     CB2[0].innerHTML = '快捷网页'
@@ -1656,6 +1683,14 @@ function ChangeToChinese() {
     LE[1].innerHTML = '注册'
     SI[1].innerHTML = '注册'
     BQB[0].innerHTML = '表情包'
+    DB[0].innerHTML = '上传内容'
+    UPLOAD[0].innerHTML = '图片'
+    UPLOAD[1].innerHTML = '视频'
+    UPLOAD[2].innerHTML = '文字'
+    UPLOAD[3].innerHTML = '链接'
+    Confirm.innerHTML = '确认上传的图片'
+    Confirm_Btn[0].innerHTML = '取消'
+    Confirm_Btn[1].innerHTML = '确认'
     console.log('Chinese')
 }
 
@@ -1688,6 +1723,10 @@ function ChangeToEnglish() {
     var LE = document.getElementsByClassName('Login_new')
     var EXIT = document.getElementsByClassName('test3')
     var BQB = document.getElementsByClassName('ctrl-btn5')
+    var DB = document.getElementsByClassName('dropbtn')
+    var UPLOAD = document.getElementsByClassName('UPLOAD')
+    var Confirm = document.getElementById('Confirm')
+    var Confirm_Btn = document.getElementsByClassName('btn')
 
     CB1[0].innerHTML = 'Games'
     CB2[0].innerHTML = 'Website'
@@ -1719,6 +1758,14 @@ function ChangeToEnglish() {
     LE[1].innerHTML = 'Sign-up'
     SI[1].innerHTML = 'Sign-up'
     BQB[0].innerHTML = 'Emoticons'
+    DB[0].innerHTML = 'Upload Content'
+    UPLOAD[0].innerHTML = 'Picture'
+    UPLOAD[1].innerHTML = 'Video'
+    UPLOAD[2].innerHTML = 'Word'
+    UPLOAD[3].innerHTML = 'Link'
+    Confirm.innerHTML = 'Confirm uploaded image'
+    Confirm_Btn[0].innerHTML = 'Cancel'
+    Confirm_Btn[1].innerHTML = 'Confirm'
     console.log('English')
 }
 
@@ -1832,12 +1879,12 @@ dropdownContent.addEventListener('animationend', () => {
     }
 });
 
-// 在按钮上添加点击事件
-dropdownBtn.addEventListener("click", function () {
-    // 切换选项容器的显示和隐藏
-    dropdownContent.style.display = 'block';
-    dropdownContent.classList.toggle("show");
-});
+// // 在按钮上添加点击事件
+// dropdownBtn.addEventListener("click", function () {
+//     // 切换选项容器的显示和隐藏
+//     dropdownContent.style.display = 'block';
+//     dropdownContent.classList.toggle("show");
+// });
 
 // 在按钮上添加鼠标悬浮事件
 dropdownBtn.addEventListener("mouseover", function () {
@@ -1845,6 +1892,7 @@ dropdownBtn.addEventListener("mouseover", function () {
     dropdownContent.style.display = 'block';
     dropdownContent.classList.remove("hide");
     dropdownContent.classList.add("show");
+    dropdownHover.style.display = 'inline-block'
 });
 
 // 在按钮上添加鼠标离开事件
@@ -1852,6 +1900,7 @@ dropdownBtn.addEventListener("mouseleave", function () {
     // 隐藏选项容器
     dropdownContent.classList.remove("show");
     dropdownContent.classList.add("hide");
+    dropdownHover.style.display = 'none'
 });
 
 // 在选项容器上添加鼠标悬浮事件
@@ -1860,6 +1909,7 @@ dropdownContent.addEventListener("mouseover", function () {
     dropdownContent.style.display = 'block';
     dropdownContent.classList.remove("hide");
     dropdownContent.classList.add("show");
+    dropdownHover.style.display = 'inline-block'
 });
 
 // 在选项容器上添加鼠标离开事件
@@ -1867,6 +1917,7 @@ dropdownContent.addEventListener("mouseleave", function () {
     // 隐藏选项容器
     dropdownContent.classList.remove("show");
     dropdownContent.classList.add("hide");
+    dropdownHover.style.display = 'none'
 });
 
 // 在HOVER上添加鼠标悬浮事件
@@ -1875,6 +1926,7 @@ dropdownHover.addEventListener("mouseover", function () {
     dropdownContent.style.display = 'block';
     dropdownContent.classList.remove("hide");
     dropdownContent.classList.add("show");
+    dropdownHover.style.display = 'inline-block'
 });
 
 // 在HOVER上添加鼠标离开事件
@@ -1882,6 +1934,7 @@ dropdownHover.addEventListener("mouseleave", function () {
     // 隐藏选项容器
     dropdownContent.classList.remove("show");
     dropdownContent.classList.add("hide");
+    dropdownHover.style.display = 'none'
 });
 
 
@@ -1896,6 +1949,7 @@ function uploadImage() {
     };
     input.click();
 }
+
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 // function uploadImage() {
@@ -1918,48 +1972,156 @@ function uploadImage() {
 //     });
 // }
 
+// function uploadImage() {
+//     // 获取文件上传的input元素
+//     var fileUpload = document.getElementById("fileUpload");
+
+//     // 添加监听器，当选择文件时触发
+//     fileUpload.addEventListener("change", function () {
+//         // 获取用户选择的文件
+//         var file = fileUpload.files[0];
+
+//         // 如果选择的不是图片文件，则弹出提示并退出函数
+//         if (!/^image\//.test(file.type)) {
+//             console.log("只能上传图片");
+//             return;
+//         }
+
+//         // 读取文件内容并将其转为base64编码的字符串
+//         var reader = new FileReader();
+//         reader.onload = function (e) {
+//             // 创建一个img元素
+//             var img = document.createElement("img");
+//             // 设置img元素的src为base64编码的文件内容
+//             img.src = e.target.result;
+//             // 将img元素添加到预览区域
+//             var preview = document.getElementById("imagePreview");
+//             // 先清空预览区域
+//             preview.innerHTML = "";
+//             // 添加新的图片预览
+//             preview.appendChild(img);
+//         }
+//         reader.readAsDataURL(file);
+//     });
+
+//     // 触发选择文件对话框
+//     fileUpload.click();
+// }
+
 function uploadImage() {
-    // 获取文件上传的input元素
+    //掉用input
     var fileUpload = document.getElementById("fileUpload");
+    fileUpload.click();
 
-    // 添加监听器，当选择文件时触发
-    fileUpload.addEventListener("change", function () {
-        // 获取用户选择的文件
-        var file = fileUpload.files[0];
-
-        // 如果选择的不是图片文件，则弹出提示并退出函数
+    // 监听input元素的change事件，上传图片
+    document.getElementById("fileUpload").addEventListener("change", function () {
+        var file = this.files[0];
         if (!/^image\//.test(file.type)) {
+            if (selectbar[0].value == 'cn') {
+                SHOW_ALERT_CN('只能上传图片！')
+            } else if (selectbar[0].value == 'en') {
+                SHOW_ALERT_EN('Pictures Only!')
+            }
             console.log("只能上传图片");
             return;
         }
-
-        // 读取文件内容并将其转为base64编码的字符串
+        // 创建FileReader对象
         var reader = new FileReader();
         reader.onload = function (e) {
-            // 创建一个img元素
-            var img = document.createElement("img");
-            // 设置img元素的src为base64编码的文件内容
-            img.src = e.target.result;
-            // 将img元素添加到预览区域
-            var preview = document.getElementById("imagePreview");
-            // 先清空预览区域
-            preview.innerHTML = "";
-            // 添加新的图片预览
-            preview.appendChild(img);
+            // 显示确认框
+            document.getElementById("confirmImageBox").style.display = "block";
+            // 显示上传的图片
+            document.getElementById("uploadedImage").src = e.target.result;
         }
+        // 读取文件内容并将其转换成Data URL格式
         reader.readAsDataURL(file);
     });
+}
 
-    // 触发选择文件对话框
-    fileUpload.click();
+function confirmImage() {
+    // TODO: 在这里处理确认图片的逻辑
+    // 关闭确认框
+    document.getElementById("confirmImageBox").style.display = "none";
+}
+
+function closeConfirmBox() {
+    // 关闭确认框
+    document.getElementById("confirmImageBox").style.display = "none";
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+function SHOW_ALERT_CN(Info) {
+    if (selectbar[0].value == 'cn') {
+        if (OnClick == false) {
+            alert[0].style.display = 'inline-block';
+            document.getElementsByClassName('msg')[0].innerHTML = Info
+            document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+            $('.alert:eq(0)').addClass("show");
+            $('.alert:eq(0)').removeClass("hide");
+            $('.alert:eq(0)').addClass("showAlert");
+            OnClick = true
+            setTimeout(function () {
+                $('.alert:eq(0)').removeClass("show");
+                $('.alert:eq(0)').addClass("hide");
+                OnClick = false
+                NONE = false
+            }, 2000);
+        }
+        return false;
+    }
+}
+
+function SHOW_ALERT_EN(Info) {
+    if (selectbar[0].value == 'en') {
+        if (OnClick == false) {
+            alert[0].style.display = 'inline-block';
+            document.getElementsByClassName('msg')[0].innerHTML = Info
+            document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+            $('.alert:eq(0)').addClass("show");
+            $('.alert:eq(0)').removeClass("hide");
+            $('.alert:eq(0)').addClass("showAlert");
+            OnClick = true
+            setTimeout(function () {
+                $('.alert:eq(0)').removeClass("show");
+                $('.alert:eq(0)').addClass("hide");
+                onclick = false
+                NONE = false
+            }, 2000);
+        }
+        return false;
+    }
 }
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 window.onload = function () {
-
-
 
     var alert = document.getElementsByClassName('alert')
     var danger = document.getElementsByClassName('danger')
