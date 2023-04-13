@@ -356,6 +356,9 @@
                 <div class="mainthings1" style="background-color: orange;"></div>
                 <div class="mainthings1" style="background-color: orange;"></div>
                 <div class="mainthings1" style="background-color: orange;"></div>
+
+
+
             </div>
 
             <div class="web">
@@ -397,20 +400,33 @@
 
             <div class="BQB">
                 <div class="dropdown">
-                    <div class="Hover">
-                        <button class="dropbtn">上传内容</button>
-                        <div class="dropdown-content">
-                            <a href="#" onclick="uploadImage()">图片</a>
-                          <a href="#">视频</a>
-                          <a href="#">文字</a>
-                          <a href="#">链接</a>
-                          <input type="file" id="fileUpload" style="display:none;">
-                        </div>
-                      </div>
+                    <div class="Hover"> </div>
+                    <button class="dropbtn">上传内容</button>
+                    <div class="dropdown-content">
+                        <a class="UPLOAD" href="#" onclick="uploadImage()">图片</a>
+                        <a class="UPLOAD" href="#">视频</a>
+                        <a class="UPLOAD" href="#">文字</a>
+                        <a class="UPLOAD" href="#">链接</a>
+                        <input type="file" id="fileUpload" style="display:none;">
                     </div>
+                </div>
 
-                    <div id="imagePreview"></div>
-                  
+                <!-- 点击图片按钮时弹出的确认框 -->
+                <div id="confirmImageBox" class="confirmBox">
+                    <div class="confirmBox-content">
+                        <h2 id="Confirm">确认上传的图片</h2>
+                        <span class="close" onclick="closeConfirmBox()">&times;</span>
+                        <img id="uploadedImage" alt="Uploaded Image">
+                        <div class="btn-group">
+                            <button class="btn" onclick="closeConfirmBox()">取消</button>
+                            <button class="btn" onclick="confirmImage()">确认</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="imagePreview"></div>
+
 
 
 
