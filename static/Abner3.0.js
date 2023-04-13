@@ -1896,11 +1896,70 @@ function uploadImage() {
     };
     input.click();
 }
-
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+// function uploadImage() {
+//     document.getElementById('fileUpload').click();
+//     document.getElementById('fileUpload').addEventListener('change', function (event) {
+//         var file = event.target.files[0];
+//         if (!/^image\//.test(file.type)) {
+//             console.log('只能上传图片');
+//             return;
+//         }
+//         var reader = new FileReader();
+//         reader.onload = function (event) {
+//             var img = new Image();
+//             img.src = event.target.result;
+//             img.style.maxWidth = '100%';
+//             img.style.maxHeight = '100%';
+//             document.getElementById('imagePreview').appendChild(img);
+//         }
+//         reader.readAsDataURL(file);
+//     });
+// }
+
+function uploadImage() {
+    // 获取文件上传的input元素
+    var fileUpload = document.getElementById("fileUpload");
+
+    // 添加监听器，当选择文件时触发
+    fileUpload.addEventListener("change", function () {
+        // 获取用户选择的文件
+        var file = fileUpload.files[0];
+
+        // 如果选择的不是图片文件，则弹出提示并退出函数
+        if (!/^image\//.test(file.type)) {
+            console.log("只能上传图片");
+            return;
+        }
+
+        // 读取文件内容并将其转为base64编码的字符串
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            // 创建一个img元素
+            var img = document.createElement("img");
+            // 设置img元素的src为base64编码的文件内容
+            img.src = e.target.result;
+            // 将img元素添加到预览区域
+            var preview = document.getElementById("imagePreview");
+            // 先清空预览区域
+            preview.innerHTML = "";
+            // 添加新的图片预览
+            preview.appendChild(img);
+        }
+        reader.readAsDataURL(file);
+    });
+
+    // 触发选择文件对话框
+    fileUpload.click();
+}
+
+
 
 
 window.onload = function () {
+
+
 
     var alert = document.getElementsByClassName('alert')
     var danger = document.getElementsByClassName('danger')
