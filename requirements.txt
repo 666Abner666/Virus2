@@ -2,4 +2,3 @@ pymongo
 flask
 bson
 Gunicorn
-pymongo-gridfs
