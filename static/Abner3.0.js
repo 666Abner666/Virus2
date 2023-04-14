@@ -1045,7 +1045,7 @@ function other1() {
 IDV = ['101500681671442069886', '115843620982578159736', '105127938811676800612', '109537578674873788955']
 
 function BQB1() {
-    if (ID == IDV || HACK_IN == true) {
+    if (ID == IDV || HACK_IN == true || true) {
         games[0].style.display = 'none'
         web[0].style.display = 'none'
         virus[0].style.display = 'none'
@@ -2018,10 +2018,20 @@ function confirmImage() {
         .then(data => {
             console.log(data);
             // 将上传成功的图片显示在网页上
-            var container = document.getElementById('image-container');
-            var img = document.createElement('img');
-            img.src = data.url;
-            container.appendChild(img);
+            const container = document.querySelector('#image-container');
+            let existingImage = container.querySelector(`[src="${data.url}"]`);
+            if (existingImage) {
+                console.log('Image already exists:', existingImage);
+            } else {
+                var img = document.createElement('img');
+                img.setAttribute('class', 'my-image');
+                img.src = data.url;
+                container.appendChild(img);
+
+            }
+
+
+
             // let OtherImg = document.getElementById('OtherImg');
             // OtherImg.src = data.url;
         })
@@ -2099,8 +2109,56 @@ function displayImage(image_id) {
     xhr.send();
 }
 
+function removeImage(img) {
+    img.parentNode.removeChild(img);
+}
 
+function deleteData() {
+    // 显示密码输入框
+    const modal = document.getElementById('password-modal');
+    const closeBtn = document.querySelector('.close');
+    const submitBtn = document.getElementById('password-submit-btn');
+    const passwordInput = document.getElementById('password-input');
 
+    modal.style.display = 'block';
+
+    // 当用户点击 X 按钮或者其他地方时，隐藏密码输入框
+    closeBtn.addEventListener('click', function () {
+        modal.style.display = 'none';
+    });
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+
+    // 当用户点击提交按钮时，检查密码是否正确，如果正确则删除数据
+    submitBtn.addEventListener('click', function () {
+        const password = passwordInput.value;
+        if (password === '114514') {
+            // 在这里删除数据
+            fetch('/delete_data', {
+                method: 'POST',
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+            modal.style.display = 'none';
+        } else {
+            alert('密码错误，请重新输入');
+        }
+    });
+}
+
+// 给删除数据按钮添加点击事件
+const deleteBtn = document.getElementById('delete-data-btn');
+deleteBtn.addEventListener('click', deleteData);
 
 
 
@@ -2127,6 +2185,27 @@ function displayImage(image_id) {
 
 
 window.onload = function () {
+
+    // // 获取my-image
+    // const images = document.getElementsByClassName('my-image');
+
+    // // 为每个img元素添加事件监听器
+    // for (let i = 0; i < images.length; i++) {
+    //     images[i].addEventListener('error', function () {
+    //         // 图片加载失败，从DOM中删除这个img元素
+    //         this.parentNode.removeChild(this);
+    //     });
+    // }
+
+
+    // 获取所有加载失败的图片
+    const failedImages = document.querySelectorAll('.my-image:not([src])');
+
+    // 删除所有加载失败的图片
+    for (let i = 0; i < failedImages.length; i++) {
+        failedImages[i].parentNode.removeChild(failedImages[i]);
+    }
+
 
     var alert = document.getElementsByClassName('alert')
     var danger = document.getElementsByClassName('danger')
@@ -2355,19 +2434,28 @@ window.onload = function () {
     xhr.open('GET', '/get_all_images');
     xhr.onload = function () {
         if (xhr.status === 200) {
-            // 将所有图片的URL插入到页面中
-            var images = JSON.parse(xhr.responseText);
-            var container = document.getElementById('image-container');
+            var images = JSON.parse(xhr.responseText).image_urls;
+            const container = document.querySelector('#image-container');
             images.forEach(function (url) {
-                var img = document.createElement('img');
-                img.src = url;
-                container.appendChild(img);
+                let existingImage = container.querySelector(`[src="${url}"]`);
+                if (existingImage) {
+                    console.log('Image already exists:', existingImage);
+                } else {
+                    var img = document.createElement('img');
+                    img.setAttribute('class', 'my-image');
+                    img.src = url;
+                    container.appendChild(img);
+                }
             });
         }
     };
     xhr.send();
 
+
+
+
 }
+
 
 
 
