@@ -49,14 +49,14 @@ def index():
     # 渲染index.html模板并返回结果
     return render_template('index.html', image_urls=image_urls)
 
-
 @app.route('/get_all_images', methods=['GET'])
 def get_all_images():
-    global image_url
-    for grid_out in fs.find():
-        image_url = f'/get_image/{grid_out._id}'
+    image_urls = []
+    for image in db.images.find():
+        file_id = image['file_id']
+        image_url = f'/get_image/{str(image["_id"])}'
         image_urls.append(image_url)
-    return jsonify(image_urls)
+    return jsonify({'image_urls': image_urls})
 
 
 @app.route('/data', methods=['POST'])
@@ -124,8 +124,9 @@ image_id = None
 #     image_urls.append(image_url)
 #     return {'success': True, 'url': image_url}
 
-
 # 上传图片并保存到 GridFS 中
+
+
 @app.route('/upload_image', methods=['POST'])
 def upload_image():
     global image_urls
@@ -157,6 +158,30 @@ def get_image(image_id):
     data = file.read()
     # 返回图片的二进制数据
     return Response(data, mimetype='image/jpeg')
+
+# @app.route('/get_image/<string:image_id>', methods=['GET'])
+# def get_image(image_id):
+#     # 获取文件id
+#     file_id = ObjectId(image_id)
+#     # 使用文件id从GridFS中获取文件
+#     grid_out = fs.get(file_id)
+#     # 获取文件数据的二进制形式
+#     image_binary_data = grid_out.read()
+#     # 设置content type为image/jpeg，这样浏览器才能正确显示图片
+#     response = make_response(image_binary_data)
+#     response.headers.set('Content-Type', 'image/jpeg')
+#     return response
+
+
+@app.route('/delete_data', methods=['POST'])
+def delete_data():
+
+    # 删除所有数据
+    db.images.delete_many({})
+    db.fs.files.delete_many({})
+    db.fs.chunks.delete_many({})
+
+    return jsonify({'message': '删除成功'})
 
 
 if __name__ == '__main__':
