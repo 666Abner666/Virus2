@@ -66,7 +66,7 @@ else if (LANGUGE == 'en-US' || LANGUGE == 'en') {
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
-ID = null
+var ID = null
 
 function handleCredentialResponse(response) {
     console.log("Encoded JWT ID token:" + response.credential);
@@ -105,8 +105,8 @@ function onUserSignedOut() {
     onUserLoggedOut()
     document.getElementsByClassName('ueser-name')[0].innerHTML = '未登录';
     document.getElementsByClassName('ueser-name')[1].innerHTML = '未登录';
-    document.getElementById('img').src = "../img/Black_colour.jpg";
-    document.getElementById('img2').src = "../img/Black_colour.jpg";
+    document.getElementById('img').src = "../static/img/Black_colour.jpg";
+    document.getElementById('img2').src = "../static/img/Black_colour.jpg";
     games[0].style.display = 'inline-block'
     web[0].style.display = 'none'
     virus[0].style.display = 'none'
@@ -1045,7 +1045,7 @@ function other1() {
 IDV = ['101500681671442069886', '115843620982578159736', '105127938811676800612', '109537578674873788955']
 
 function BQB1() {
-    if (ID == IDV || HACK_IN == true || true) {
+    if (IDV.includes(ID) || HACK_IN == true || true) {
         games[0].style.display = 'none'
         web[0].style.display = 'none'
         virus[0].style.display = 'none'
@@ -1239,6 +1239,24 @@ function submit() {
             Confirm.innerHTML = '确认上传的图片'
             Confirm_Btn[0].innerHTML = '取消'
             Confirm_Btn[1].innerHTML = '确认'
+            // 获取所有author-info, name-info, date-info的元素
+            const authorElements = document.querySelectorAll('.author-info');
+            const nameElements = document.querySelectorAll('.title-info');
+            const dateElements = document.querySelectorAll('.date-info');
+
+            // 遍历每个元素并替换
+            authorElements.forEach(function (el) {
+                const text = el.textContent;
+                el.textContent = text.replace('Author: ', '作者：');
+            });
+            nameElements.forEach(function (el) {
+                const text = el.textContent;
+                el.textContent = text.replace('Name: ', '名称：');
+            });
+            dateElements.forEach(function (el) {
+                const text = el.textContent;
+                el.textContent = text.replace('Date: ', '上传日期：');
+            });
             console.log('Chinese')
         }
 
@@ -1312,6 +1330,24 @@ function submit() {
             Confirm.innerHTML = 'Confirm uploaded image'
             Confirm_Btn[0].innerHTML = 'Cancel'
             Confirm_Btn[1].innerHTML = 'Confirm'
+            // 获取所有author-info, name-info, date-info的元素
+            const authorElements = document.querySelectorAll('.author-info');
+            const nameElements = document.querySelectorAll('.title-info');
+            const dateElements = document.querySelectorAll('.date-info');
+
+            // 遍历每个元素并替换
+            authorElements.forEach(function (el) {
+                const text = el.textContent;
+                el.textContent = text.replace('作者：', 'Author: ');
+            });
+            nameElements.forEach(function (el) {
+                const text = el.textContent;
+                el.textContent = text.replace('名称：', 'Name: ');
+            });
+            dateElements.forEach(function (el) {
+                const text = el.textContent;
+                el.textContent = text.replace('上传日期：', 'Date: ');
+            });
             console.log('English')
         }
         clearTimeout(timer)
@@ -1655,6 +1691,24 @@ function ChangeToChinese() {
     Confirm.innerHTML = '确认上传的图片'
     Confirm_Btn[0].innerHTML = '取消'
     Confirm_Btn[1].innerHTML = '确认'
+    // 获取所有author-info, name-info, date-info的元素
+    const authorElements = document.querySelectorAll('.author-info');
+    const nameElements = document.querySelectorAll('.title-info');
+    const dateElements = document.querySelectorAll('.date-info');
+
+    // 遍历每个元素并替换
+    authorElements.forEach(function (el) {
+        const text = el.textContent;
+        el.textContent = text.replace('Author: ', '作者：');
+    });
+    nameElements.forEach(function (el) {
+        const text = el.textContent;
+        el.textContent = text.replace('Name: ', '名称：');
+    });
+    dateElements.forEach(function (el) {
+        const text = el.textContent;
+        el.textContent = text.replace('Date: ', '上传日期：');
+    });
     console.log('Chinese')
 }
 
@@ -1730,6 +1784,24 @@ function ChangeToEnglish() {
     Confirm.innerHTML = 'Confirm uploaded image'
     Confirm_Btn[0].innerHTML = 'Cancel'
     Confirm_Btn[1].innerHTML = 'Confirm'
+    // 获取所有author-info, name-info, date-info的元素
+    const authorElements = document.querySelectorAll('.author-info');
+    const nameElements = document.querySelectorAll('.title-info');
+    const dateElements = document.querySelectorAll('.date-info');
+
+    // 遍历每个元素并替换
+    authorElements.forEach(function (el) {
+        const text = el.textContent;
+        el.textContent = text.replace('作者：', 'Author: ');
+    });
+    nameElements.forEach(function (el) {
+        const text = el.textContent;
+        el.textContent = text.replace('名称：', 'Name: ');
+    });
+    dateElements.forEach(function (el) {
+        const text = el.textContent;
+        el.textContent = text.replace('上传日期：', 'Date: ');
+    });
     console.log('English')
 }
 
@@ -1973,6 +2045,7 @@ function uploadImage() {
 // }
 
 let file;
+var dateString
 
 function uploadImage() {
     //掉用input
@@ -1998,6 +2071,20 @@ function uploadImage() {
             document.getElementById("confirmImageBox").style.display = "block";
             // 显示上传的图片
             document.getElementById("uploadedImage").src = e.target.result;
+            // 获取上传图片的文件对象
+            const uploadedFile = document.getElementById('fileUpload').files[0];
+
+            // 获取上传图片的名称
+            const uploadedFileName = uploadedFile.name;
+
+            var now = new Date();
+            console.log(now)
+
+            dateString = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+            console.log(dateString)
+
+            document.getElementById("imageTitle").setAttribute("placeholder", uploadedFileName);
+            document.getElementById("imageTitle").value = uploadedFileName
         }
         // 读取文件内容并将其转换成Data URL格式
         reader.readAsDataURL(file);
@@ -2006,6 +2093,17 @@ function uploadImage() {
 
 function confirmImage() {
     // TODO: 在这里处理确认图片的逻辑
+
+    // 获取上传图片的文件对象
+    const uploadedFile = document.getElementById('fileUpload').files[0];
+
+    // 获取上传图片的名称
+    const uploadedFileName = uploadedFile.name;
+
+
+    document.getElementById("imageTitle").setAttribute("placeholder", uploadedFileName);
+    document.getElementById("imageTitle").value = uploadedFileName
+    console.log(document.getElementById("imageTitle").value)
 
     let imageBlob = new FormData();
     imageBlob.append('image', file); // 假设 file 是用户上传的图片文件
@@ -2023,10 +2121,63 @@ function confirmImage() {
             if (existingImage) {
                 console.log('Image already exists:', existingImage);
             } else {
+                document.getElementById("imageTitle").value = uploadedFileName
+
+                var FileNameContainer = authorInfo = document.createElement('div');
+                FileNameContainer.classList.add('Container');
+                container.appendChild(FileNameContainer)
+                // 获取所有容器元素
+                const FileContainer = document.querySelectorAll('.Container');
+
+                // 获取最后一个容器
+                const lastContainer = FileContainer[FileContainer.length - 1];
+
                 var img = document.createElement('img');
                 img.setAttribute('class', 'my-image');
                 img.src = data.url;
-                container.appendChild(img);
+                lastContainer.appendChild(img);
+
+                // 创建作者信息元素
+                var authorInfo = document.createElement('div');
+                let authorName = document.getElementsByClassName('ueser-name')
+                authorInfo.classList.add('author-info');
+                authorInfo.textContent = '作者：' + authorName[0].textContent;
+                lastContainer.appendChild(authorInfo);
+
+                // 创建标题信息元素
+                var titleInfo = document.createElement('div');
+                var FN = document.getElementById('imageTitle')
+                // console.log(FN)
+                // console.log(FN.value)
+                titleInfo.classList.add('title-info');
+                titleInfo.textContent = '名称：' + FN.value;
+                lastContainer.appendChild(titleInfo);
+
+                // 创建上传日期信息元素
+                var dateInfo = document.createElement('div');
+                dateInfo.classList.add('date-info');
+                dateInfo.textContent = '上传日期：' + dateString;
+                lastContainer.appendChild(dateInfo);
+
+                var data = {
+                    "author": authorName[0].textContent,
+                    "name": FN.value,
+                    "date": dateString,
+                    "url": img.src
+                };
+
+                fetch('/save_data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch(error => console.error(error));
+
+
 
             }
 
@@ -2041,6 +2192,8 @@ function confirmImage() {
 
     // 关闭确认框
     document.getElementById("confirmImageBox").style.display = "none";
+    document.getElementById("imageTitle").setAttribute("placeholder", '');
+    document.getElementById("imageTitle").value = ''
 }
 
 function closeConfirmBox() {
@@ -2429,28 +2582,123 @@ window.onload = function () {
         }
     }, 2640)
 
-    // 发送Ajax请求获取所有图片的URL
+    // // 发送Ajax请求获取所有图片的URL
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('GET', '/get_all_images');
+    // xhr.onload = function () {
+    //     if (xhr.status === 200) {
+    //         var images = JSON.parse(xhr.responseText).image_urls;
+    //         const container = document.querySelector('#image-container');
+    //         images.forEach(function (url) {
+    //             let existingImage = container.querySelector(`[src="${url}"]`);
+    //             if (existingImage) {
+    //                 console.log('Image already exists:', existingImage);
+    //             } else {
+    //                 document.getElementById("imageTitle").value = uploadedFileName
+
+    //                 var FileNameContainer = authorInfo = document.createElement('div');
+    //                 FileNameContainer.classList.add('Container');
+    //                 container.appendChild(FileNameContainer)
+    //                 // 获取所有容器元素
+    //                 const FileContainer = document.querySelectorAll('.Container');
+
+    //                 // 获取最后一个容器
+    //                 const lastContainer = FileContainer[FileContainer.length - 1];
+
+    //                 var img = document.createElement('img');
+    //                 img.setAttribute('class', 'my-image');
+    //                 img.src = data.url;
+    //                 lastContainer.appendChild(img);
+
+    //                 // 创建作者信息元素
+    //                 var authorInfo = document.createElement('div');
+    //                 let authorName = document.getElementsByClassName('ueser-name')
+    //                 authorInfo.classList.add('author-info');
+    //                 authorInfo.textContent = '作者：' + authorName[0].textContent;
+    //                 lastContainer.appendChild(authorInfo);
+
+    //                 // 创建标题信息元素
+    //                 var titleInfo = document.createElement('div');
+    //                 var FN = document.getElementById('imageTitle')
+    //                 // console.log(FN)
+    //                 // console.log(FN.value)
+    //                 titleInfo.classList.add('title-info');
+    //                 titleInfo.textContent = '名称：' + FN.value;
+    //                 lastContainer.appendChild(titleInfo);
+
+    //                 // 创建上传日期信息元素
+    //                 var dateInfo = document.createElement('div');
+    //                 dateInfo.classList.add('date-info');
+    //                 dateInfo.textContent = '上传日期：' + dateString;
+    //                 lastContainer.appendChild(dateInfo);
+
+    //             }
+    //         });
+    //     }
+    // };
+    // xhr.send();
+
+    // 发送Ajax请求获取所有图片的信息
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/get_all_images');
+    xhr.open('GET', '/get_all_images_info');
     xhr.onload = function () {
         if (xhr.status === 200) {
-            var images = JSON.parse(xhr.responseText).image_urls;
+            var images_info = JSON.parse(xhr.responseText).image_info;
             const container = document.querySelector('#image-container');
-            images.forEach(function (url) {
-                let existingImage = container.querySelector(`[src="${url}"]`);
+            images_info.forEach(function (info) {
+                let existingImage = container.querySelector(`[src="${info.url}"]`);
                 if (existingImage) {
                     console.log('Image already exists:', existingImage);
                 } else {
+                    var FileNameContainer = authorInfo = document.createElement('div');
+                    FileNameContainer.classList.add('Container');
+                    container.appendChild(FileNameContainer)
+                    // 获取所有容器元素
+                    const FileContainer = document.querySelectorAll('.Container');
+
+                    // 获取最后一个容器
+                    const lastContainer = FileContainer[FileContainer.length - 1];
+
                     var img = document.createElement('img');
                     img.setAttribute('class', 'my-image');
-                    img.src = url;
-                    container.appendChild(img);
+                    img.src = info.url;
+                    lastContainer.appendChild(img);
+
+                    // 创建作者信息元素
+                    var authorInfo = document.createElement('div');
+                    authorInfo.classList.add('author-info');
+                    if (selectbar[0].value == 'cn' || LANGUGE == 'zh-CN' || LANGUGE == 'zh') {
+                        authorInfo.textContent = '作者：' + info.author;
+                    } else if (selectbar[0].value == 'en' || LANGUGE == 'en-US' || LANGUGE == 'en') {
+                        authorInfo.textContent = 'Author：' + info.author;
+                    }
+                    lastContainer.appendChild(authorInfo);
+
+                    // 创建标题信息元素
+                    var titleInfo = document.createElement('div');
+                    titleInfo.classList.add('title-info');
+                    if (selectbar[0].value == 'cn' || LANGUGE == 'zh-CN' || LANGUGE == 'zh') {
+                        titleInfo.textContent = '名称：' + info.name
+                    } else if (selectbar[0].value == 'en' || LANGUGE == 'en-US' || LANGUGE == 'en') {
+                        authorInfo.textContent = 'Name' + info.author;
+                    }
+                    lastContainer.appendChild(titleInfo);
+
+                    // 创建上传日期信息元素
+                    var dateInfo = document.createElement('div');
+                    dateInfo.classList.add('date-info');
+                    if (selectbar[0].value == 'cn' || LANGUGE == 'zh-CN' || LANGUGE == 'zh') {
+                        dateInfo.textContent = '上传日期：' + info.date;
+                    } else if (selectbar[0].value == 'en' || LANGUGE == 'en-US' || LANGUGE == 'en') {
+                        authorInfo.textContent = 'Date' + info.author;
+                    }
+                    lastContainer.appendChild(dateInfo);
+
                 }
             });
         }
     };
     xhr.send();
-
 
 
 
