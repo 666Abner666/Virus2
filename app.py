@@ -49,14 +49,28 @@ def index():
     # 渲染index.html模板并返回结果
     return render_template('index.html', image_urls=image_urls)
 
-@app.route('/get_all_images', methods=['GET'])
-def get_all_images():
-    image_urls = []
-    for image in db.images.find():
-        file_id = image['file_id']
-        image_url = f'/get_image/{str(image["_id"])}'
-        image_urls.append(image_url)
-    return jsonify({'image_urls': image_urls})
+
+# @app.route('/get_all_images', methods=['GET'])
+# def get_all_images():
+#     image_urls = []
+#     for image in db.images.find():
+#         file_id = image['file_id']
+#         image_url = f'/get_image/{str(image["_id"])}'
+#         image_urls.append(image_url)
+#     return jsonify({'image_urls': image_urls})
+
+
+@app.route('/get_all_images_info', methods=['GET'])
+def get_all_images_info():
+    images_info = []
+    for document in db.info.find():
+        images_info.append({
+            'author': document['author'],
+            'name': document['name'],
+            'date': document['date'],
+            'url': document['url']
+        })
+    return jsonify({'image_info': images_info})
 
 
 @app.route('/data', methods=['POST'])
@@ -173,6 +187,23 @@ def get_image(image_id):
 #     return response
 
 
+@app.route('/save_data', methods=['POST'])
+def save_data():
+    data = request.get_json()
+    author = data['author']
+    name = data['name']
+    date = data['date']
+    url = data['url']
+    document = {
+        'author': author,
+        'name': name,
+        'date': date,
+        'url': url
+    }
+    result = db.info.insert_one(document)
+    return jsonify({'message': 'Data saved successfully', 'id': str(result.inserted_id)})
+
+
 @app.route('/delete_data', methods=['POST'])
 def delete_data():
 
@@ -180,6 +211,7 @@ def delete_data():
     db.images.delete_many({})
     db.fs.files.delete_many({})
     db.fs.chunks.delete_many({})
+    db.info.delete_many({})
 
     return jsonify({'message': '删除成功'})
 
