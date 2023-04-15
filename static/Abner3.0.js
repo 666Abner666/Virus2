@@ -2680,7 +2680,7 @@ window.onload = function () {
                     if (selectbar[0].value == 'cn' || LANGUGE == 'zh-CN' || LANGUGE == 'zh') {
                         titleInfo.textContent = '名称：' + info.name
                     } else if (selectbar[0].value == 'en' || LANGUGE == 'en-US' || LANGUGE == 'en') {
-                        authorInfo.textContent = 'Name' + info.name;
+                        titleInfo.textContent = 'Name' + info.name;
                     }
                     lastContainer.appendChild(titleInfo);
 
@@ -2690,7 +2690,7 @@ window.onload = function () {
                     if (selectbar[0].value == 'cn' || LANGUGE == 'zh-CN' || LANGUGE == 'zh') {
                         dateInfo.textContent = '上传日期：' + info.date;
                     } else if (selectbar[0].value == 'en' || LANGUGE == 'en-US' || LANGUGE == 'en') {
-                        authorInfo.textContent = 'Date' + info.date;
+                        dateInfo.textContent = 'Date' + info.date;
                     }
                     lastContainer.appendChild(dateInfo);
 
