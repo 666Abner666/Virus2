@@ -1,0 +1,157 @@
+/* 管理员信息栏 */
+.admin-bar {
+    background-color: #333;
+    color: #fff;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.admin-bar .avatar {
+    margin-right: 20px;
+}
+
+.admin-bar .avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* 侧边栏 */
+.sidebar {
+    background-color: #fff;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    transition: width 0.2s ease;
+    z-index: 1;
+}
+
+.sidebar.expand {
+    width: 200px;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.sidebar-header .logo img {
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar-header .toggle-btn {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.sidebar-menu {
+    padding: 20px 0;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar-menu ul li a {
+    display: block;
+    color: #333;
+    padding: 10px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar-menu ul li a:hover {
+    background-color: #f0f0f0;
+}
+
+/* 主要内容区域 */
+.main {
+    margin-top: 60px;
+    margin-left: 60px;
+    padding: 20px;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.main-header .toggle-sidebar {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.search-box {
+    flex-grow: 1;
+    margin: 0 20px;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid #333;
+    outline: none;
+}
+
+.search-box button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.user-menu a {
+    margin-left: 20px;
+    color: #333;
+    text-decoration: none;
+}
+
+.user-menu a:hover {
+    text-decoration: underline;
+}
+
+.sidebar-menu.expanded li a span {
+    display: inline-block;
+}
+
+.hide-text span {
+    display: none;
+}
+
+.sidebar.expand .hide-text span {
+    display: inline-block;
+}
+
+.sidebar-menu ul li a span {
+    display: none;
+    font-size: 20px;
+    position: relative;
+    top: -7px;
+}

@@ -1045,7 +1045,7 @@ function other1() {
 IDV = ['101500681671442069886', '115843620982578159736', '105127938811676800612', '109537578674873788955']
 
 function BQB1() {
-    if (IDV.includes(ID) || HACK_IN == true) {
+    if (IDV.includes(ID) || HACK_IN == true || true) {
         games[0].style.display = 'none'
         web[0].style.display = 'none'
         virus[0].style.display = 'none'
@@ -1989,8 +1989,8 @@ function uploadImage() {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 // function uploadImage() {
-//     document.getElementById('fileUpload').click();
-//     document.getElementById('fileUpload').addEventListener('change', function (event) {
+//     document.getElementById('imageUpload').click();
+//     document.getElementById('imageUpload').addEventListener('change', function (event) {
 //         var file = event.target.files[0];
 //         if (!/^image\//.test(file.type)) {
 //             console.log('只能上传图片');
@@ -2010,12 +2010,12 @@ function uploadImage() {
 
 // function uploadImage() {
 //     // 获取文件上传的input元素
-//     var fileUpload = document.getElementById("fileUpload");
+//     var imageUpload = document.getElementById("imageUpload");
 
 //     // 添加监听器，当选择文件时触发
-//     fileUpload.addEventListener("change", function () {
+//     imageUpload.addEventListener("change", function () {
 //         // 获取用户选择的文件
-//         var file = fileUpload.files[0];
+//         var file = imageUpload.files[0];
 
 //         // 如果选择的不是图片文件，则弹出提示并退出函数
 //         if (!/^image\//.test(file.type)) {
@@ -2041,7 +2041,7 @@ function uploadImage() {
 //     });
 
 //     // 触发选择文件对话框
-//     fileUpload.click();
+//     imageUpload.click();
 // }
 
 let file;
@@ -2049,11 +2049,11 @@ var dateString
 
 function uploadImage() {
     //掉用input
-    var fileUpload = document.getElementById("fileUpload");
-    fileUpload.click();
+    var imageUpload = document.getElementById("imageUpload");
+    imageUpload.click();
 
     // 监听input元素的change事件，上传图片
-    document.getElementById("fileUpload").addEventListener("change", function () {
+    document.getElementById("imageUpload").addEventListener("change", function () {
         file = this.files[0]; // 将 file 定义为上传的文件
         if (!/^image\//.test(file.type)) {
             if (selectbar[0].value == 'cn') {
@@ -2072,7 +2072,7 @@ function uploadImage() {
             // 显示上传的图片
             document.getElementById("uploadedImage").src = e.target.result;
             // 获取上传图片的文件对象
-            const uploadedFile = document.getElementById('fileUpload').files[0];
+            const uploadedFile = document.getElementById('imageUpload').files[0];
 
             // 获取上传图片的名称
             const uploadedFileName = uploadedFile.name;
@@ -2091,15 +2091,74 @@ function uploadImage() {
     });
 }
 
+
+
+
+function uploadVideo() {
+    //掉用input
+    var videoUpload = document.getElementById("videoUpload");
+    videoUpload.click();
+
+    // 监听input元素的change事件，上传视频
+    document.getElementById("videoUpload").addEventListener("change", function () {
+        file = this.files[0]; // 将 file 定义为上传的文件
+        if (!/^video\//.test(file.type)) {
+            if (selectbar[0].value == 'cn') {
+                SHOW_ALERT_CN('只能上传视频！')
+            } else if (selectbar[0].value == 'en') {
+                SHOW_ALERT_EN('Video Only!')
+            }
+            console.log("只能上传视频");
+            return;
+        }
+        // 创建FileReader对象
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            // 显示确认框
+            document.getElementById("confirmVideoBox").style.display = "block";
+            // 显示上传的视频
+            document.getElementById("uploadedVideo").src = e.target.result;
+            // 获取上传视频的文件对象
+            const uploadedFile = document.getElementById('videoUpload').files[0];
+
+            // 获取上传视频的名称
+            const uploadedFileName = uploadedFile.name;
+
+            var now = new Date();
+            console.log(now)
+
+            dateString = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+            console.log(dateString)
+
+            document.getElementById("VideoTitle").setAttribute("placeholder", uploadedFileName);
+            document.getElementById("VideoTitle").value = uploadedFileName
+        }
+        // 读取文件内容并将其转换成Data URL格式
+        reader.readAsDataURL(file);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function confirmImage() {
     // TODO: 在这里处理确认图片的逻辑
 
     // 获取上传图片的文件对象
-    const uploadedFile = document.getElementById('fileUpload').files[0];
+    const uploadedFile = document.getElementById('imageUpload').files[0];
 
     // 获取上传图片的名称
     const uploadedFileName = uploadedFile.name;
-
 
     document.getElementById("imageTitle").setAttribute("placeholder", uploadedFileName);
     document.getElementById("imageTitle").value = uploadedFileName
@@ -2141,7 +2200,11 @@ function confirmImage() {
                 var authorInfo = document.createElement('div');
                 let authorName = document.getElementsByClassName('ueser-name')
                 authorInfo.classList.add('author-info');
-                authorInfo.textContent = '作者：' + authorName[0].textContent;
+                if (selectbar[0].value == 'cn') {
+                    authorInfo.textContent = '作者：' + authorName[0].textContent;
+                } else if (selectbar[0].value == 'en') {
+                    authorInfo.textContent = 'Author: ' + authorName[0].textContent;
+                }
                 lastContainer.appendChild(authorInfo);
 
                 // 创建标题信息元素
@@ -2150,13 +2213,21 @@ function confirmImage() {
                 // console.log(FN)
                 // console.log(FN.value)
                 titleInfo.classList.add('title-info');
-                titleInfo.textContent = '名称：' + FN.value;
+                if (selectbar[0].value == 'cn') {
+                    titleInfo.textContent = '名称：' + FN.value;
+                } else if (selectbar[0].value == 'en') {
+                    titleInfo.textContent = 'Name: ' + FN.value;
+                }
                 lastContainer.appendChild(titleInfo);
 
                 // 创建上传日期信息元素
                 var dateInfo = document.createElement('div');
                 dateInfo.classList.add('date-info');
-                dateInfo.textContent = '上传日期：' + dateString;
+                if (selectbar[0].value == 'cn') {
+                    dateInfo.textContent = '上传日期：' + dateString;
+                } else if (selectbar[0].value == 'en') {
+                    dateInfo.textContent = 'Date: ' + dateString;
+                }
                 lastContainer.appendChild(dateInfo);
 
                 var data = {
@@ -2166,7 +2237,7 @@ function confirmImage() {
                     "url": img.src
                 };
 
-                fetch('/save_data', {
+                fetch('/save_image_data', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -2196,8 +2267,151 @@ function confirmImage() {
     document.getElementById("imageTitle").value = ''
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function confirmVideo() {
+    // TODO: 在这里处理确认视频的逻辑
+
+    // 获取上传视频的文件对象
+    const uploadedFile = document.getElementById('videoUpload').files[0];
+
+    // 获取上传视频的名称
+    const uploadedFileName = uploadedFile.name;
+
+    document.getElementById("VideoTitle").setAttribute("placeholder", uploadedFileName);
+    document.getElementById("VideoTitle").value = uploadedFileName
+    console.log(document.getElementById("VideoTitle").value)
+
+    let VideoBlob = new FormData();
+    VideoBlob.append('video', uploadedFile); // 假设 uploadedFile 是用户上传的视频文件
+
+    fetch('/upload_video', {
+        method: 'POST',
+        body: VideoBlob
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // 将上传成功的视频显示在网页上
+            const container = document.querySelector('#Video-container');
+            let existingVideo = container.querySelector(`[src="${data.url}"]`);
+            if (existingVideo) {
+                console.log('Video already exists:', existingVideo);
+            } else {
+                document.getElementById("VideoTitle").value = uploadedFileName
+
+                var FileNameContainer = authorInfo = document.createElement('div');
+                FileNameContainer.classList.add('Container');
+                container.appendChild(FileNameContainer)
+                // 获取所有容器元素
+                const FileContainer = document.querySelectorAll('.Container');
+
+                // 获取最后一个容器
+                const lastContainer = FileContainer[FileContainer.length - 1];
+
+                var video = document.createElement('video');
+                video.setAttribute('class', 'my-Video');
+                video.src = data.url;
+                lastContainer.appendChild(video);
+
+                // 创建作者信息元素
+                var authorInfo = document.createElement('div');
+                let authorName = document.getElementsByClassName('ueser-name')
+                authorInfo.classList.add('author-info');
+                authorInfo.textContent = '作者：' + authorName[0].textContent;
+                lastContainer.appendChild(authorInfo);
+
+                // 创建标题信息元素
+                var titleInfo = document.createElement('div');
+                var FN = document.getElementById('VideoTitle')
+                // console.log(FN)
+                // console.log(FN.value)
+                titleInfo.classList.add('title-info');
+                titleInfo.textContent = '名称：' + FN.value;
+                lastContainer.appendChild(titleInfo);
+
+                // 创建上传日期信息元素
+                var dateInfo = document.createElement('div');
+                dateInfo.classList.add('date-info');
+                dateInfo.textContent = '上传日期：' + dateString;
+                lastContainer.appendChild(dateInfo);
+
+                var data = {
+                    "author": authorName[0].textContent,
+                    "name": FN.value,
+                    "date": dateString,
+                    "url": video.src
+                };
+
+                fetch('/save_video_data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch(error => console.error(error));
+
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
+    // 关闭确认框
+    document.getElementById("confirmVideoBox").style.display = "none";
+    document.getElementById("VideoTitle").setAttribute("placeholder", '');
+    document.getElementById("VideoTitle").value = ''
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function closeConfirmBox() {
     document.getElementById("confirmImageBox").style.display = "none";
+    document.getElementById("confirmVideoBox").style.display = "none";
 }
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -2278,11 +2492,13 @@ function deleteData() {
     // 当用户点击 X 按钮或者其他地方时，隐藏密码输入框
     closeBtn.addEventListener('click', function () {
         modal.style.display = 'none';
+        passwordInput.value = ''
     });
 
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = 'none';
+            passwordInput.value = ''
         }
     };
 
@@ -2303,8 +2519,15 @@ function deleteData() {
                 });
 
             modal.style.display = 'none';
+            passwordInput.value = ''
         } else {
-            alert('密码错误，请重新输入');
+            if (selectbar[0].value == 'cn') {
+                SHOW_ALERT_CN('密码错误！')
+                passwordInput.value = ''
+            } else if (selectbar[0].value == 'en') {
+                SHOW_ALERT_EN('wrong password!')
+                passwordInput.value = ''
+            }
         }
     });
 }
@@ -2314,6 +2537,49 @@ const deleteBtn = document.getElementById('delete-data-btn');
 deleteBtn.addEventListener('click', deleteData);
 
 
+
+
+function admin() {
+    // 显示密码输入框
+    const modal = document.getElementById('password-modal');
+    const closeBtn = document.querySelector('.close');
+    const submitBtn = document.getElementById('password-submit-btn');
+    const passwordInput = document.getElementById('password-input');
+
+    modal.style.display = 'block';
+
+    // 当用户点击 X 按钮或者其他地方时，隐藏密码输入框
+    closeBtn.addEventListener('click', function () {
+        modal.style.display = 'none';
+        passwordInput.value = ''
+    });
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+            passwordInput.value = ''
+        }
+    };
+
+    // 当用户点击提交按钮时，检查密码是否正确，如果正确则跳转到后台管理界面
+    submitBtn.addEventListener('click', function () {
+        const password = passwordInput.value;
+        if (password === 'Admin') {
+            window.location.href = "https://virus2.onrender.com/admin";
+
+            modal.style.display = 'none';
+            passwordInput.value = ''
+        } else {
+            if (selectbar[0].value == 'cn') {
+                SHOW_ALERT_CN('密码错误！')
+                passwordInput.value = ''
+            } else if (selectbar[0].value == 'en') {
+                SHOW_ALERT_EN('wrong password!')
+                passwordInput.value = ''
+            }
+        }
+    });
+}
 
 
 
@@ -2703,7 +2969,6 @@ window.onload = function () {
 
 
 }
-
 
 
 
