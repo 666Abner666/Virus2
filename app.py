@@ -1,4 +1,4 @@
-# 导入pymongo
+# 导入
 import pymongo
 from flask import Flask, render_template, jsonify, request, Response
 import json
@@ -48,6 +48,11 @@ image_urls = []
 def index():
     # 渲染index.html模板并返回结果
     return render_template('index.html', image_urls=image_urls)
+
+@app.route('/admin')
+def admin():
+    # 渲染index.html模板并返回结果
+    return render_template('admin.html', image_urls=image_urls)
 
 
 # @app.route('/get_all_images', methods=['GET'])
@@ -187,8 +192,8 @@ def get_image(image_id):
 #     return response
 
 
-@app.route('/save_data', methods=['POST'])
-def save_data():
+@app.route('/save_image_data', methods=['POST'])
+def save_image_data():
     data = request.get_json()
     author = data['author']
     name = data['name']
@@ -204,6 +209,58 @@ def save_data():
     return jsonify({'message': 'Data saved successfully', 'id': str(result.inserted_id)})
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route('/upload_video', methods=['POST'])
+def upload():
+    data = request.json['data']
+    name = request.json['name']
+    db.videos.insert_one({'name': name, 'data': data})
+    return {'message': '上传成功！'}
+
+@app.route('/save_video_data', methods=['POST'])
+def save_video_data():
+    data = request.get_json()
+    author = data['author']
+    name = data['name']
+    date = data['date']
+    url = data['url']
+    document = {
+        'author': author,
+        'name': name,
+        'date': date,
+        'url': url
+    }
+    result = db.info.insert_one(document)
+    return jsonify({'message': 'Data saved successfully', 'id': str(result.inserted_id)})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route('/delete_data', methods=['POST'])
 def delete_data():
 
@@ -212,6 +269,7 @@ def delete_data():
     db.fs.files.delete_many({})
     db.fs.chunks.delete_many({})
     db.info.delete_many({})
+    db.videos.delete_many({})
 
     return jsonify({'message': '删除成功'})
 
