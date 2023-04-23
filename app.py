@@ -51,7 +51,7 @@ def index():
 
 @app.route('/admin')
 def admin():
-    # 渲染index.html模板并返回结果
+    # 渲染admin.html模板并返回结果
     return render_template('admin.html', image_urls=image_urls)
 
 
