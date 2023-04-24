@@ -139,6 +139,7 @@
 
 .sidebar-menu.expanded li a span {
     display: inline-block;
+
 }
 
 .hide-text span {
@@ -154,4 +155,8 @@
     font-size: 20px;
     position: relative;
     top: -7px;
+    height: 10px;
+    width: 85px;
 }
+
+
