@@ -12,9 +12,9 @@ sidebar.addEventListener('mouseenter', function () {
 });
 
 sidebar.addEventListener('mouseleave', function () {
-    sidebar.classList.remove('expand');
+    sidebarMenu.classList.remove('expanded');
     setTimeout(function () {
-        sidebarMenu.classList.remove('expanded');
-    }, 80); // 80 毫秒延迟
+        sidebar.classList.remove('expand');
+    }, 10); // 80 毫秒延迟
 });
 
