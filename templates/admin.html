@@ -60,14 +60,61 @@
 			</div>
 
 			<div class="user-menu">
-				<a href="#">消息 <ion-icon name="mail-outline" style="height: 20px; width: 20px; position: relative; top: 5px;"></ion-icon></a>
-				<a href="#">设置 <ion-icon name="settings-outline" style="height: 20px; width: 20px; position: relative; top: 5px;"></i></a>
-				<a href="#">返回 <ion-icon name="return-down-back-outline" style="height: 20px; width: 20px; position: relative; top: 5px;"></ion-icon></i></a>
+				<a href="#">消息 <ion-icon name="mail-outline"
+						style="height: 20px; width: 20px; position: relative; top: 5px;"></ion-icon></a>
+				<a href="#">设置 <ion-icon name="settings-outline"
+						style="height: 20px; width: 20px; position: relative; top: 5px;"></i></a>
+				<a href="#">返回 <ion-icon name="return-down-back-outline"
+						style="height: 20px; width: 20px; position: relative; top: 5px;"></ion-icon></i></a>
 			</div>
 		</div>
-		<div class="main-content">
+		<div class="main-content" id="content-home">
 			<h1>欢迎来到后台管理系统</h1>
 			<p>这是一个基于 HTML、CSS 和 JavaScript 的后台管理系统界面，用于展示后台管理系统的基本功能。</p>
+		</div>
+		<div class="main-content hidden" id="content-user">
+			<!-- <h1>用户管理界面</h1>
+			<p>这是用户管理界面。</p> -->
+			<ul id="user-list">
+				<!-- <li class="user-card">
+					<img src="https://via.placeholder.com/50x50" alt="用户头像">
+					<div class="user-info">
+						<h3>张三</h3>
+						<p>密码: ******</p>
+						<p>ID: 123456</p>
+						<p>注册方式: Google</p>
+					</div>
+					<button class="delete-btn">删除</button>
+				</li>
+
+				<li class="user-card">
+					<img src="https://via.placeholder.com/50x50" alt="用户头像">
+					<div class="user-info">
+						<h3>李四</h3>
+						<p>密码: ******</p>
+						<p>ID: 789012</p>
+						<p>注册方式: 内部注册</p>
+					</div>
+					<button class="delete-btn">删除</button>
+				</li> -->
+			</ul>
+
+		</div>
+		<div class="main-content hidden" id="content-article">
+			<h1>文章管理界面</h1>
+			<p>这是文章管理界面。</p>
+		</div>
+		<div class="main-content hidden" id="content-tag">
+			<h1>标签管理界面</h1>
+			<p>这是标签管理界面。</p>
+		</div>
+		<div class="main-content hidden" id="content-comment">
+			<h1>评论管理界面</h1>
+			<p>这是评论管理界面。</p>
+		</div>
+		<div class="main-content hidden" id="content-setting">
+			<h1>设置界面</h1>
+			<p>这是设置界面。</p>
 		</div>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
