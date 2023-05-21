@@ -1045,7 +1045,7 @@ function other1() {
 IDV = ['101500681671442069886', '115843620982578159736', '105127938811676800612', '109537578674873788955']
 
 function BQB1() {
-    if (IDV.includes(ID) || HACK_IN == true || true) {
+    if (IDV.includes(ID) || HACK_IN == true) {
         games[0].style.display = 'none'
         web[0].style.display = 'none'
         virus[0].style.display = 'none'
@@ -2580,17 +2580,6 @@ function admin() {
         }
     });
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
