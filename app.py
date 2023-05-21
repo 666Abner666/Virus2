@@ -49,6 +49,7 @@ def index():
     # 渲染index.html模板并返回结果
     return render_template('index.html', image_urls=image_urls)
 
+
 @app.route('/admin')
 def admin():
     # 渲染admin.html模板并返回结果
@@ -209,16 +210,22 @@ def save_image_data():
     return jsonify({'message': 'Data saved successfully', 'id': str(result.inserted_id)})
 
 
+@app.route('/users', methods=['GET'])
+def get_all_users():
+    # 查询所有用户数据
+    users = list(db.NAME.find({}, {'_id': False}))
+    # 将 ObjectId 对象转换为字符串类型
+    for user in users:
+        user['id'] = str(user['id'])
+    # 将 Python 对象转换为 JSON 格式，并设置响应头
+    return jsonify(users=users), 200, {'Content-Type': 'application/json'}
 
-
-
-
-
-
-
-
-
-
+@app.route('/delete_user', methods=['POST'])
+def delete_user():
+    name = request.form['name']
+    print(name)
+    db.NAME.delete_many({'name': name})
+    return 'Data deleted successfully!'
 
 
 
@@ -229,6 +236,7 @@ def upload():
     name = request.json['name']
     db.videos.insert_one({'name': name, 'data': data})
     return {'message': '上传成功！'}
+
 
 @app.route('/save_video_data', methods=['POST'])
 def save_video_data():
@@ -245,20 +253,6 @@ def save_video_data():
     }
     result = db.info.insert_one(document)
     return jsonify({'message': 'Data saved successfully', 'id': str(result.inserted_id)})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @app.route('/delete_data', methods=['POST'])
