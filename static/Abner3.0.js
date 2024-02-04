@@ -2,7 +2,7 @@ var num = false
 var tb = false
 var namereg = 'Abner'
 var passwordreg = 'Abner666'
-var LOGIN = false
+var LOGIN = true
 var LANGUGE = navigator.language
 var DL = null
 OnClick = false
@@ -2960,8 +2960,116 @@ window.onload = function () {
 }
 
 
+function Nulls_brawl() {
+    if (LOGIN == true){
+        var overlay = document.createElement('div'); // 创建一个新的 div 元素作为灰色背景
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // 半透明的黑色背景
+        overlay.style.zIndex = '9999'; // 确保在最顶层
+        document.body.appendChild(overlay); // 将灰色背景添加到页面中
+
+        var centerBox = document.createElement('div'); // 创建一个新的 div 元素作为居中的框框
+        centerBox.id = 'centerBox';
+        centerBox.style.position = 'fixed';
+        centerBox.style.top = '50%';
+        centerBox.style.left = '50%';
+        centerBox.style.transform = 'translate(-50%, -50%)'; // 居中
+        centerBox.style.width = '400px'; // 调整框框宽度
+        centerBox.style.height = '300px'; // 调整框框高度
+        centerBox.style.backgroundColor = '#fff'; // 白色背景
+        centerBox.style.borderRadius = '10px'; // 圆角边框
+        centerBox.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)'; // 阴影效果
+        centerBox.style.zIndex = '10000'; // 确保在灰色背景之上
+        centerBox.style.textAlign = 'center'; // 文本居中
+        centerBox.style.paddingTop = '20px'; // 调整内边距
+
+        var button1 = document.createElement('button'); // 创建按钮1
+        button1.innerHTML = 'Install #1'; // 按钮文本
+        button1.className = 'styled-button'; // 添加样式类名
+        button1.style.marginTop = '15%'; // 设置按钮的上边距
+        button1.onclick = performAction1; // 给按钮1添加点击事件处理程序
+        centerBox.appendChild(button1); // 将按钮1添加到居中框框中
+
+        var button2 = document.createElement('button'); // 创建按钮2
+        button2.innerHTML = 'Install #2'; // 按钮文本
+        button2.className = 'styled-button'; // 添加样式类名
+        button2.onclick = performAction2; // 给按钮2添加点击事件处理程序
+        centerBox.appendChild(button2); // 将按钮2添加到居中框框中
+
+        var closeButton = document.createElement('button'); // 创建关闭按钮
+        closeButton.innerHTML = 'Close'; // 按钮文本
+        closeButton.style.position = 'absolute';
+        closeButton.style.top = '10px'; // 调整按钮位置
+        closeButton.style.right = '10px';
+        closeButton.style.padding = '5px 10px';
+        closeButton.style.border = 'none';
+        closeButton.style.borderRadius = '5px';
+        closeButton.style.background = '#f44336'; // 红色背景
+        closeButton.style.color = 'white';
+        closeButton.style.cursor = 'pointer';
+        closeButton.addEventListener('click', function() {
+            document.body.removeChild(overlay); // 点击按钮时移除灰色背景和居中的框框
+            document.body.removeChild(centerBox);
+        });
+        centerBox.appendChild(closeButton); // 将关闭按钮添加到居中框框中
+
+        document.body.appendChild(centerBox); // 将居中的框框添加到页面中
+
+        var createdBy = document.createElement('div'); // 创建一个新的 div 元素
+        createdBy.innerHTML = 'By: Abner'; // 设置文字内容
+        createdBy.style.color = 'red'; // 设置文字颜色
+        createdBy.style.fontSize = '24px'; // 设置文字大小
+        createdBy.style.marginTop = '20px'; // 设置上边距
+        centerBox.appendChild(createdBy); // 将文字添加到居中框框中
+
+    }
+
+    else {
+        if (OnClick == false) {
+            if (selectbar[0].value == 'cn') {
+                alert[0].style.display = 'inline-block';
+                document.getElementsByClassName('msg')[0].innerHTML = '请先登录！'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    OnClick = false
+                    NONE = false
+                }, 2300);
+            }
+
+            else if (selectbar[0].value == 'en') {
+                alert[0].style.display = 'inline-block';
+                document.getElementsByClassName('msg')[0].innerHTML = 'Login first!'
+                document.getElementsByClassName('alert')[0].style.zIndex = '9999'
+                $('.alert:eq(0)').addClass("show");
+                $('.alert:eq(0)').removeClass("hide");
+                $('.alert:eq(0)').addClass("showAlert");
+                OnClick = true
+                setTimeout(function () {
+                    $('.alert:eq(0)').removeClass("show");
+                    $('.alert:eq(0)').addClass("hide");
+                    OnClick = false
+                    NONE = false
+                }, 2300);
+            }
+        }
+    }
+}
 
 
+function performAction1() {
+    window.location.href = 'itms-services:///?action=download-manifest&url=https://nulls-brawl.com/ios-install-1'; // 替换成你想要跳转的网站链接
+}
 
-
-
+function performAction2() {
+    window.location.href = 'itms-services:///?action=download-manifest&url=https://nulls-brawl.com/ios-install-2'; // 替换成你想要跳转的网站链接
+}
